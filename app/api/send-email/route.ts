@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     const { data, error } = await resend.emails.send({
       from: "onboarding@resend.dev", // Resend's test email (works without domain verification)
       to: "support@intarvas.com", // Your Resend account email (only email that can receive test emails)
-      reply_to: email, // User's email for replies
+      replyTo: email, // User's email for replies
       subject: subject || "New Contact Form Message from IntarVAS",
       html: `
         <div style="font-family: sans-serif; line-height: 1.6;">
