@@ -15,6 +15,7 @@ export default function BulkMessaging() {
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -22,7 +23,15 @@ export default function BulkMessaging() {
   const featuresRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
+  // Prevent hydration mismatch by only enabling client-side features after mount
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    // Only run scroll handler after component is mounted to prevent hydration mismatch
+    if (!isMounted) return;
+
     // Scroll-based color transition animation focused on description section
     const handleScroll = () => {
       const descriptionSection = document.getElementById(
@@ -45,13 +54,18 @@ export default function BulkMessaging() {
       setScrollProgress(progress);
     };
 
+    // Small delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      handleScroll(); // Initial call
+    }, 100);
+
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
 
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMounted]);
 
   useEffect(() => {
     const heroObserver = new IntersectionObserver(
@@ -244,17 +258,8 @@ export default function BulkMessaging() {
                 const descriptionWords = descriptionText.split(" ");
 
                 return descriptionWords.map((word, index) => {
-                  // Calculate color progress for each word based on scroll position
-                  // Use a multiplier to ensure we reach the end of the text
-                  const wordProgress = Math.max(
-                    0,
-                    Math.min(
-                      1,
-                      scrollProgress * descriptionWords.length * 1.2 - index
-                    )
-                  );
-
-                  // Color transition from grey (#858D9D) to dark (#001933)
+                  // Only apply scroll-based color transition after mount to prevent hydration mismatch
+                  // Default to grey color on server-side render
                   const greyR = 133,
                     greyG = 141,
                     greyB = 157;
@@ -262,15 +267,31 @@ export default function BulkMessaging() {
                     darkG = 25,
                     darkB = 51;
 
-                  const currentR = Math.round(
-                    greyR + (darkR - greyR) * wordProgress
-                  );
-                  const currentG = Math.round(
-                    greyG + (darkG - greyG) * wordProgress
-                  );
-                  const currentB = Math.round(
-                    greyB + (darkB - greyB) * wordProgress
-                  );
+                  let currentR = greyR;
+                  let currentG = greyG;
+                  let currentB = greyB;
+
+                  if (isMounted) {
+                    // Calculate color progress for each word based on scroll position
+                    // Use a multiplier to ensure we reach the end of the text
+                    const wordProgress = Math.max(
+                      0,
+                      Math.min(
+                        1,
+                        scrollProgress * descriptionWords.length * 1.2 - index
+                      )
+                    );
+
+                    currentR = Math.round(
+                      greyR + (darkR - greyR) * wordProgress
+                    );
+                    currentG = Math.round(
+                      greyG + (darkG - greyG) * wordProgress
+                    );
+                    currentB = Math.round(
+                      greyB + (darkB - greyB) * wordProgress
+                    );
+                  }
 
                   return (
                     <span

@@ -2299,10 +2299,15 @@ function PBX() {
     const [isTrustVisible, setIsTrustVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [showTrustCards, setShowTrustCards] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isLaptopSectionVisible, setIsLaptopSectionVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isMounted, setIsMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const fullTitle = "IntarvAS PBX";
     const fullDescription = "Run your business on a smarter, cloud-based PBX that connects teams, customers, and partners with ease.";
     const descriptionText = "With IntarvAS PBX, you get enterprise-grade call management without the cost of on-site hardware. Create extensions for your team, route calls intelligently, and manage everything from a simple dashboard.";
     const descriptionWords = descriptionText.split(" ");
+    // Prevent hydration mismatch by only enabling client-side features after mount
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        setIsMounted(true);
+    }, []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         // Typewriter effect for title
         let titleIndex = 0;
@@ -2323,6 +2328,8 @@ function PBX() {
         };
     }, []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        // Only run scroll handler after component is mounted to prevent hydration mismatch
+        if (!isMounted) return;
         // Scroll-based color transition animation focused on description section
         const handleScroll = ()=>{
             const descriptionSection = document.getElementById("description-section");
@@ -2336,15 +2343,22 @@ function PBX() {
             const progress = Math.max(0, Math.min(1, (startPoint - rect.top) / (startPoint - endPoint)));
             setScrollProgress(progress);
         };
+        // Small delay to ensure DOM is ready
+        const timeoutId = setTimeout(()=>{
+            handleScroll(); // Initial call
+        }, 100);
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Initial call
         return ()=>{
+            clearTimeout(timeoutId);
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [
+        isMounted
+    ]);
     // GSAP ScrollTrigger for sticky left column in features section
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        if (!featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
+        // Only run GSAP after component is mounted to prevent hydration mismatch
+        if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
         // Clear any existing ScrollTriggers
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ScrollTrigger"].getAll().forEach((trigger)=>{
             if (trigger.vars.id === "pbx-features-sticky") {
@@ -2377,7 +2391,9 @@ function PBX() {
                 }
             });
         };
-    }, []);
+    }, [
+        isMounted
+    ]);
     // Trust section animation
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const observer = new IntersectionObserver((entries)=>{
@@ -2438,27 +2454,27 @@ function PBX() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 186,
+                                lineNumber: 201,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 187,
+                                lineNumber: 202,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 188,
+                                lineNumber: 203,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/PBX.tsx",
-                        lineNumber: 185,
+                        lineNumber: 200,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2469,7 +2485,7 @@ function PBX() {
                                 children: "IntarvAS PBX"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 192,
+                                lineNumber: 207,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2477,7 +2493,7 @@ function PBX() {
                                 children: "Run your business on a smarter, cloud-based PBX that connects teams, customers, and partners with ease."
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 195,
+                                lineNumber: 210,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2491,29 +2507,29 @@ function PBX() {
                                         children: "Contact Us"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 201,
+                                        lineNumber: 216,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 200,
+                                    lineNumber: 215,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 199,
+                                lineNumber: 214,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/PBX.tsx",
-                        lineNumber: 191,
+                        lineNumber: 206,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/PBX.tsx",
-                lineNumber: 183,
+                lineNumber: 198,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2527,7 +2543,7 @@ function PBX() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute inset-0 bg-gray-200/30 rounded-[32px] blur-xl group-hover:blur-2xl transition-all duration-500"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 218,
+                                lineNumber: 233,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -2536,23 +2552,23 @@ function PBX() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "w-full rounded-[32px] relative z-10 transform transition-all duration-700 hover:scale-105 hover:rotate-1 shadow-2xl hover:shadow-lg"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 221,
+                                lineNumber: 236,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/PBX.tsx",
-                        lineNumber: 216,
+                        lineNumber: 231,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/pages/services/PBX.tsx",
-                    lineNumber: 215,
+                    lineNumber: 230,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/PBX.tsx",
-                lineNumber: 214,
+                lineNumber: 229,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2566,27 +2582,27 @@ function PBX() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-10 left-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-bounce"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 237,
+                                lineNumber: 252,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute bottom-10 right-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-bounce delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 238,
+                                lineNumber: 253,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-cyan-500/3 rounded-full blur-2xl animate-bounce delay-2000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 239,
+                                lineNumber: 254,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/PBX.tsx",
-                        lineNumber: 236,
+                        lineNumber: 251,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2596,15 +2612,21 @@ function PBX() {
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "mx-auto font-inter text-[35px] font-[600] max-w-4xl text-center text-1.1xl leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default",
                                 children: descriptionWords.map((word, index)=>{
-                                    // Calculate color progress for each word based on scroll position
-                                    // Use a multiplier to ensure we reach the end of the text
-                                    const wordProgress = Math.max(0, Math.min(1, scrollProgress * descriptionWords.length * 1.2 - index));
-                                    // Color transition from grey (#858D9D) to dark (#001933)
+                                    // Only apply scroll-based color transition after mount to prevent hydration mismatch
+                                    // Default to grey color on server-side render
                                     const greyR = 133, greyG = 141, greyB = 157;
                                     const darkR = 0, darkG = 25, darkB = 51;
-                                    const currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
-                                    const currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
-                                    const currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                                    let currentR = greyR;
+                                    let currentG = greyG;
+                                    let currentB = greyB;
+                                    if (isMounted) {
+                                        // Calculate color progress for each word based on scroll position
+                                        // Use a multiplier to ensure we reach the end of the text
+                                        const wordProgress = Math.max(0, Math.min(1, scrollProgress * descriptionWords.length * 1.2 - index));
+                                        currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
+                                        currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
+                                        currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                                    }
                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         style: {
                                             color: `rgb(${currentR}, ${currentG}, ${currentB})`
@@ -2616,29 +2638,29 @@ function PBX() {
                                         ]
                                     }, index, true, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 261,
+                                        lineNumber: 283,
                                         columnNumber: 19
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 246,
+                                lineNumber: 261,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/services/PBX.tsx",
-                            lineNumber: 243,
+                            lineNumber: 258,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/PBX.tsx",
-                        lineNumber: 242,
+                        lineNumber: 257,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/PBX.tsx",
-                lineNumber: 231,
+                lineNumber: 246,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2662,12 +2684,12 @@ function PBX() {
                                         children: "Features"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 282,
+                                        lineNumber: 304,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 281,
+                                    lineNumber: 303,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2675,7 +2697,7 @@ function PBX() {
                                     children: "A phone number with all the business features you need."
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 289,
+                                    lineNumber: 311,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2683,7 +2705,7 @@ function PBX() {
                                     children: "These critical features are essential for any business, regardless of size."
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 292,
+                                    lineNumber: 314,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2697,23 +2719,23 @@ function PBX() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/PBX.tsx",
-                                            lineNumber: 297,
+                                            lineNumber: 319,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 296,
+                                        lineNumber: 318,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 295,
+                                    lineNumber: 317,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/services/PBX.tsx",
-                            lineNumber: 280,
+                            lineNumber: 302,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2722,8 +2744,8 @@ function PBX() {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
-                                        opacity: 0,
-                                        animation: `fadeInUp 0.6s ease-out forwards 0s`
+                                        opacity: isMounted ? 0 : 1,
+                                        animation: isMounted ? `fadeInUp 0.6s ease-out forwards 0s` : 'none'
                                     },
                                     className: "jsx-7f6e919a1a66d054" + " " + "flex items-center justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$card$2f$AllInSolution$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2738,7 +2760,7 @@ function PBX() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/PBX.tsx",
-                                            lineNumber: 315,
+                                            lineNumber: 337,
                                             columnNumber: 19
                                         }, void 0),
                                         title: "Call Recording",
@@ -2746,18 +2768,18 @@ function PBX() {
                                         img: "/images/callrecording.png"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 313,
+                                        lineNumber: 335,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 306,
+                                    lineNumber: 328,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
-                                        opacity: 0,
-                                        animation: `fadeInUp 0.6s ease-out forwards 0.1s`
+                                        opacity: isMounted ? 0 : 1,
+                                        animation: isMounted ? `fadeInUp 0.6s ease-out forwards 0.1s` : 'none'
                                     },
                                     className: "jsx-7f6e919a1a66d054" + " " + "flex items-center justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$card$2f$AllInSolution$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2772,7 +2794,7 @@ function PBX() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/PBX.tsx",
-                                            lineNumber: 338,
+                                            lineNumber: 360,
                                             columnNumber: 19
                                         }, void 0),
                                         title: "Analytics",
@@ -2780,18 +2802,18 @@ function PBX() {
                                         img: "/images/analytics.png"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 336,
+                                        lineNumber: 358,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 329,
+                                    lineNumber: 351,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
-                                        opacity: 0,
-                                        animation: `fadeInUp 0.6s ease-out forwards 0.2s`
+                                        opacity: isMounted ? 0 : 1,
+                                        animation: isMounted ? `fadeInUp 0.6s ease-out forwards 0.2s` : 'none'
                                     },
                                     className: "jsx-7f6e919a1a66d054" + " " + "flex items-center justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$card$2f$AllInSolution$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2806,7 +2828,7 @@ function PBX() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/PBX.tsx",
-                                            lineNumber: 361,
+                                            lineNumber: 383,
                                             columnNumber: 19
                                         }, void 0),
                                         title: "Extensions",
@@ -2814,18 +2836,18 @@ function PBX() {
                                         img: "/images/extimage.svg"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 359,
+                                        lineNumber: 381,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 352,
+                                    lineNumber: 374,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
-                                        opacity: 0,
-                                        animation: `fadeInUp 0.6s ease-out forwards 0.3s`
+                                        opacity: isMounted ? 0 : 1,
+                                        animation: isMounted ? `fadeInUp 0.6s ease-out forwards 0.3s` : 'none'
                                     },
                                     className: "jsx-7f6e919a1a66d054" + " " + "flex items-center justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$card$2f$AllInSolution$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2840,7 +2862,7 @@ function PBX() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/PBX.tsx",
-                                            lineNumber: 384,
+                                            lineNumber: 406,
                                             columnNumber: 19
                                         }, void 0),
                                         title: "Scalability",
@@ -2848,29 +2870,29 @@ function PBX() {
                                         img: "/images/sclimage.svg"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 382,
+                                        lineNumber: 404,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 375,
+                                    lineNumber: 397,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/services/PBX.tsx",
-                            lineNumber: 305,
+                            lineNumber: 327,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/services/PBX.tsx",
-                    lineNumber: 278,
+                    lineNumber: 300,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/PBX.tsx",
-                lineNumber: 277,
+                lineNumber: 299,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2884,20 +2906,20 @@ function PBX() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-20 left-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 408,
+                                lineNumber: 430,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute bottom-20 right-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 409,
+                                lineNumber: 431,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/PBX.tsx",
-                        lineNumber: 407,
+                        lineNumber: 429,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2913,7 +2935,7 @@ function PBX() {
                                             children: "We trust our PBX so much, we built it for our own business and still use it every day."
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/PBX.tsx",
-                                            lineNumber: 422,
+                                            lineNumber: 444,
                                             columnNumber: 15
                                         }, this),
                                         " ",
@@ -2923,7 +2945,7 @@ function PBX() {
                                             children: "2,000+"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/PBX.tsx",
-                                            lineNumber: 426,
+                                            lineNumber: 448,
                                             columnNumber: 25
                                         }, this),
                                         " ",
@@ -2931,12 +2953,12 @@ function PBX() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/services/PBX.tsx",
-                                    lineNumber: 421,
+                                    lineNumber: 443,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 414,
+                                lineNumber: 436,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2959,12 +2981,12 @@ function PBX() {
                                                             className: "jsx-7f6e919a1a66d054" + " " + "text-white"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/services/PBX.tsx",
-                                                            lineNumber: 449,
+                                                            lineNumber: 471,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 448,
+                                                        lineNumber: 470,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2977,7 +2999,7 @@ function PBX() {
                                                                     children: "Assign Extensions"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/services/PBX.tsx",
-                                                                    lineNumber: 461,
+                                                                    lineNumber: 483,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2985,18 +3007,18 @@ function PBX() {
                                                                     children: "to your team instantly"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/services/PBX.tsx",
-                                                                    lineNumber: 464,
+                                                                    lineNumber: 486,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/services/PBX.tsx",
-                                                            lineNumber: 460,
+                                                            lineNumber: 482,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 459,
+                                                        lineNumber: 481,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3006,13 +3028,13 @@ function PBX() {
                                                         className: "jsx-7f6e919a1a66d054" + " " + "absolute top-[-7px] left-[39px] mt-16 w-0.5 h-8 border-l-2 border-dashed border-blue-500 animate-pulse-slow"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 471,
+                                                        lineNumber: 493,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/services/PBX.tsx",
-                                                lineNumber: 446,
+                                                lineNumber: 468,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3028,12 +3050,12 @@ function PBX() {
                                                             className: "jsx-7f6e919a1a66d054" + " " + "text-white"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/services/PBX.tsx",
-                                                            lineNumber: 481,
+                                                            lineNumber: 503,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 480,
+                                                        lineNumber: 502,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3046,7 +3068,7 @@ function PBX() {
                                                                     children: "Call Recording"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/services/PBX.tsx",
-                                                                    lineNumber: 493,
+                                                                    lineNumber: 515,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3054,18 +3076,18 @@ function PBX() {
                                                                     children: "for compliance and quality checks"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/services/PBX.tsx",
-                                                                    lineNumber: 496,
+                                                                    lineNumber: 518,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/services/PBX.tsx",
-                                                            lineNumber: 492,
+                                                            lineNumber: 514,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 491,
+                                                        lineNumber: 513,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3075,13 +3097,13 @@ function PBX() {
                                                         className: "jsx-7f6e919a1a66d054" + " " + "absolute top-[-7px] left-[39px] mt-16 w-0.5 h-8 border-l-2 border-dashed border-blue-500 animate-pulse-slow"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 503,
+                                                        lineNumber: 525,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/services/PBX.tsx",
-                                                lineNumber: 478,
+                                                lineNumber: 500,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3097,12 +3119,12 @@ function PBX() {
                                                             className: "jsx-7f6e919a1a66d054" + " " + "text-white"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/services/PBX.tsx",
-                                                            lineNumber: 513,
+                                                            lineNumber: 535,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 512,
+                                                        lineNumber: 534,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3115,7 +3137,7 @@ function PBX() {
                                                                     children: "Analytics & Reporting"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/services/PBX.tsx",
-                                                                    lineNumber: 525,
+                                                                    lineNumber: 547,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3123,18 +3145,18 @@ function PBX() {
                                                                     children: "dashboards"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/services/PBX.tsx",
-                                                                    lineNumber: 528,
+                                                                    lineNumber: 550,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/services/PBX.tsx",
-                                                            lineNumber: 524,
+                                                            lineNumber: 546,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 523,
+                                                        lineNumber: 545,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3144,13 +3166,13 @@ function PBX() {
                                                         className: "jsx-7f6e919a1a66d054" + " " + "absolute top-[-7px] left-[39px] mt-16 w-0.5 h-8 border-l-2 border-dashed border-blue-500 animate-pulse-slow"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 535,
+                                                        lineNumber: 557,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/services/PBX.tsx",
-                                                lineNumber: 510,
+                                                lineNumber: 532,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3166,12 +3188,12 @@ function PBX() {
                                                             className: "jsx-7f6e919a1a66d054" + " " + "text-white"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/services/PBX.tsx",
-                                                            lineNumber: 545,
+                                                            lineNumber: 567,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 544,
+                                                        lineNumber: 566,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3184,7 +3206,7 @@ function PBX() {
                                                                     children: "Call Forwarding & Routing"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/services/PBX.tsx",
-                                                                    lineNumber: 557,
+                                                                    lineNumber: 579,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3192,30 +3214,30 @@ function PBX() {
                                                                     children: "flexibility"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/services/PBX.tsx",
-                                                                    lineNumber: 560,
+                                                                    lineNumber: 582,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/services/PBX.tsx",
-                                                            lineNumber: 556,
+                                                            lineNumber: 578,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/services/PBX.tsx",
-                                                        lineNumber: 555,
+                                                        lineNumber: 577,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/services/PBX.tsx",
-                                                lineNumber: 542,
+                                                lineNumber: 564,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 440,
+                                        lineNumber: 462,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3228,50 +3250,50 @@ function PBX() {
                                                 className: "jsx-7f6e919a1a66d054" + " " + "w-[500px] h-full object-contain transition-all duration-500 ease-in-out hover:scale-105"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/services/PBX.tsx",
-                                                lineNumber: 575,
+                                                lineNumber: 597,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/PBX.tsx",
-                                            lineNumber: 574,
+                                            lineNumber: 596,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/PBX.tsx",
-                                        lineNumber: 569,
+                                        lineNumber: 591,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/services/PBX.tsx",
-                                lineNumber: 431,
+                                lineNumber: 453,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/PBX.tsx",
-                        lineNumber: 412,
+                        lineNumber: 434,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/PBX.tsx",
-                lineNumber: 402,
+                lineNumber: 424,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$sections$2f$PricingPlan$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__PricingPlan$3e$__["PricingPlan"], {}, void 0, false, {
                 fileName: "[project]/pages/services/PBX.tsx",
-                lineNumber: 586,
+                lineNumber: 608,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$sections$2f$Testimonials$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Testimonials$3e$__["Testimonials"], {}, void 0, false, {
                 fileName: "[project]/pages/services/PBX.tsx",
-                lineNumber: 587,
+                lineNumber: 609,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$pbxFooter$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/PBX.tsx",
-                lineNumber: 588,
+                lineNumber: 610,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -3281,7 +3303,7 @@ function PBX() {
         ]
     }, void 0, true, {
         fileName: "[project]/pages/services/PBX.tsx",
-        lineNumber: 181,
+        lineNumber: 196,
         columnNumber: 5
     }, this);
 }

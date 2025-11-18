@@ -28,12 +28,18 @@ export default function PBX() {
   const [isTrustVisible, setIsTrustVisible] = useState(false);
   const [showTrustCards, setShowTrustCards] = useState(false);
   const [isLaptopSectionVisible, setIsLaptopSectionVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const fullTitle = "IntarvAS PBX";
   const fullDescription =
     "Run your business on a smarter, cloud-based PBX that connects teams, customers, and partners with ease.";
   const descriptionText = "With IntarvAS PBX, you get enterprise-grade call management without the cost of on-site hardware. Create extensions for your team, route calls intelligently, and manage everything from a simple dashboard.";
   const descriptionWords = descriptionText.split(" ");
+
+  // Prevent hydration mismatch by only enabling client-side features after mount
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     // Typewriter effect for title
@@ -57,6 +63,9 @@ export default function PBX() {
   }, []);
 
   useEffect(() => {
+    // Only run scroll handler after component is mounted to prevent hydration mismatch
+    if (!isMounted) return;
+
     // Scroll-based color transition animation focused on description section
     const handleScroll = () => {
       const descriptionSection = document.getElementById("description-section");
@@ -74,17 +83,23 @@ export default function PBX() {
       setScrollProgress(progress);
     };
 
+    // Small delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      handleScroll(); // Initial call
+    }, 100);
+
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
 
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMounted]);
 
   // GSAP ScrollTrigger for sticky left column in features section
   useEffect(() => {
-    if (!featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
+    // Only run GSAP after component is mounted to prevent hydration mismatch
+    if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
 
     // Clear any existing ScrollTriggers
     ScrollTrigger.getAll().forEach(trigger => {
@@ -120,7 +135,7 @@ export default function PBX() {
         }
       });
     };
-  }, []);
+  }, [isMounted]);
 
   // Trust section animation
   useEffect(() => {
@@ -245,17 +260,24 @@ export default function PBX() {
           >
             <p className="mx-auto font-inter text-[35px] font-[600] max-w-4xl text-center text-1.1xl leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default">
               {descriptionWords.map((word, index) => {
-                // Calculate color progress for each word based on scroll position
-                // Use a multiplier to ensure we reach the end of the text
-                const wordProgress = Math.max(0, Math.min(1, (scrollProgress * descriptionWords.length * 1.2) - index));
-                
-                // Color transition from grey (#858D9D) to dark (#001933)
+                // Only apply scroll-based color transition after mount to prevent hydration mismatch
+                // Default to grey color on server-side render
                 const greyR = 133, greyG = 141, greyB = 157;
                 const darkR = 0, darkG = 25, darkB = 51;
                 
-                const currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
-                const currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
-                const currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                let currentR = greyR;
+                let currentG = greyG;
+                let currentB = greyB;
+                
+                if (isMounted) {
+                  // Calculate color progress for each word based on scroll position
+                  // Use a multiplier to ensure we reach the end of the text
+                  const wordProgress = Math.max(0, Math.min(1, (scrollProgress * descriptionWords.length * 1.2) - index));
+                  
+                  currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
+                  currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
+                  currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                }
                 
                 return (
                   <span
@@ -306,8 +328,8 @@ export default function PBX() {
             <div 
               className="flex items-center justify-center"
               style={{
-                opacity: 0,
-                animation: `fadeInUp 0.6s ease-out forwards 0s`
+                opacity: isMounted ? 0 : 1,
+                animation: isMounted ? `fadeInUp 0.6s ease-out forwards 0s` : 'none'
               }}
             >
               <AllInSolutionCard
@@ -329,8 +351,8 @@ export default function PBX() {
             <div 
               className="flex items-center justify-center"
               style={{
-                opacity: 0,
-                animation: `fadeInUp 0.6s ease-out forwards 0.1s`
+                opacity: isMounted ? 0 : 1,
+                animation: isMounted ? `fadeInUp 0.6s ease-out forwards 0.1s` : 'none'
               }}
             >
               <AllInSolutionCard
@@ -352,8 +374,8 @@ export default function PBX() {
             <div 
               className="flex items-center justify-center"
               style={{
-                opacity: 0,
-                animation: `fadeInUp 0.6s ease-out forwards 0.2s`
+                opacity: isMounted ? 0 : 1,
+                animation: isMounted ? `fadeInUp 0.6s ease-out forwards 0.2s` : 'none'
               }}
             >
               <AllInSolutionCard
@@ -375,8 +397,8 @@ export default function PBX() {
             <div 
               className="flex items-center justify-center"
               style={{
-                opacity: 0,
-                animation: `fadeInUp 0.6s ease-out forwards 0.3s`
+                opacity: isMounted ? 0 : 1,
+                animation: isMounted ? `fadeInUp 0.6s ease-out forwards 0.3s` : 'none'
               }}
             >
               <AllInSolutionCard

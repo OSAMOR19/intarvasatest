@@ -3085,6 +3085,7 @@ function AllInSolutions() {
     const [hasAnimatedDescription, setHasAnimatedDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [activeCard, setActiveCard] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [scrollProgress, setScrollProgress] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [isMounted, setIsMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const allInSolutionData = [
         {
             icon: "/icon/CRM.svg",
@@ -3124,8 +3125,16 @@ function AllInSolutions() {
     const scrollContainerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const stickyLeftRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const scrollingRightRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    // Prevent hydration mismatch by only enabling client-side features after mount
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "AllInSolutions.useEffect": ()=>{
+            setIsMounted(true);
+        }
+    }["AllInSolutions.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AllInSolutions.useEffect": ()=>{
+            // Only run scroll handler after component is mounted to prevent hydration mismatch
+            if (!isMounted) return;
             // Scroll-based color transition animation focused on description section
             const handleScroll = {
                 "AllInSolutions.useEffect.handleScroll": ()=>{
@@ -3141,15 +3150,23 @@ function AllInSolutions() {
                     setScrollProgress(progress);
                 }
             }["AllInSolutions.useEffect.handleScroll"];
+            // Small delay to ensure DOM is ready
+            const timeoutId = setTimeout({
+                "AllInSolutions.useEffect.timeoutId": ()=>{
+                    handleScroll(); // Initial call
+                }
+            }["AllInSolutions.useEffect.timeoutId"], 100);
             window.addEventListener("scroll", handleScroll);
-            handleScroll(); // Initial call
             return ({
                 "AllInSolutions.useEffect": ()=>{
+                    clearTimeout(timeoutId);
                     window.removeEventListener("scroll", handleScroll);
                 }
             })["AllInSolutions.useEffect"];
         }
-    }["AllInSolutions.useEffect"], []);
+    }["AllInSolutions.useEffect"], [
+        isMounted
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "AllInSolutions.useEffect": ()=>{
             // Hero section animation
@@ -3259,7 +3276,8 @@ function AllInSolutions() {
     // GSAP ScrollTrigger for sticky left column
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "AllInSolutions.useEffect": ()=>{
-            if (!featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
+            // Only run GSAP after component is mounted to prevent hydration mismatch
+            if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
             // Clear any existing ScrollTriggers
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].getAll().forEach({
                 "AllInSolutions.useEffect": (trigger)=>{
@@ -3303,7 +3321,9 @@ function AllInSolutions() {
                 }
             })["AllInSolutions.useEffect"];
         }
-    }["AllInSolutions.useEffect"], []);
+    }["AllInSolutions.useEffect"], [
+        isMounted
+    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
         className: "jsx-7f6e919a1a66d054",
         children: [
@@ -3318,27 +3338,27 @@ function AllInSolutions() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 252,
+                                lineNumber: 267,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 253,
+                                lineNumber: 268,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 254,
+                                lineNumber: 269,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 251,
+                        lineNumber: 266,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3351,7 +3371,7 @@ function AllInSolutions() {
                                     children: "All in one solution"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 265,
+                                    lineNumber: 280,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3359,7 +3379,7 @@ function AllInSolutions() {
                                     children: "Our All-in-One CRM & Omnichannel Suite helps you manage voice, chat, email, and social from a single, powerful platform."
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 268,
+                                    lineNumber: 283,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3372,34 +3392,34 @@ function AllInSolutions() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 274,
+                                            lineNumber: 289,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 273,
+                                        lineNumber: 288,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 272,
+                                    lineNumber: 287,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 258,
+                            lineNumber: 273,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 257,
+                        lineNumber: 272,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 246,
+                lineNumber: 261,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3413,17 +3433,17 @@ function AllInSolutions() {
                         className: "jsx-7f6e919a1a66d054" + " " + "w-full rounded-[32px] hover:scale-105 transition-transform duration-500"
                     }, void 0, false, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 295,
+                        lineNumber: 310,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                    lineNumber: 288,
+                    lineNumber: 303,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 287,
+                lineNumber: 302,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3438,20 +3458,20 @@ function AllInSolutions() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 311,
+                                lineNumber: 326,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 312,
+                                lineNumber: 327,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 310,
+                        lineNumber: 325,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3461,15 +3481,21 @@ function AllInSolutions() {
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "mx-auto font-inter text-[38px] font-[600] max-w-4xl text-center leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default",
                                 children: descriptionWords.map((word, index)=>{
-                                    // Calculate color progress for each word based on scroll position
-                                    // Use a multiplier to ensure we reach the end of the text
-                                    const wordProgress = Math.max(0, Math.min(1, scrollProgress * descriptionWords.length * 1.2 - index));
-                                    // Color transition from grey (#858D9D) to dark (#001933)
+                                    // Only apply scroll-based color transition after mount to prevent hydration mismatch
+                                    // Default to grey color on server-side render
                                     const greyR = 133, greyG = 141, greyB = 157;
                                     const darkR = 0, darkG = 25, darkB = 51;
-                                    const currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
-                                    const currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
-                                    const currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                                    let currentR = greyR;
+                                    let currentG = greyG;
+                                    let currentB = greyB;
+                                    if (isMounted) {
+                                        // Calculate color progress for each word based on scroll position
+                                        // Use a multiplier to ensure we reach the end of the text
+                                        const wordProgress = Math.max(0, Math.min(1, scrollProgress * descriptionWords.length * 1.2 - index));
+                                        currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
+                                        currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
+                                        currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                                    }
                                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         style: {
                                             color: `rgb(${currentR}, ${currentG}, ${currentB})`
@@ -3481,29 +3507,29 @@ function AllInSolutions() {
                                         ]
                                     }, index, true, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 354,
+                                        lineNumber: 376,
                                         columnNumber: 19
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 323,
+                                lineNumber: 338,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 316,
+                            lineNumber: 331,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 315,
+                        lineNumber: 330,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 304,
+                lineNumber: 319,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3523,12 +3549,12 @@ function AllInSolutions() {
                                         children: "Features"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 380,
+                                        lineNumber: 402,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 379,
+                                    lineNumber: 401,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3539,14 +3565,14 @@ function AllInSolutions() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 385,
+                                            lineNumber: 407,
                                             columnNumber: 40
                                         }, this),
                                         " conversations."
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 384,
+                                    lineNumber: 406,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3554,7 +3580,7 @@ function AllInSolutions() {
                                     children: "Drive business results with our meaningful customer conversations."
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 387,
+                                    lineNumber: 409,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3567,23 +3593,23 @@ function AllInSolutions() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 392,
+                                            lineNumber: 414,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 391,
+                                        lineNumber: 413,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 390,
+                                    lineNumber: 412,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 375,
+                            lineNumber: 397,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3591,8 +3617,8 @@ function AllInSolutions() {
                             className: "jsx-7f6e919a1a66d054" + " " + "flex flex-col gap-10",
                             children: allInSolutionData.map((item, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     style: {
-                                        opacity: 0,
-                                        animation: `fadeInUp 0.6s ease-out forwards ${index * 0.1}s`
+                                        opacity: isMounted ? 0 : 1,
+                                        animation: isMounted ? `fadeInUp 0.6s ease-out forwards ${index * 0.1}s` : 'none'
                                     },
                                     className: "jsx-7f6e919a1a66d054" + " " + "flex items-center justify-center",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$card$2f$AllInSolution$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3602,7 +3628,7 @@ function AllInSolutions() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 411,
+                                            lineNumber: 433,
                                             columnNumber: 25
                                         }, void 0),
                                         title: item.title,
@@ -3610,43 +3636,43 @@ function AllInSolutions() {
                                         img: item.image
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 410,
+                                        lineNumber: 432,
                                         columnNumber: 17
                                     }, this)
                                 }, item.name, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 402,
+                                    lineNumber: 424,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 400,
+                            lineNumber: 422,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                    lineNumber: 373,
+                    lineNumber: 395,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 372,
+                lineNumber: 394,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$transform$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 422,
+                lineNumber: 444,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$AllInCTA$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 423,
+                lineNumber: 445,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$sections$2f$Testimonials$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Testimonials$3e$__["Testimonials"], {}, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 424,
+                lineNumber: 446,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$BusinessCom$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3654,7 +3680,7 @@ function AllInSolutions() {
                 backgroundFrame: "/images/bgframe.svg"
             }, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 425,
+                lineNumber: 447,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3664,11 +3690,11 @@ function AllInSolutions() {
         ]
     }, void 0, true, {
         fileName: "[project]/pages/services/AllInSolutions.tsx",
-        lineNumber: 244,
+        lineNumber: 259,
         columnNumber: 5
     }, this);
 }
-_s(AllInSolutions, "XreRXwB4Jdo8KmEjQeZJOxMuvU4=");
+_s(AllInSolutions, "Mdx1PuT3Ja3r99rHcZMNca1SuGM=");
 _c = AllInSolutions;
 var _c;
 __turbopack_context__.k.register(_c, "AllInSolutions");

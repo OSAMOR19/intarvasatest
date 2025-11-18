@@ -24,6 +24,7 @@ export default function AllInSolutions() {
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
   const [activeCard, setActiveCard] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
   const allInSolutionData = [
     {
@@ -72,7 +73,15 @@ export default function AllInSolutions() {
   const stickyLeftRef = useRef<HTMLDivElement>(null);
   const scrollingRightRef = useRef<HTMLDivElement>(null);
 
+  // Prevent hydration mismatch by only enabling client-side features after mount
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    // Only run scroll handler after component is mounted to prevent hydration mismatch
+    if (!isMounted) return;
+
     // Scroll-based color transition animation focused on description section
     const handleScroll = () => {
       const descriptionSection = document.getElementById("description-section");
@@ -93,13 +102,18 @@ export default function AllInSolutions() {
       setScrollProgress(progress);
     };
 
+    // Small delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      handleScroll(); // Initial call
+    }, 100);
+
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial call
 
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isMounted]);
 
   useEffect(() => {
     // Hero section animation
@@ -202,7 +216,8 @@ export default function AllInSolutions() {
 
   // GSAP ScrollTrigger for sticky left column
   useEffect(() => {
-    if (!featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
+    // Only run GSAP after component is mounted to prevent hydration mismatch
+    if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
 
     // Clear any existing ScrollTriggers
     ScrollTrigger.getAll().forEach(trigger => {
@@ -238,7 +253,7 @@ export default function AllInSolutions() {
         }
       });
     };
-  }, []);
+  }, [isMounted]);
 
   return (
     <main>
@@ -322,17 +337,8 @@ export default function AllInSolutions() {
           >
             <p className="mx-auto font-inter text-[38px] font-[600] max-w-4xl text-center leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default">
               {descriptionWords.map((word, index) => {
-                // Calculate color progress for each word based on scroll position
-                // Use a multiplier to ensure we reach the end of the text
-                const wordProgress = Math.max(
-                  0,
-                  Math.min(
-                    1,
-                    scrollProgress * descriptionWords.length * 1.2 - index
-                  )
-                );
-
-                // Color transition from grey (#858D9D) to dark (#001933)
+                // Only apply scroll-based color transition after mount to prevent hydration mismatch
+                // Default to grey color on server-side render
                 const greyR = 133,
                   greyG = 141,
                   greyB = 157;
@@ -340,15 +346,31 @@ export default function AllInSolutions() {
                   darkG = 25,
                   darkB = 51;
 
-                const currentR = Math.round(
-                  greyR + (darkR - greyR) * wordProgress
-                );
-                const currentG = Math.round(
-                  greyG + (darkG - greyG) * wordProgress
-                );
-                const currentB = Math.round(
-                  greyB + (darkB - greyB) * wordProgress
-                );
+                let currentR = greyR;
+                let currentG = greyG;
+                let currentB = greyB;
+
+                if (isMounted) {
+                  // Calculate color progress for each word based on scroll position
+                  // Use a multiplier to ensure we reach the end of the text
+                  const wordProgress = Math.max(
+                    0,
+                    Math.min(
+                      1,
+                      scrollProgress * descriptionWords.length * 1.2 - index
+                    )
+                  );
+
+                  currentR = Math.round(
+                    greyR + (darkR - greyR) * wordProgress
+                  );
+                  currentG = Math.round(
+                    greyG + (darkG - greyG) * wordProgress
+                  );
+                  currentB = Math.round(
+                    greyB + (darkB - greyB) * wordProgress
+                  );
+                }
 
                 return (
                   <span
@@ -403,8 +425,8 @@ export default function AllInSolutions() {
                 key={item.name} 
                 className="flex items-center justify-center"
                 style={{
-                  opacity: 0,
-                  animation: `fadeInUp 0.6s ease-out forwards ${index * 0.1}s`
+                  opacity: isMounted ? 0 : 1,
+                  animation: isMounted ? `fadeInUp 0.6s ease-out forwards ${index * 0.1}s` : 'none'
                 }}
               >
                 <AllInSolutionCard

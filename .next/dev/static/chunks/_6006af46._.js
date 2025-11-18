@@ -798,13 +798,22 @@ function BulkMessaging() {
     const [isDescriptionVisible, setIsDescriptionVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [hasAnimatedDescription, setHasAnimatedDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [scrollProgress, setScrollProgress] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [isMounted, setIsMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const heroRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const imageRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const descriptionRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const featuresRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const scrollContainerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    // Prevent hydration mismatch by only enabling client-side features after mount
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "BulkMessaging.useEffect": ()=>{
+            setIsMounted(true);
+        }
+    }["BulkMessaging.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "BulkMessaging.useEffect": ()=>{
+            // Only run scroll handler after component is mounted to prevent hydration mismatch
+            if (!isMounted) return;
             // Scroll-based color transition animation focused on description section
             const handleScroll = {
                 "BulkMessaging.useEffect.handleScroll": ()=>{
@@ -820,15 +829,23 @@ function BulkMessaging() {
                     setScrollProgress(progress);
                 }
             }["BulkMessaging.useEffect.handleScroll"];
+            // Small delay to ensure DOM is ready
+            const timeoutId = setTimeout({
+                "BulkMessaging.useEffect.timeoutId": ()=>{
+                    handleScroll(); // Initial call
+                }
+            }["BulkMessaging.useEffect.timeoutId"], 100);
             window.addEventListener("scroll", handleScroll);
-            handleScroll(); // Initial call
             return ({
                 "BulkMessaging.useEffect": ()=>{
+                    clearTimeout(timeoutId);
                     window.removeEventListener("scroll", handleScroll);
                 }
             })["BulkMessaging.useEffect"];
         }
-    }["BulkMessaging.useEffect"], []);
+    }["BulkMessaging.useEffect"], [
+        isMounted
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "BulkMessaging.useEffect": ()=>{
             const heroObserver = new IntersectionObserver({
@@ -928,27 +945,27 @@ function BulkMessaging() {
                                 className: "absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                lineNumber: 176,
+                                lineNumber: 190,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                lineNumber: 177,
+                                lineNumber: 191,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                lineNumber: 178,
+                                lineNumber: 192,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/BulkMessaging.tsx",
-                        lineNumber: 175,
+                        lineNumber: 189,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -961,7 +978,7 @@ function BulkMessaging() {
                                     children: "Bulk Messaging"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                    lineNumber: 189,
+                                    lineNumber: 203,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -969,7 +986,7 @@ function BulkMessaging() {
                                     children: "Our secure and scalable messaging platform enables you to connect with customers instantly, no matter their location."
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                    lineNumber: 192,
+                                    lineNumber: 206,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -981,34 +998,34 @@ function BulkMessaging() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                            lineNumber: 198,
+                                            lineNumber: 212,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                        lineNumber: 197,
+                                        lineNumber: 211,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                    lineNumber: 196,
+                                    lineNumber: 210,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/services/BulkMessaging.tsx",
-                            lineNumber: 182,
+                            lineNumber: 196,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/BulkMessaging.tsx",
-                        lineNumber: 181,
+                        lineNumber: 195,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                lineNumber: 173,
+                lineNumber: 187,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1022,17 +1039,17 @@ function BulkMessaging() {
                         className: "w-full rounded-[32px] hover:scale-105 transition-transform duration-500"
                     }, void 0, false, {
                         fileName: "[project]/pages/services/BulkMessaging.tsx",
-                        lineNumber: 213,
+                        lineNumber: 227,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/pages/services/BulkMessaging.tsx",
-                    lineNumber: 206,
+                    lineNumber: 220,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                lineNumber: 205,
+                lineNumber: 219,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1047,20 +1064,20 @@ function BulkMessaging() {
                                 className: "absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                lineNumber: 228,
+                                lineNumber: 242,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                lineNumber: 229,
+                                lineNumber: 243,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/BulkMessaging.tsx",
-                        lineNumber: 227,
+                        lineNumber: 241,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1073,15 +1090,21 @@ function BulkMessaging() {
                                     const descriptionText = "    As a licensed VAS Aggregator, IntarVAS provides an A2P bulk messaging platform that's reliable, compliant, and far-reaching. We serve enterprises, fintech, government, NGOs, and retail, handling everything from transactional alerts and promotional campaigns to OTP verification.";
                                     const descriptionWords = descriptionText.split(" ");
                                     return descriptionWords.map((word, index)=>{
-                                        // Calculate color progress for each word based on scroll position
-                                        // Use a multiplier to ensure we reach the end of the text
-                                        const wordProgress = Math.max(0, Math.min(1, scrollProgress * descriptionWords.length * 1.2 - index));
-                                        // Color transition from grey (#858D9D) to dark (#001933)
+                                        // Only apply scroll-based color transition after mount to prevent hydration mismatch
+                                        // Default to grey color on server-side render
                                         const greyR = 133, greyG = 141, greyB = 157;
                                         const darkR = 0, darkG = 25, darkB = 51;
-                                        const currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
-                                        const currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
-                                        const currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                                        let currentR = greyR;
+                                        let currentG = greyG;
+                                        let currentB = greyB;
+                                        if (isMounted) {
+                                            // Calculate color progress for each word based on scroll position
+                                            // Use a multiplier to ensure we reach the end of the text
+                                            const wordProgress = Math.max(0, Math.min(1, scrollProgress * descriptionWords.length * 1.2 - index));
+                                            currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
+                                            currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
+                                            currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                                        }
                                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "inline-block transition-colors duration-300",
                                             style: {
@@ -1093,55 +1116,55 @@ function BulkMessaging() {
                                             ]
                                         }, index, true, {
                                             fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                            lineNumber: 276,
+                                            lineNumber: 297,
                                             columnNumber: 21
                                         }, this);
                                     });
                                 })()
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                                lineNumber: 240,
+                                lineNumber: 254,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/services/BulkMessaging.tsx",
-                            lineNumber: 233,
+                            lineNumber: 247,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/BulkMessaging.tsx",
-                        lineNumber: 232,
+                        lineNumber: 246,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                lineNumber: 221,
+                lineNumber: 235,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$messaging$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                lineNumber: 292,
+                lineNumber: 313,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$tailoredPricing$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                lineNumber: 293,
+                lineNumber: 314,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$FAQ$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/BulkMessaging.tsx",
-                lineNumber: 294,
+                lineNumber: 315,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/services/BulkMessaging.tsx",
-        lineNumber: 134,
+        lineNumber: 148,
         columnNumber: 5
     }, this);
 }
-_s(BulkMessaging, "4COLwENYQ1cF/F6zwS0eP0Hf49E=");
+_s(BulkMessaging, "VfaDtN7Qd8eCj/ezKSwCjHeoDiU=");
 _c = BulkMessaging;
 var _c;
 __turbopack_context__.k.register(_c, "BulkMessaging");
