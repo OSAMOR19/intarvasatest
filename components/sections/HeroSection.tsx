@@ -3,6 +3,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface HeroSectionProps {
   title?: string;
@@ -15,6 +22,8 @@ interface HeroSectionProps {
   imageAlt?: string;
 }
 
+let isFirstPageLoad = true;
+
 const HeroSection = ({
   title = "Smart Telecom Solutions for Modern Businesses",
   subtitle = "Special Numbers, Call Centres, Bulk Messaging & Digital Solutions all tailored for modern Nigerian brands.",
@@ -22,188 +31,363 @@ const HeroSection = ({
   secondaryButtonText = "Explore Services",
   onPrimaryClick,
   onSecondaryClick,
-  imageSrc = "/Heroimage.svg",
+  imageSrc,
   imageAlt = "Telecom analytics and smartphone dashboard",
 }: HeroSectionProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showTitle, setShowTitle] = useState(false);
-  const [showSubtitle, setShowSubtitle] = useState(false);
-  const [showButtons, setShowButtons] = useState(false);
-  const [showPhoneAnimation, setShowPhoneAnimation] = useState(false);
-  const [showDashboardAnimation, setShowDashboardAnimation] = useState(false);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const hero2Ref = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const whiteoutActive = showPhoneAnimation || showDashboardAnimation;
+  const hasPlayed = useRef(false);
+  const canStartAnimation = useRef(!isFirstPageLoad);
+  const [allowScroll, setAllowScroll] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
+  // Prevent hydration mismatch by only enabling client-side features after mount
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            // Stagger animations
-            setTimeout(() => setShowTitle(true), 200);
-            setTimeout(() => setShowSubtitle(true), 400);
-            setTimeout(() => setShowButtons(true), 600);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    setIsMounted(true);
   }, []);
 
-  // Handle hover trigger for animations
-  const handleImageHover = () => {
-    // setShowDashboardAnimation(true);
-    // setTimeout(() => setShowPhoneAnimation(true), 300);
-  };
+  useEffect(() => {
+    if (isFirstPageLoad) {
+      const handleLoadingComplete = () => {
+        canStartAnimation.current = true;
+        isFirstPageLoad = false;
+        setupAnimation();
+      };
 
-  const handleImageLeave = () => {
-    // setShowPhoneAnimation(false);
-    // setShowDashboardAnimation(false);
+      window.addEventListener("logo-animation-complete", handleLoadingComplete);
+
+      return () => {
+        window.removeEventListener(
+          "logo-animation-complete",
+          handleLoadingComplete
+        );
+      };
+    } else {
+      setupAnimation();
+    }
+  }, [isMounted]);
+
+  const setupAnimation = () => {
+    // Only run GSAP after component is mounted to prevent hydration mismatch
+    if (!isMounted || !canStartAnimation.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set(
+        [
+          titleRef.current,
+          subtitleRef.current,
+          buttonsRef.current,
+          imageRef.current,
+        ],
+        { opacity: 0, visibility: "hidden" }
+      );
+
+      gsap.set(titleRef.current, { y: 30 });
+      gsap.set(subtitleRef.current, { y: 20 });
+      gsap.set(buttonsRef.current, { y: 20, scale: 0.8 });
+      gsap.set(imageRef.current, { y: 50 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play reverse play reverse",
+          onEnter: () => {
+            if (!hasPlayed.current) {
+              hasPlayed.current = true;
+            }
+            tl.play();
+          },
+          onEnterBack: () => tl.play(),
+          onLeave: () => tl.reverse(),
+          onLeaveBack: () => tl.reverse(),
+        },
+      });
+
+      tl.to(titleRef.current, {
+        opacity: 1,
+        visibility: "visible",
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+      })
+        .to(
+          imageRef.current,
+          {
+            opacity: 1,
+            visibility: "visible",
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+          },
+          "-=0.6"
+        )
+        .to(
+          subtitleRef.current,
+          {
+            opacity: 1,
+            visibility: "visible",
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.5"
+        )
+        .to(
+          buttonsRef.current,
+          {
+            opacity: 1,
+            visibility: "visible",
+            scale: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "back.out(1.7)",
+          },
+          "-=0.4"
+        );
+
+      // SCROLL SCALING ANIMATION - COMMENTED OUT
+      // if (hero2Ref.current && sectionRef.current) {
+      //   let scrollStep = 0;
+      //   const maxSteps = 2;
+      //   let isAnimating = false;
+      //   let lastScrollTime = 0;
+      //   const scrollDelay = 600;
+
+      //   const handleWheel = (e: WheelEvent) => {
+      //     if (!sectionRef.current || !hero2Ref.current) return;
+
+      //     const rect = sectionRef.current.getBoundingClientRect();
+      //     const isInSection =
+      //       rect.top <= 0 && rect.bottom >= window.innerHeight;
+      //     const now = Date.now();
+
+      //     if (isInSection && e.deltaY > 0) {
+      //       if (scrollStep < maxSteps) {
+      //         e.preventDefault();
+
+      //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+      //           isAnimating = true;
+      //           lastScrollTime = now;
+      //           scrollStep++;
+
+      //           const scaleValues = [1, 1.8, 2.5];
+      //           const xValues = ["0%", "5%", "10%"];
+      //           const yValues = ["0%", "-3%", "-5%"];
+      //           const opacityValues = [1, 1, 1];
+
+      //           gsap.to(hero2Ref.current, {
+      //             scale: scaleValues[scrollStep],
+      //             x: xValues[scrollStep],
+      //             y: yValues[scrollStep],
+      //             opacity: opacityValues[scrollStep],
+      //             duration: 0.6,
+      //             ease: "power2.out",
+      //             onComplete: () => {
+      //               isAnimating = false;
+      //               if (scrollStep >= maxSteps) {
+      //                 setAllowScroll(true);
+      //               }
+      //             },
+      //           });
+      //         }
+      //       }
+      //     }
+
+      //     if (isInSection && e.deltaY < 0 && scrollStep > 0) {
+      //       if (scrollStep <= maxSteps) {
+      //         e.preventDefault();
+
+      //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+      //           isAnimating = true;
+      //           lastScrollTime = now;
+      //           scrollStep--;
+      //           setAllowScroll(false);
+
+      //           const scaleValues = [1, 1.8, 2.5];
+      //           const xValues = ["0%", "5%", "10%"];
+      //           const yValues = ["0%", "-3%", "-5%"];
+      //           const opacityValues = [1, 1, 1];
+
+      //           gsap.to(hero2Ref.current, {
+      //             scale: scaleValues[scrollStep],
+      //             x: xValues[scrollStep],
+      //             y: yValues[scrollStep],
+      //             opacity: opacityValues[scrollStep],
+      //             duration: 0.6,
+      //             ease: "power2.out",
+      //             onComplete: () => {
+      //               isAnimating = false;
+      //             },
+      //           });
+      //         }
+      //       }
+      //     }
+      //   };
+
+      //   window.addEventListener("wheel", handleWheel, { passive: false });
+
+      //   return () => {
+      //     window.removeEventListener("wheel", handleWheel);
+      //   };
+      // }
+
+      const checkIfInView = () => {
+        if (!sectionRef.current || hasPlayed.current) return;
+
+        const rect = sectionRef.current.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight * 0.8;
+
+        if (isInView) {
+          hasPlayed.current = true;
+          ScrollTrigger.refresh();
+          setTimeout(() => tl.play(), 100);
+        }
+      };
+
+      const timer = setTimeout(checkIfInView, 100);
+      window.addEventListener("load", checkIfInView);
+
+      const scrollHandler = () => checkIfInView();
+      window.addEventListener("scroll", scrollHandler);
+
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener("load", checkIfInView);
+        window.removeEventListener("scroll", scrollHandler);
+      };
+    }, sectionRef);
+
+    return () => ctx.revert();
   };
 
   return (
     <section
       ref={sectionRef}
-      className="max-h-screen pt-18 lg:pt-16 overflow-hidden relative "
+      className="lg:max-h-screen pt-18 lg:pt-16 overflow-hidden relative"
       style={{
         backgroundImage: "url(/images/herosectionbg.svg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* Whiteout overlay to hide background during animations */}
-      <div
-        className={`absolute inset-0 bg-white transition-opacity duration-500 pointer-events-none z-10 ${
-          whiteoutActive ? "opacity-100" : "opacity-0"
-        }`}
-      />
-      {/* Static Background Elements - No Animation */}
-
-      <div
-        className={` grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen pt-12 md:py-0 xl:pt-16 transition-opacity duration-500 ${
-          showPhoneAnimation || showDashboardAnimation
-            ? "opacity-0"
-            : "opacity-100"
-        }`}
-      >
+      <div className="flex justify-between flex-col lg:flex-row gap-6 lg:gap-0 min-h-screen pt-12 md:py-0 xl:pt-16">
         {/* Content */}
-        <div className="flex flex-col pt-10 md:pt-24 lg:pt-36 2xl:pt-56 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]">
+        <div className="flex flex-col lg:pt-10 pt-24 md:pt-24 lg:pt-36 2xl:pt-56 pb-32 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]">
           <h1
-            className={`2xl:max-w-2xl lg:max-w-xl md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] xl:text-[52px] 2xl:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.2] transition-all duration-1000 ${
-              showTitle
-                ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-8"
-            }`}
+            ref={titleRef}
+            className="2xl:max-w-2xl lg:max-w-[38rem] md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] lg:text-[64px]  font-inter text-white font-[800] tracking-tight leading-[1.2]"
           >
             {title}
           </h1>
           <p
-            className={` text-[20px] text-[#C2C6CE] max-w-xl transition-all duration-1000 ${
-              showSubtitle
-                ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-8"
-            }`}
+            ref={subtitleRef}
+            className="text-[20px] text-[#C2C6CE] max-w-[43rem]"
           >
             {subtitle}
           </p>
           <div
-            className={`mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto sm:max-w-none transition-all duration-1000 ${
-              showButtons
-                ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-8"
-            }`}
+            ref={buttonsRef}
+            className="mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
           >
-            <Button
-              variant="outline"
-              size="default"
-              onClick={onSecondaryClick}
-              className="bg-white text-[#001933] border-[#001933] hover:bg-gray-50 w-full sm:w-auto sm:px-6"
-            >
-              <Link href={"/about#services-showcase-section"}>
+            <Link href="/about#services-showcase-section">
+              <Button
+                variant="outline"
+                size="default"
+                onClick={onSecondaryClick}
+                className="bg-white text-[#001933] border-[#001933] hover:bg-gray-50 w-full sm:w-auto sm:px-6"
+              >
                 {secondaryButtonText}
-              </Link>
-            </Button>
-            <Button
-              variant="hero"
-              size="default"
-              onClick={onPrimaryClick}
-              className="w-full sm:w-auto sm:px-6"
-            >
-              <Link href="/contact">{primaryButtonText}</Link>
-            </Button>
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                variant="hero"
+                size="default"
+                onClick={onPrimaryClick}
+                className="w-full sm:w-auto sm:px-6"
+              >
+                {primaryButtonText}
+              </Button>
+            </Link>
           </div>
         </div>
 
-        {/* Image */}
+        {/* mobile image */}
         <div
-          className="px-4 md:px-0 cursor-pointer flex justify-end items-end"
-          onMouseEnter={handleImageHover}
-          onMouseLeave={handleImageLeave}
+          ref={imageRef}
+          className="px-4 md:px-0 flex justify-end items-end lg:hidden"
         >
           <img
-            src={imageSrc}
+            src={imageSrc || "/Heroimage.svg"}
             alt={imageAlt}
-            className="2xl:w-[60vw] object-contain "
+            className="2xl:w-[60vw] object-contain"
             loading="eager"
           />
         </div>
-      </div>
 
-      {/* Removed blue backdrop for dashboard */}
+        {/* desktop Image */}
+        <div
+          ref={imageRef}
+          className="px-4 md:px-0 hidden lg:flex lg:justify-end lg:items-end relative"
+        >
+          <div className="">
+            <img
+              src="/images/hero-1.png"
+              alt="logo"
+              className="2xl:w-[60vw] object-contain z-50 -mb-20"
+              loading="eager"
+            />
+          </div>
 
-      {/* Animated Images - Dashboard (Behind) - Covers only hero section from bottom-right */}
-      <div
-        className={`absolute inset-0 p-8 md:p-12 lg:p-16 pointer-events-none transition-all duration-1000 ease-out z-20 ${
-          showDashboardAnimation
-            ? "translate-x-0 translate-y-0 opacity-100"
-            : "translate-x-[50%] translate-y-[50%] opacity-0"
-        }`}
-        style={{
-          transformOrigin: "bottom right",
-        }}
-      >
-        <img
-          src="/dashboardforanimation.svg"
-          alt="Dashboard Animation"
-          className={`w-full h-full object-cover rounded-2xl transition-all duration-500 ${
-            showPhoneAnimation ? "scale-70 opacity-75" : "scale-100 opacity-100"
-          }`}
-        />
-      </div>
+          <div
+            ref={hero2Ref}
+            className="z-40 w-[600px] h-[50%] bottom-0 lg:absolute -right-48 origin-center"
+          >
+            <img
+              src="/images/hero-2.png"
+              alt="logo"
+              className="object-contain w-full h-full"
+              loading="eager"
+            />
+          </div>
 
-      {/* Removed blue backdrop for phone */}
-
-      {/* Animated Images - Phone (On Top) - Positioned left on desktop, center on mobile */}
-      <div
-        className={`absolute inset-0 p-8 md:p-12 lg:p-16 pointer-events-none transition-all duration-1000 ease-out z-30 flex items-center justify-center lg:justify-start ${
-          showPhoneAnimation
-            ? "translate-x-0 translate-y-0 opacity-100"
-            : "translate-x-[50%] translate-y-[50%] opacity-0"
-        }`}
-        style={{
-          transformOrigin: "bottom right",
-        }}
-      >
-        <img
-          src="/phoneforanimation.svg"
-          alt="Phone Animation"
-          className={`h-full w-auto object-contain transition-all duration-500 drop-shadow-xl ${
-            showPhoneAnimation
-              ? "max-w-[98%] lg:max-w-[78%]"
-              : "max-w-[70%] lg:max-w-[60%]"
-          }`}
-        />
+          <div className="">
+            <img
+              src="/images/hero-1.png"
+              alt="logo"
+              className="2xl:w-[60vw] object-contain -mb-20"
+              loading="eager"
+            />
+          </div>
+          <div className="z-20 lg:absolute -left-2 bottom-72">
+            <img
+              src="/images/hero-3.png"
+              alt="logo"
+              className="2xl:w-[60vw] object-contain"
+              loading="eager"
+            />
+          </div>
+          <img
+            src="/images/hero-4.png"
+            alt="logo"
+            className="2xl:w-[60vw] object-contain z-20 lg:absolute bottom-32"
+            loading="eager"
+          />
+          <div className="w-[600px] h-[60%] object-contain lg:absolute bottom-0 right-0">
+            <img
+              src="/images/blue-1.png"
+              alt="logo"
+              className=""
+              loading="eager"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

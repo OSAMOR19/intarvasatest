@@ -467,228 +467,447 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/gsap/index.js [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/gsap/ScrollTrigger.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
 ;
-const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", subtitle = "Special Numbers, Call Centres, Bulk Messaging & Digital Solutions all tailored for modern Nigerian brands.", primaryButtonText = "Request Demo", secondaryButtonText = "Explore Services", onPrimaryClick, onSecondaryClick, imageSrc = "/Heroimage.svg", imageAlt = "Telecom analytics and smartphone dashboard" })=>{
+;
+;
+// Register ScrollTrigger plugin
+if ("TURBOPACK compile-time truthy", 1) {
+    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].registerPlugin(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"]);
+}
+let isFirstPageLoad = true;
+const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", subtitle = "Special Numbers, Call Centres, Bulk Messaging & Digital Solutions all tailored for modern Nigerian brands.", primaryButtonText = "Request Demo", secondaryButtonText = "Explore Services", onPrimaryClick, onSecondaryClick, imageSrc, imageAlt = "Telecom analytics and smartphone dashboard" })=>{
     _s();
-    const [isVisible, setIsVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [showTitle, setShowTitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [showSubtitle, setShowSubtitle] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [showButtons, setShowButtons] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [showPhoneAnimation, setShowPhoneAnimation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [showDashboardAnimation, setShowDashboardAnimation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const titleRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const subtitleRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const buttonsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const imageRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const hero2Ref = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const sectionRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    const whiteoutActive = showPhoneAnimation || showDashboardAnimation;
+    const hasPlayed = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
+    const canStartAnimation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(!isFirstPageLoad);
+    const [allowScroll, setAllowScroll] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isMounted, setIsMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Prevent hydration mismatch by only enabling client-side features after mount
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "HeroSection.useEffect": ()=>{
-            const observer = new IntersectionObserver({
-                "HeroSection.useEffect": (entries)=>{
-                    entries.forEach({
-                        "HeroSection.useEffect": (entry)=>{
-                            if (entry.isIntersecting) {
-                                setIsVisible(true);
-                                // Stagger animations
-                                setTimeout({
-                                    "HeroSection.useEffect": ()=>setShowTitle(true)
-                                }["HeroSection.useEffect"], 200);
-                                setTimeout({
-                                    "HeroSection.useEffect": ()=>setShowSubtitle(true)
-                                }["HeroSection.useEffect"], 400);
-                                setTimeout({
-                                    "HeroSection.useEffect": ()=>setShowButtons(true)
-                                }["HeroSection.useEffect"], 600);
-                            }
-                        }
-                    }["HeroSection.useEffect"]);
-                }
-            }["HeroSection.useEffect"], {
-                threshold: 0.2
-            });
-            if (sectionRef.current) {
-                observer.observe(sectionRef.current);
-            }
-            return ({
-                "HeroSection.useEffect": ()=>{
-                    if (sectionRef.current) {
-                        observer.unobserve(sectionRef.current);
-                    }
-                }
-            })["HeroSection.useEffect"];
+            setIsMounted(true);
         }
     }["HeroSection.useEffect"], []);
-    // Handle hover trigger for animations
-    const handleImageHover = ()=>{
-    // setShowDashboardAnimation(true);
-    // setTimeout(() => setShowPhoneAnimation(true), 300);
-    };
-    const handleImageLeave = ()=>{
-    // setShowPhoneAnimation(false);
-    // setShowDashboardAnimation(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "HeroSection.useEffect": ()=>{
+            if (isFirstPageLoad) {
+                const handleLoadingComplete = {
+                    "HeroSection.useEffect.handleLoadingComplete": ()=>{
+                        canStartAnimation.current = true;
+                        isFirstPageLoad = false;
+                        setupAnimation();
+                    }
+                }["HeroSection.useEffect.handleLoadingComplete"];
+                window.addEventListener("logo-animation-complete", handleLoadingComplete);
+                return ({
+                    "HeroSection.useEffect": ()=>{
+                        window.removeEventListener("logo-animation-complete", handleLoadingComplete);
+                    }
+                })["HeroSection.useEffect"];
+            } else {
+                setupAnimation();
+            }
+        }
+    }["HeroSection.useEffect"], [
+        isMounted
+    ]);
+    const setupAnimation = ()=>{
+        // Only run GSAP after component is mounted to prevent hydration mismatch
+        if (!isMounted || !canStartAnimation.current) return;
+        const ctx = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].context(()=>{
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set([
+                titleRef.current,
+                subtitleRef.current,
+                buttonsRef.current,
+                imageRef.current
+            ], {
+                opacity: 0,
+                visibility: "hidden"
+            });
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(titleRef.current, {
+                y: 30
+            });
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(subtitleRef.current, {
+                y: 20
+            });
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(buttonsRef.current, {
+                y: 20,
+                scale: 0.8
+            });
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(imageRef.current, {
+                y: 50
+            });
+            const tl = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play reverse play reverse",
+                    onEnter: ()=>{
+                        if (!hasPlayed.current) {
+                            hasPlayed.current = true;
+                        }
+                        tl.play();
+                    },
+                    onEnterBack: ()=>tl.play(),
+                    onLeave: ()=>tl.reverse(),
+                    onLeaveBack: ()=>tl.reverse()
+                }
+            });
+            tl.to(titleRef.current, {
+                opacity: 1,
+                visibility: "visible",
+                y: 0,
+                duration: 0.9,
+                ease: "power3.out"
+            }).to(imageRef.current, {
+                opacity: 1,
+                visibility: "visible",
+                y: 0,
+                duration: 1,
+                ease: "power3.out"
+            }, "-=0.6").to(subtitleRef.current, {
+                opacity: 1,
+                visibility: "visible",
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.5").to(buttonsRef.current, {
+                opacity: 1,
+                visibility: "visible",
+                scale: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }, "-=0.4");
+            // SCROLL SCALING ANIMATION - COMMENTED OUT
+            // if (hero2Ref.current && sectionRef.current) {
+            //   let scrollStep = 0;
+            //   const maxSteps = 2;
+            //   let isAnimating = false;
+            //   let lastScrollTime = 0;
+            //   const scrollDelay = 600;
+            //   const handleWheel = (e: WheelEvent) => {
+            //     if (!sectionRef.current || !hero2Ref.current) return;
+            //     const rect = sectionRef.current.getBoundingClientRect();
+            //     const isInSection =
+            //       rect.top <= 0 && rect.bottom >= window.innerHeight;
+            //     const now = Date.now();
+            //     if (isInSection && e.deltaY > 0) {
+            //       if (scrollStep < maxSteps) {
+            //         e.preventDefault();
+            //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+            //           isAnimating = true;
+            //           lastScrollTime = now;
+            //           scrollStep++;
+            //           const scaleValues = [1, 1.8, 2.5];
+            //           const xValues = ["0%", "5%", "10%"];
+            //           const yValues = ["0%", "-3%", "-5%"];
+            //           const opacityValues = [1, 1, 1];
+            //           gsap.to(hero2Ref.current, {
+            //             scale: scaleValues[scrollStep],
+            //             x: xValues[scrollStep],
+            //             y: yValues[scrollStep],
+            //             opacity: opacityValues[scrollStep],
+            //             duration: 0.6,
+            //             ease: "power2.out",
+            //             onComplete: () => {
+            //               isAnimating = false;
+            //               if (scrollStep >= maxSteps) {
+            //                 setAllowScroll(true);
+            //               }
+            //             },
+            //           });
+            //         }
+            //       }
+            //     }
+            //     if (isInSection && e.deltaY < 0 && scrollStep > 0) {
+            //       if (scrollStep <= maxSteps) {
+            //         e.preventDefault();
+            //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+            //           isAnimating = true;
+            //           lastScrollTime = now;
+            //           scrollStep--;
+            //           setAllowScroll(false);
+            //           const scaleValues = [1, 1.8, 2.5];
+            //           const xValues = ["0%", "5%", "10%"];
+            //           const yValues = ["0%", "-3%", "-5%"];
+            //           const opacityValues = [1, 1, 1];
+            //           gsap.to(hero2Ref.current, {
+            //             scale: scaleValues[scrollStep],
+            //             x: xValues[scrollStep],
+            //             y: yValues[scrollStep],
+            //             opacity: opacityValues[scrollStep],
+            //             duration: 0.6,
+            //             ease: "power2.out",
+            //             onComplete: () => {
+            //               isAnimating = false;
+            //             },
+            //           });
+            //         }
+            //       }
+            //     }
+            //   };
+            //   window.addEventListener("wheel", handleWheel, { passive: false });
+            //   return () => {
+            //     window.removeEventListener("wheel", handleWheel);
+            //   };
+            // }
+            const checkIfInView = ()=>{
+                if (!sectionRef.current || hasPlayed.current) return;
+                const rect = sectionRef.current.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight * 0.8;
+                if (isInView) {
+                    hasPlayed.current = true;
+                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].refresh();
+                    setTimeout(()=>tl.play(), 100);
+                }
+            };
+            const timer = setTimeout(checkIfInView, 100);
+            window.addEventListener("load", checkIfInView);
+            const scrollHandler = ()=>checkIfInView();
+            window.addEventListener("scroll", scrollHandler);
+            return ()=>{
+                clearTimeout(timer);
+                window.removeEventListener("load", checkIfInView);
+                window.removeEventListener("scroll", scrollHandler);
+            };
+        }, sectionRef);
+        return ()=>ctx.revert();
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         ref: sectionRef,
-        className: "max-h-screen pt-18 lg:pt-16 overflow-hidden relative ",
+        className: "lg:max-h-screen pt-18 lg:pt-16 overflow-hidden relative",
         style: {
             backgroundImage: "url(/images/herosectionbg.svg)",
             backgroundSize: "cover",
             backgroundPosition: "center"
         },
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `absolute inset-0 bg-white transition-opacity duration-500 pointer-events-none z-10 ${whiteoutActive ? "opacity-100" : "opacity-0"}`
-            }, void 0, false, {
-                fileName: "[project]/components/sections/HeroSection.tsx",
-                lineNumber: 86,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: ` grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 min-h-screen pt-12 md:py-0 xl:pt-16 transition-opacity duration-500 ${showPhoneAnimation || showDashboardAnimation ? "opacity-0" : "opacity-100"}`,
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col pt-10 md:pt-24 lg:pt-36 2xl:pt-56 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                className: `2xl:max-w-2xl lg:max-w-xl md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] xl:text-[52px] 2xl:text-[64px] font-inter text-white font-[800] tracking-tight leading-[1.2] transition-all duration-1000 ${showTitle ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"}`,
-                                children: title
-                            }, void 0, false, {
-                                fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 102,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: ` text-[20px] text-[#C2C6CE] max-w-xl transition-all duration-1000 ${showSubtitle ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"}`,
-                                children: subtitle
-                            }, void 0, false, {
-                                fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 111,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: `mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto sm:max-w-none transition-all duration-1000 ${showButtons ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"}`,
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex justify-between flex-col lg:flex-row gap-6 lg:gap-0 min-h-screen pt-12 md:py-0 xl:pt-16",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex flex-col lg:pt-10 pt-24 md:pt-24 lg:pt-36 2xl:pt-56 pb-32 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                            ref: titleRef,
+                            className: "2xl:max-w-2xl lg:max-w-[38rem] md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] lg:text-[64px]  font-inter text-white font-[800] tracking-tight leading-[1.2]",
+                            children: title
+                        }, void 0, false, {
+                            fileName: "[project]/components/sections/HeroSection.tsx",
+                            lineNumber: 282,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            ref: subtitleRef,
+                            className: "text-[20px] text-[#C2C6CE] max-w-[43rem]",
+                            children: subtitle
+                        }, void 0, false, {
+                            fileName: "[project]/components/sections/HeroSection.tsx",
+                            lineNumber: 288,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            ref: buttonsRef,
+                            className: "mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    href: "/about#services-showcase-section",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                         variant: "outline",
                                         size: "default",
                                         onClick: onSecondaryClick,
                                         className: "bg-white text-[#001933] border-[#001933] hover:bg-gray-50 w-full sm:w-auto sm:px-6",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/about#services-showcase-section",
-                                            children: secondaryButtonText
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/sections/HeroSection.tsx",
-                                            lineNumber: 133,
-                                            columnNumber: 15
-                                        }, ("TURBOPACK compile-time value", void 0))
+                                        children: secondaryButtonText
                                     }, void 0, false, {
                                         fileName: "[project]/components/sections/HeroSection.tsx",
-                                        lineNumber: 127,
-                                        columnNumber: 13
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                        lineNumber: 299,
+                                        columnNumber: 15
+                                    }, ("TURBOPACK compile-time value", void 0))
+                                }, void 0, false, {
+                                    fileName: "[project]/components/sections/HeroSection.tsx",
+                                    lineNumber: 298,
+                                    columnNumber: 13
+                                }, ("TURBOPACK compile-time value", void 0)),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    href: "/contact",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                         variant: "hero",
                                         size: "default",
                                         onClick: onPrimaryClick,
                                         className: "w-full sm:w-auto sm:px-6",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                            href: "/contact",
-                                            children: primaryButtonText
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/sections/HeroSection.tsx",
-                                            lineNumber: 143,
-                                            columnNumber: 15
-                                        }, ("TURBOPACK compile-time value", void 0))
+                                        children: primaryButtonText
                                     }, void 0, false, {
                                         fileName: "[project]/components/sections/HeroSection.tsx",
-                                        lineNumber: 137,
-                                        columnNumber: 13
+                                        lineNumber: 309,
+                                        columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 120,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0))
-                        ]
-                    }, void 0, true, {
+                                }, void 0, false, {
+                                    fileName: "[project]/components/sections/HeroSection.tsx",
+                                    lineNumber: 308,
+                                    columnNumber: 13
+                                }, ("TURBOPACK compile-time value", void 0))
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/sections/HeroSection.tsx",
+                            lineNumber: 294,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0))
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/sections/HeroSection.tsx",
+                    lineNumber: 281,
+                    columnNumber: 9
+                }, ("TURBOPACK compile-time value", void 0)),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    ref: imageRef,
+                    className: "px-4 md:px-0 flex justify-end items-end lg:hidden",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                        src: imageSrc || "/Heroimage.svg",
+                        alt: imageAlt,
+                        className: "2xl:w-[60vw] object-contain",
+                        loading: "eager"
+                    }, void 0, false, {
                         fileName: "[project]/components/sections/HeroSection.tsx",
-                        lineNumber: 101,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "px-4 md:px-0 cursor-pointer flex justify-end items-end",
-                        onMouseEnter: handleImageHover,
-                        onMouseLeave: handleImageLeave,
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                            src: imageSrc,
-                            alt: imageAlt,
-                            className: "2xl:w-[60vw] object-contain ",
+                        lineNumber: 326,
+                        columnNumber: 11
+                    }, ("TURBOPACK compile-time value", void 0))
+                }, void 0, false, {
+                    fileName: "[project]/components/sections/HeroSection.tsx",
+                    lineNumber: 322,
+                    columnNumber: 9
+                }, ("TURBOPACK compile-time value", void 0)),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    ref: imageRef,
+                    className: "px-4 md:px-0 hidden lg:flex lg:justify-end lg:items-end relative",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                src: "/images/hero-1.png",
+                                alt: "logo",
+                                className: "2xl:w-[60vw] object-contain z-50 -mb-20",
+                                loading: "eager"
+                            }, void 0, false, {
+                                fileName: "[project]/components/sections/HeroSection.tsx",
+                                lineNumber: 340,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, false, {
+                            fileName: "[project]/components/sections/HeroSection.tsx",
+                            lineNumber: 339,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            ref: hero2Ref,
+                            className: "z-40 w-[600px] h-[50%] bottom-0 lg:absolute -right-48 origin-center",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                src: "/images/hero-2.png",
+                                alt: "logo",
+                                className: "object-contain w-full h-full",
+                                loading: "eager"
+                            }, void 0, false, {
+                                fileName: "[project]/components/sections/HeroSection.tsx",
+                                lineNumber: 352,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, false, {
+                            fileName: "[project]/components/sections/HeroSection.tsx",
+                            lineNumber: 348,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                src: "/images/hero-1.png",
+                                alt: "logo",
+                                className: "2xl:w-[60vw] object-contain -mb-20",
+                                loading: "eager"
+                            }, void 0, false, {
+                                fileName: "[project]/components/sections/HeroSection.tsx",
+                                lineNumber: 361,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, false, {
+                            fileName: "[project]/components/sections/HeroSection.tsx",
+                            lineNumber: 360,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "z-20 lg:absolute -left-2 bottom-72",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                src: "/images/hero-3.png",
+                                alt: "logo",
+                                className: "2xl:w-[60vw] object-contain",
+                                loading: "eager"
+                            }, void 0, false, {
+                                fileName: "[project]/components/sections/HeroSection.tsx",
+                                lineNumber: 369,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, false, {
+                            fileName: "[project]/components/sections/HeroSection.tsx",
+                            lineNumber: 368,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                            src: "/images/hero-4.png",
+                            alt: "logo",
+                            className: "2xl:w-[60vw] object-contain z-20 lg:absolute bottom-32",
                             loading: "eager"
                         }, void 0, false, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 154,
+                            lineNumber: 376,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "w-[600px] h-[60%] object-contain lg:absolute bottom-0 right-0",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                src: "/images/blue-1.png",
+                                alt: "logo",
+                                className: "",
+                                loading: "eager"
+                            }, void 0, false, {
+                                fileName: "[project]/components/sections/HeroSection.tsx",
+                                lineNumber: 383,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, false, {
+                            fileName: "[project]/components/sections/HeroSection.tsx",
+                            lineNumber: 382,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
-                    }, void 0, false, {
-                        fileName: "[project]/components/sections/HeroSection.tsx",
-                        lineNumber: 149,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0))
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/sections/HeroSection.tsx",
-                lineNumber: 93,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `absolute inset-0 p-8 md:p-12 lg:p-16 pointer-events-none transition-all duration-1000 ease-out z-20 ${showDashboardAnimation ? "translate-x-0 translate-y-0 opacity-100" : "translate-x-[50%] translate-y-[50%] opacity-0"}`,
-                style: {
-                    transformOrigin: "bottom right"
-                },
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                    src: "/dashboardforanimation.svg",
-                    alt: "Dashboard Animation",
-                    className: `w-full h-full object-cover rounded-2xl transition-all duration-500 ${showPhoneAnimation ? "scale-70 opacity-75" : "scale-100 opacity-100"}`
-                }, void 0, false, {
+                    ]
+                }, void 0, true, {
                     fileName: "[project]/components/sections/HeroSection.tsx",
-                    lineNumber: 176,
+                    lineNumber: 335,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
-            }, void 0, false, {
-                fileName: "[project]/components/sections/HeroSection.tsx",
-                lineNumber: 166,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `absolute inset-0 p-8 md:p-12 lg:p-16 pointer-events-none transition-all duration-1000 ease-out z-30 flex items-center justify-center lg:justify-start ${showPhoneAnimation ? "translate-x-0 translate-y-0 opacity-100" : "translate-x-[50%] translate-y-[50%] opacity-0"}`,
-                style: {
-                    transformOrigin: "bottom right"
-                },
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                    src: "/phoneforanimation.svg",
-                    alt: "Phone Animation",
-                    className: `h-full w-auto object-contain transition-all duration-500 drop-shadow-xl ${showPhoneAnimation ? "max-w-[98%] lg:max-w-[78%]" : "max-w-[70%] lg:max-w-[60%]"}`
-                }, void 0, false, {
-                    fileName: "[project]/components/sections/HeroSection.tsx",
-                    lineNumber: 198,
-                    columnNumber: 9
-                }, ("TURBOPACK compile-time value", void 0))
-            }, void 0, false, {
-                fileName: "[project]/components/sections/HeroSection.tsx",
-                lineNumber: 188,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0))
-        ]
-    }, void 0, true, {
+            ]
+        }, void 0, true, {
+            fileName: "[project]/components/sections/HeroSection.tsx",
+            lineNumber: 279,
+            columnNumber: 7
+        }, ("TURBOPACK compile-time value", void 0))
+    }, void 0, false, {
         fileName: "[project]/components/sections/HeroSection.tsx",
-        lineNumber: 76,
+        lineNumber: 270,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
-_s(HeroSection, "34PICWTJ608NJbnk9/SH4jPYjQs=");
+_s(HeroSection, "cpd4kgwRp8eY3vq3bBHOjncwwiM=");
 _c = HeroSection;
 const __TURBOPACK__default__export__ = HeroSection;
 var _c;

@@ -900,7 +900,14 @@ function Numbers() {
     const [isDescriptionVisible, setIsDescriptionVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [hasAnimatedDescription, setHasAnimatedDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [scrollProgress, setScrollProgress] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const [isMounted, setIsMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const descriptionRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    // Prevent hydration mismatch by only enabling client-side features after mount
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Numbers.useEffect": ()=>{
+            setIsMounted(true);
+        }
+    }["Numbers.useEffect"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Numbers.useEffect": ()=>{
             // Description section animation with simple fade-in
@@ -921,6 +928,8 @@ function Numbers() {
             if (descriptionRef.current) {
                 descriptionObserver.observe(descriptionRef.current);
             }
+            // Only run scroll handler after component is mounted to prevent hydration mismatch
+            if (!isMounted) return;
             // Scroll-based color transition animation for description section
             const handleScroll = {
                 "Numbers.useEffect.handleScroll": ()=>{
@@ -936,16 +945,24 @@ function Numbers() {
                     setScrollProgress(progress);
                 }
             }["Numbers.useEffect.handleScroll"];
+            // Small delay to ensure DOM is ready
+            const timeoutId = setTimeout({
+                "Numbers.useEffect.timeoutId": ()=>{
+                    handleScroll(); // Initial call
+                }
+            }["Numbers.useEffect.timeoutId"], 100);
             window.addEventListener("scroll", handleScroll);
-            handleScroll(); // Initial call
             return ({
                 "Numbers.useEffect": ()=>{
+                    clearTimeout(timeoutId);
                     if (descriptionRef.current) descriptionObserver.unobserve(descriptionRef.current);
                     window.removeEventListener("scroll", handleScroll);
                 }
             })["Numbers.useEffect"];
         }
-    }["Numbers.useEffect"], []);
+    }["Numbers.useEffect"], [
+        isMounted
+    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
         className: "relative",
         children: [
@@ -964,7 +981,7 @@ function Numbers() {
                                         children: "Vanity and Toll-free numbers"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/Numbers.tsx",
-                                        lineNumber: 113,
+                                        lineNumber: 127,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -972,7 +989,7 @@ function Numbers() {
                                         children: "Give your business a professional edge with numbers that customers can trust and recall easily"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/Numbers.tsx",
-                                        lineNumber: 116,
+                                        lineNumber: 130,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -984,23 +1001,23 @@ function Numbers() {
                                                 children: "Contact Us"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/services/Numbers.tsx",
-                                                lineNumber: 122,
+                                                lineNumber: 136,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/Numbers.tsx",
-                                            lineNumber: 121,
+                                            lineNumber: 135,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/Numbers.tsx",
-                                        lineNumber: 120,
+                                        lineNumber: 134,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/services/Numbers.tsx",
-                                lineNumber: 112,
+                                lineNumber: 126,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1018,12 +1035,12 @@ function Numbers() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/Numbers.tsx",
-                                            lineNumber: 128,
+                                            lineNumber: 142,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/Numbers.tsx",
-                                        lineNumber: 127,
+                                        lineNumber: 141,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1040,7 +1057,7 @@ function Numbers() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/services/Numbers.tsx",
-                                                lineNumber: 141,
+                                                lineNumber: 155,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -1054,35 +1071,35 @@ function Numbers() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/services/Numbers.tsx",
-                                                lineNumber: 151,
+                                                lineNumber: 165,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/services/Numbers.tsx",
-                                        lineNumber: 140,
+                                        lineNumber: 154,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/services/Numbers.tsx",
-                                lineNumber: 126,
+                                lineNumber: 140,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/Numbers.tsx",
-                        lineNumber: 111,
+                        lineNumber: 125,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/pages/services/Numbers.tsx",
-                    lineNumber: 110,
+                    lineNumber: 124,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/Numbers.tsx",
-                lineNumber: 109,
+                lineNumber: 123,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1097,20 +1114,20 @@ function Numbers() {
                                 className: "absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/Numbers.tsx",
-                                lineNumber: 186,
+                                lineNumber: 200,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/Numbers.tsx",
-                                lineNumber: 187,
+                                lineNumber: 201,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/Numbers.tsx",
-                        lineNumber: 185,
+                        lineNumber: 199,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1123,15 +1140,21 @@ function Numbers() {
                                     const descriptionText = "   Get a memorable 0700 vanity number to make your brand unforgettable. Then, add an 0800 toll-free number to let customers call you for free. Together, these numbers increase engagement and drive business growth.";
                                     const descriptionWords = descriptionText.split(" ");
                                     return descriptionWords.map((word, index)=>{
-                                        // Calculate color progress for each word based on scroll position
-                                        // Use a multiplier to ensure we reach the end of the text
-                                        const wordProgress = Math.max(0, Math.min(1, scrollProgress * descriptionWords.length * 1.2 - index));
-                                        // Color transition from grey (#858D9D) to dark (#001933)
+                                        // Only apply scroll-based color transition after mount to prevent hydration mismatch
+                                        // Default to grey color on server-side render
                                         const greyR = 133, greyG = 141, greyB = 157;
                                         const darkR = 0, darkG = 25, darkB = 51;
-                                        const currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
-                                        const currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
-                                        const currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                                        let currentR = greyR;
+                                        let currentG = greyG;
+                                        let currentB = greyB;
+                                        if (isMounted) {
+                                            // Calculate color progress for each word based on scroll position
+                                            // Use a multiplier to ensure we reach the end of the text
+                                            const wordProgress = Math.max(0, Math.min(1, scrollProgress * descriptionWords.length * 1.2 - index));
+                                            currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
+                                            currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
+                                            currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+                                        }
                                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             className: "inline-block transition-colors duration-300",
                                             style: {
@@ -1143,60 +1166,60 @@ function Numbers() {
                                             ]
                                         }, index, true, {
                                             fileName: "[project]/pages/services/Numbers.tsx",
-                                            lineNumber: 234,
+                                            lineNumber: 255,
                                             columnNumber: 21
                                         }, this);
                                     });
                                 })()
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/Numbers.tsx",
-                                lineNumber: 198,
+                                lineNumber: 212,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/services/Numbers.tsx",
-                            lineNumber: 191,
+                            lineNumber: 205,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/Numbers.tsx",
-                        lineNumber: 190,
+                        lineNumber: 204,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/Numbers.tsx",
-                lineNumber: 179,
+                lineNumber: 193,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$messagingBulk$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/Numbers.tsx",
-                lineNumber: 251,
+                lineNumber: 272,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$GetOurDesktop$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/Numbers.tsx",
-                lineNumber: 252,
+                lineNumber: 273,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$tailoredPricing$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/Numbers.tsx",
-                lineNumber: 253,
+                lineNumber: 274,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$FAQ$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/Numbers.tsx",
-                lineNumber: 254,
+                lineNumber: 275,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/services/Numbers.tsx",
-        lineNumber: 69,
+        lineNumber: 83,
         columnNumber: 5
     }, this);
 }
-_s(Numbers, "6zAyrb7XVLN6D3he8r1Y14yUbnc=");
+_s(Numbers, "Yprj8Fn2PzGJ2TE0KjlKpHMAsh0=");
 _c = Numbers;
 var _c;
 __turbopack_context__.k.register(_c, "Numbers");
