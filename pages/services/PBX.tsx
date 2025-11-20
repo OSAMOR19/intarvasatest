@@ -6,7 +6,7 @@ import { PricingPlan as PricingPlans } from "@/components/sections";
 import AllInSolutionCard from "@/components/card/AllInSolution";
 import PbxFooter from "@/components/common/pbxFooter";
 import { Testimonials as TestimonialsSection } from "@/components/sections";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -40,6 +40,47 @@ export default function PBX() {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Global ScrollTrigger refresh after all content loads
+  useEffect(() => {
+    if (!isMounted) return;
+
+    // Wait for all content to load, then refresh
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh(true);
+    }, 500);
+
+    // Also refresh on window load
+    const handleLoad = () => {
+      ScrollTrigger.refresh(true);
+    };
+
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+    }
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('load', handleLoad);
+    };
+  }, [isMounted]);
+
+  // Window resize handler for ScrollTrigger
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMounted]);
 
   useEffect(() => {
     // Typewriter effect for title
@@ -97,7 +138,7 @@ export default function PBX() {
   }, [isMounted]);
 
   // GSAP ScrollTrigger for sticky left column in features section
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Only run GSAP after component is mounted to prevent hydration mismatch
     if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
 
@@ -237,6 +278,12 @@ export default function PBX() {
             src={"/images/pbxHeroImg.png"}
             alt="IntarVAS PBX analytics dashboard showing call history and statistics"
               className="w-full rounded-[32px] relative z-10 transform transition-all duration-700 hover:scale-105 hover:rotate-1 shadow-2xl hover:shadow-lg"
+              onLoad={() => {
+                // Refresh ScrollTrigger when hero image loads
+                if (typeof window !== 'undefined') {
+                  ScrollTrigger.refresh();
+                }
+              }}
           />
           </div>
         </div>
@@ -282,12 +329,12 @@ export default function PBX() {
                 return (
                   <span
                     key={index}
-                    className="inline-block transition-colors duration-300"
+                    className="transition-colors duration-300"
                     style={{
                       color: `rgb(${currentR}, ${currentG}, ${currentB})`
                     }}
                   >
-                    {word}&nbsp;
+                    {word}{" "}
                   </span>
                 );
               })}

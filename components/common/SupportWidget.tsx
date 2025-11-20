@@ -1,24 +1,32 @@
 "use client";
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 /**
  * IntarVAS Support Widget Component
- * Loads the support widget script globally and ensures it appears on all pages
+ * Loads the support widget script on all pages EXCEPT the home page
  */
 const SupportWidget = () => {
+  const pathname = usePathname();
+
   useEffect(() => {
+    // Don't load the widget on the home page
+    if (pathname === '/') {
+      return;
+    }
+
     // Check if script already exists to prevent duplicate loads
     const existingScript = document.querySelector(
       'script[src*="support.ccaas.intarvas.com"]'
     );
 
     if (existingScript) {
-      // Script already loaded via index.html or previous render
+      // Script already loaded via previous render
       return;
     }
 
-    // Create and inject the script dynamically (fallback)
+    // Create and inject the script dynamically
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
@@ -43,7 +51,7 @@ const SupportWidget = () => {
       // If you want to remove it on unmount, uncomment the line below:
       // document.body.removeChild(script);
     };
-  }, []); // Empty dependency array = runs once on mount
+  }, [pathname]); // Re-run when pathname changes
 
   // This component renders nothing visible
   return null;

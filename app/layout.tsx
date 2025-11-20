@@ -6,6 +6,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import LoadingScreen from "@/components/common/LoadingScreen";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import SupportWidget from "@/components/common/SupportWidget";
 
 export const metadata: Metadata = {
   title: "IntarVAS - Smart Telecom Solutions",
@@ -29,19 +30,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <script
-          type="text/javascript"
-          async
-          src="https://support.ccaas.intarvas.com/callback.js?uid=14626ee5-9eb1-4d63-8152-2d98cef8d037"
-          charSet="utf-8"
-        ></script>
-      </head>
       <body>
         <ClientProviders>
           <LoadingScreen />
           <Toaster />
           <Sonner />
+          <SupportWidget />
           <SiteHeader />
           {children}
           <SiteFooter />

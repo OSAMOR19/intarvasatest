@@ -10,6 +10,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 "use client";
 ;
 const AllInSolutionCard = ({ icon, title, description, img })=>{
+    const handleImageLoad = ()=>{
+        // Refresh ScrollTrigger when card images load to recalculate positions
+        if ("TURBOPACK compile-time truthy", 1) {
+            // Dynamic import to avoid SSR issues
+            __turbopack_context__.A("[project]/node_modules/gsap/ScrollTrigger.js [app-client] (ecmascript, async loader)").then(({ ScrollTrigger })=>{
+                ScrollTrigger.refresh();
+            });
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "md:w-[619px]  bg-white border rounded-3xl",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -23,7 +32,7 @@ const AllInSolutionCard = ({ icon, title, description, img })=>{
                             children: icon
                         }, void 0, false, {
                             fileName: "[project]/components/card/AllInSolution.tsx",
-                            lineNumber: 10,
+                            lineNumber: 20,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -31,7 +40,7 @@ const AllInSolutionCard = ({ icon, title, description, img })=>{
                             children: title
                         }, void 0, false, {
                             fileName: "[project]/components/card/AllInSolution.tsx",
-                            lineNumber: 11,
+                            lineNumber: 21,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -39,13 +48,13 @@ const AllInSolutionCard = ({ icon, title, description, img })=>{
                             children: description
                         }, void 0, false, {
                             fileName: "[project]/components/card/AllInSolution.tsx",
-                            lineNumber: 12,
+                            lineNumber: 22,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/card/AllInSolution.tsx",
-                    lineNumber: 9,
+                    lineNumber: 19,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -53,26 +62,27 @@ const AllInSolutionCard = ({ icon, title, description, img })=>{
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                         src: img,
                         alt: title,
-                        className: "w-full object-contain"
+                        className: "w-full object-contain",
+                        onLoad: handleImageLoad
                     }, void 0, false, {
                         fileName: "[project]/components/card/AllInSolution.tsx",
-                        lineNumber: 15,
+                        lineNumber: 25,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/components/card/AllInSolution.tsx",
-                    lineNumber: 14,
+                    lineNumber: 24,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/card/AllInSolution.tsx",
-            lineNumber: 8,
+            lineNumber: 18,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/card/AllInSolution.tsx",
-        lineNumber: 7,
+        lineNumber: 17,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -489,7 +499,6 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
     const buttonsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const imageRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const hero2Ref = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    const hero4Ref = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const sectionRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const hasPlayed = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
     const canStartAnimation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(!isFirstPageLoad);
@@ -503,105 +512,188 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
     }["HeroSection.useEffect"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "HeroSection.useEffect": ()=>{
-            if (!isMounted) return;
-            // Trigger animation after mount
-            const timer = setTimeout({
-                "HeroSection.useEffect.timer": ()=>{
-                    setupAnimation();
-                }
-            }["HeroSection.useEffect.timer"], 100);
-            return ({
-                "HeroSection.useEffect": ()=>clearTimeout(timer)
-            })["HeroSection.useEffect"];
+            if (isFirstPageLoad) {
+                const handleLoadingComplete = {
+                    "HeroSection.useEffect.handleLoadingComplete": ()=>{
+                        canStartAnimation.current = true;
+                        isFirstPageLoad = false;
+                        setupAnimation();
+                    }
+                }["HeroSection.useEffect.handleLoadingComplete"];
+                window.addEventListener("logo-animation-complete", handleLoadingComplete);
+                return ({
+                    "HeroSection.useEffect": ()=>{
+                        window.removeEventListener("logo-animation-complete", handleLoadingComplete);
+                    }
+                })["HeroSection.useEffect"];
+            } else {
+                setupAnimation();
+            }
         }
     }["HeroSection.useEffect"], [
         isMounted
     ]);
     const setupAnimation = ()=>{
         // Only run GSAP after component is mounted to prevent hydration mismatch
-        if (!isMounted) return;
+        if (!isMounted || !canStartAnimation.current) return;
         const ctx = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].context(()=>{
-            // Check if refs are available
-            if (!titleRef.current || !subtitleRef.current || !buttonsRef.current || !hero4Ref.current) {
-                console.log("HeroSection: Refs not ready");
-                return;
-            }
-            console.log("HeroSection: Starting animations");
-            // ========== INITIAL LOAD ANIMATION ==========
-            // Set initial positions for slide-up animations
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set([
+                titleRef.current,
+                subtitleRef.current,
+                buttonsRef.current,
+                imageRef.current
+            ], {
+                opacity: 0,
+                visibility: "hidden"
+            });
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(titleRef.current, {
-                y: 80,
-                opacity: 0
+                y: 30
             });
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(subtitleRef.current, {
-                y: 60,
-                opacity: 0
+                y: 20
             });
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(buttonsRef.current, {
-                y: 60,
-                opacity: 0
+                y: 20,
+                scale: 0.8
             });
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(hero4Ref.current, {
-                y: 100,
-                opacity: 0
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(imageRef.current, {
+                y: 50
             });
-            // Initial load timeline - plays automatically
-            const loadTl = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].timeline({
-                delay: 0.3,
-                onStart: ()=>console.log("HeroSection: Load animation started"),
-                onComplete: ()=>console.log("HeroSection: Load animation complete")
+            const tl = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play reverse play reverse",
+                    onEnter: ()=>{
+                        if (!hasPlayed.current) {
+                            hasPlayed.current = true;
+                        }
+                        tl.play();
+                    },
+                    onEnterBack: ()=>tl.play(),
+                    onLeave: ()=>tl.reverse(),
+                    onLeaveBack: ()=>tl.reverse()
+                }
             });
-            loadTl.to(titleRef.current, {
-                y: 0,
+            tl.to(titleRef.current, {
                 opacity: 1,
+                visibility: "visible",
+                y: 0,
+                duration: 0.9,
+                ease: "power3.out"
+            }).to(imageRef.current, {
+                opacity: 1,
+                visibility: "visible",
+                y: 0,
                 duration: 1,
                 ease: "power3.out"
-            }).to(subtitleRef.current, {
-                y: 0,
+            }, "-=0.6").to(subtitleRef.current, {
                 opacity: 1,
-                duration: 0.9,
-                ease: "power3.out"
-            }, "-=0.7").to(buttonsRef.current, {
+                visibility: "visible",
                 y: 0,
-                opacity: 1,
-                duration: 0.9,
+                duration: 0.8,
                 ease: "power3.out"
-            }, "-=0.7").to(hero4Ref.current, {
+            }, "-=0.5").to(buttonsRef.current, {
+                opacity: 1,
+                visibility: "visible",
+                scale: 1,
                 y: 0,
-                opacity: 1,
-                duration: 1.2,
-                ease: "power3.out"
-            }, "-=0.8");
-            // ========== SCROLL ANIMATION ==========
-            // Dashboard zoom animation on scroll
-            if (hero2Ref.current && hero4Ref.current && sectionRef.current) {
-                console.log("HeroSection: Creating scroll animation");
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].create({
-                    trigger: sectionRef.current,
-                    start: "top top",
-                    end: "+=100%",
-                    pin: true,
-                    pinSpacing: true,
-                    scrub: 1,
-                    markers: true,
-                    onUpdate: (self)=>{
-                        const progress = self.progress;
-                        console.log("Scroll progress:", progress);
-                        // Hero-4 (phone) slides way off to the left
-                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(hero4Ref.current, {
-                            x: `-${progress * 120}%`,
-                            ease: "none"
-                        });
-                        // Hero-2 (dashboard) scales up massively and centers to fill screen
-                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(hero2Ref.current, {
-                            scale: 1 + progress * 4.5,
-                            x: `${progress * 50}%`,
-                            y: `-${progress * 10}%`,
-                            ease: "none"
-                        });
-                    }
-                });
-            }
+                duration: 0.8,
+                ease: "back.out(1.7)"
+            }, "-=0.4");
+            // SCROLL SCALING ANIMATION - COMMENTED OUT
+            // if (hero2Ref.current && sectionRef.current) {
+            //   let scrollStep = 0;
+            //   const maxSteps = 2;
+            //   let isAnimating = false;
+            //   let lastScrollTime = 0;
+            //   const scrollDelay = 600;
+            //   const handleWheel = (e: WheelEvent) => {
+            //     if (!sectionRef.current || !hero2Ref.current) return;
+            //     const rect = sectionRef.current.getBoundingClientRect();
+            //     const isInSection =
+            //       rect.top <= 0 && rect.bottom >= window.innerHeight;
+            //     const now = Date.now();
+            //     if (isInSection && e.deltaY > 0) {
+            //       if (scrollStep < maxSteps) {
+            //         e.preventDefault();
+            //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+            //           isAnimating = true;
+            //           lastScrollTime = now;
+            //           scrollStep++;
+            //           const scaleValues = [1, 1.8, 2.5];
+            //           const xValues = ["0%", "5%", "10%"];
+            //           const yValues = ["0%", "-3%", "-5%"];
+            //           const opacityValues = [1, 1, 1];
+            //           gsap.to(hero2Ref.current, {
+            //             scale: scaleValues[scrollStep],
+            //             x: xValues[scrollStep],
+            //             y: yValues[scrollStep],
+            //             opacity: opacityValues[scrollStep],
+            //             duration: 0.6,
+            //             ease: "power2.out",
+            //             onComplete: () => {
+            //               isAnimating = false;
+            //               if (scrollStep >= maxSteps) {
+            //                 setAllowScroll(true);
+            //               }
+            //             },
+            //           });
+            //         }
+            //       }
+            //     }
+            //     if (isInSection && e.deltaY < 0 && scrollStep > 0) {
+            //       if (scrollStep <= maxSteps) {
+            //         e.preventDefault();
+            //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+            //           isAnimating = true;
+            //           lastScrollTime = now;
+            //           scrollStep--;
+            //           setAllowScroll(false);
+            //           const scaleValues = [1, 1.8, 2.5];
+            //           const xValues = ["0%", "5%", "10%"];
+            //           const yValues = ["0%", "-3%", "-5%"];
+            //           const opacityValues = [1, 1, 1];
+            //           gsap.to(hero2Ref.current, {
+            //             scale: scaleValues[scrollStep],
+            //             x: xValues[scrollStep],
+            //             y: yValues[scrollStep],
+            //             opacity: opacityValues[scrollStep],
+            //             duration: 0.6,
+            //             ease: "power2.out",
+            //             onComplete: () => {
+            //               isAnimating = false;
+            //             },
+            //           });
+            //         }
+            //       }
+            //     }
+            //   };
+            //   window.addEventListener("wheel", handleWheel, { passive: false });
+            //   return () => {
+            //     window.removeEventListener("wheel", handleWheel);
+            //   };
+            // }
+            const checkIfInView = ()=>{
+                if (!sectionRef.current || hasPlayed.current) return;
+                const rect = sectionRef.current.getBoundingClientRect();
+                const isInView = rect.top < window.innerHeight * 0.8;
+                if (isInView) {
+                    hasPlayed.current = true;
+                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].refresh();
+                    setTimeout(()=>tl.play(), 100);
+                }
+            };
+            const timer = setTimeout(checkIfInView, 100);
+            window.addEventListener("load", checkIfInView);
+            const scrollHandler = ()=>checkIfInView();
+            window.addEventListener("scroll", scrollHandler);
+            return ()=>{
+                clearTimeout(timer);
+                window.removeEventListener("load", checkIfInView);
+                window.removeEventListener("scroll", scrollHandler);
+            };
         }, sectionRef);
         return ()=>ctx.revert();
     };
@@ -617,7 +709,7 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
             className: "flex justify-between flex-col lg:flex-row gap-6 lg:gap-0 min-h-screen pt-12 md:py-0 xl:pt-16",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col pt-24 md:pt-24 lg:pt-36 2xl:pt-56 pb-58 md:pb-56 lg:pb-64 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]",
+                    className: "flex flex-col lg:pt-10 pt-24 md:pt-24 lg:pt-36 2xl:pt-56 pb-58 md:pb-56 lg:pb-64 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                             ref: titleRef,
@@ -625,7 +717,7 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                             children: title
                         }, void 0, false, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 182,
+                            lineNumber: 282,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -634,7 +726,7 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                             children: subtitle
                         }, void 0, false, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 188,
+                            lineNumber: 288,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -651,12 +743,12 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                                         children: secondaryButtonText
                                     }, void 0, false, {
                                         fileName: "[project]/components/sections/HeroSection.tsx",
-                                        lineNumber: 199,
+                                        lineNumber: 299,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/components/sections/HeroSection.tsx",
-                                    lineNumber: 198,
+                                    lineNumber: 298,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -669,24 +761,24 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                                         children: primaryButtonText
                                     }, void 0, false, {
                                         fileName: "[project]/components/sections/HeroSection.tsx",
-                                        lineNumber: 209,
+                                        lineNumber: 309,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/components/sections/HeroSection.tsx",
-                                    lineNumber: 208,
+                                    lineNumber: 308,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 194,
+                            lineNumber: 294,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/sections/HeroSection.tsx",
-                    lineNumber: 181,
+                    lineNumber: 281,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -699,12 +791,12 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                         loading: "eager"
                     }, void 0, false, {
                         fileName: "[project]/components/sections/HeroSection.tsx",
-                        lineNumber: 226,
+                        lineNumber: 326,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/components/sections/HeroSection.tsx",
-                    lineNumber: 222,
+                    lineNumber: 322,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -720,12 +812,12 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                                 loading: "eager"
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 240,
+                                lineNumber: 340,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 239,
+                            lineNumber: 339,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -738,12 +830,12 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                                 loading: "eager"
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 252,
+                                lineNumber: 352,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 248,
+                            lineNumber: 348,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -755,12 +847,12 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                                 loading: "eager"
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 261,
+                                lineNumber: 361,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 260,
+                            lineNumber: 360,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -772,23 +864,22 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                                 loading: "eager"
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 269,
+                                lineNumber: 369,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 268,
+                            lineNumber: 368,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                            ref: hero4Ref,
                             src: "/images/hero-4.png",
                             alt: "logo",
                             className: "2xl:w-[60vw] object-contain z-20 lg:absolute bottom-32",
                             loading: "eager"
                         }, void 0, false, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 276,
+                            lineNumber: 376,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -800,33 +891,33 @@ const HeroSection = ({ title = "Smart Telecom Solutions for Modern Businesses", 
                                 loading: "eager"
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/HeroSection.tsx",
-                                lineNumber: 284,
+                                lineNumber: 383,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/components/sections/HeroSection.tsx",
-                            lineNumber: 283,
+                            lineNumber: 382,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/sections/HeroSection.tsx",
-                    lineNumber: 235,
+                    lineNumber: 335,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/components/sections/HeroSection.tsx",
-            lineNumber: 179,
+            lineNumber: 279,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/components/sections/HeroSection.tsx",
-        lineNumber: 170,
+        lineNumber: 270,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
-_s(HeroSection, "HuNzYv/OQOgWA3kALB8cgqt0g8c=");
+_s(HeroSection, "cpd4kgwRp8eY3vq3bBHOjncwwiM=");
 _c = HeroSection;
 const __TURBOPACK__default__export__ = HeroSection;
 var _c;
@@ -1956,6 +2047,7 @@ const TestimonialsSection = ()=>{
         }, ("TURBOPACK compile-time value", void 0));
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+        ref: sectionRef,
         className: "bg-gray-50 py-16 px-8 ",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "md:max-w-7xl mx-auto",
@@ -2003,6 +2095,10 @@ const TestimonialsSection = ()=>{
                         testimonials.slice(0, 2),
                         testimonials.slice(0, 2)
                     ].map((group, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            ref: (el)=>{
+                                if (i === 0) animationRefs.current.mobileRow1 = el;
+                                if (i === 1) animationRefs.current.mobileRow2 = el;
+                            },
                             className: `horizontal-scroll ${i % 2 === 1 ? "reverse" : ""} ${isPaused ? "paused" : ""} flex w-full space-x-4`,
                             children: [
                                 ...group,
@@ -2011,7 +2107,7 @@ const TestimonialsSection = ()=>{
                                     testimonial: t
                                 }, index, false, {
                                     fileName: "[project]/components/sections/Testimonials.tsx",
-                                    lineNumber: 299,
+                                    lineNumber: 303,
                                     columnNumber: 19
                                 }, ("TURBOPACK compile-time value", void 0)))
                         }, i, false, {
@@ -2038,6 +2134,11 @@ const TestimonialsSection = ()=>{
                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "overflow-hidden",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                ref: (el)=>{
+                                    if (col === 0) animationRefs.current.desktopCol1 = el;
+                                    if (col === 1) animationRefs.current.desktopCol2 = el;
+                                    if (col === 2) animationRefs.current.desktopCol3 = el;
+                                },
                                 className: `${reverse ? "scroller-reverse" : "scroller"} ${isPaused ? "paused" : ""} space-y-4`,
                                 children: [
                                     ...group,
@@ -2046,23 +2147,23 @@ const TestimonialsSection = ()=>{
                                         testimonial: t
                                     }, index, false, {
                                         fileName: "[project]/components/sections/Testimonials.tsx",
-                                        lineNumber: 323,
+                                        lineNumber: 332,
                                         columnNumber: 21
                                     }, ("TURBOPACK compile-time value", void 0)))
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/Testimonials.tsx",
-                                lineNumber: 317,
+                                lineNumber: 321,
                                 columnNumber: 17
                             }, ("TURBOPACK compile-time value", void 0))
                         }, col, false, {
                             fileName: "[project]/components/sections/Testimonials.tsx",
-                            lineNumber: 316,
+                            lineNumber: 320,
                             columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0));
                     })
                 }, void 0, false, {
                     fileName: "[project]/components/sections/Testimonials.tsx",
-                    lineNumber: 307,
+                    lineNumber: 311,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
@@ -3269,6 +3370,56 @@ function AllInSolutions() {
             setIsMounted(true);
         }
     }["AllInSolutions.useEffect"], []);
+    // Global ScrollTrigger refresh after all content loads
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AllInSolutions.useEffect": ()=>{
+            if (!isMounted) return;
+            // Wait for all content to load, then refresh
+            const timer = setTimeout({
+                "AllInSolutions.useEffect.timer": ()=>{
+                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].refresh(true);
+                }
+            }["AllInSolutions.useEffect.timer"], 500);
+            // Also refresh on window load
+            const handleLoad = {
+                "AllInSolutions.useEffect.handleLoad": ()=>{
+                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].refresh(true);
+                }
+            }["AllInSolutions.useEffect.handleLoad"];
+            if (document.readyState === 'complete') {
+                handleLoad();
+            } else {
+                window.addEventListener('load', handleLoad);
+            }
+            return ({
+                "AllInSolutions.useEffect": ()=>{
+                    clearTimeout(timer);
+                    window.removeEventListener('load', handleLoad);
+                }
+            })["AllInSolutions.useEffect"];
+        }
+    }["AllInSolutions.useEffect"], [
+        isMounted
+    ]);
+    // Window resize handler for ScrollTrigger
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AllInSolutions.useEffect": ()=>{
+            if (!isMounted) return;
+            const handleResize = {
+                "AllInSolutions.useEffect.handleResize": ()=>{
+                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].refresh();
+                }
+            }["AllInSolutions.useEffect.handleResize"];
+            window.addEventListener('resize', handleResize);
+            return ({
+                "AllInSolutions.useEffect": ()=>{
+                    window.removeEventListener('resize', handleResize);
+                }
+            })["AllInSolutions.useEffect"];
+        }
+    }["AllInSolutions.useEffect"], [
+        isMounted
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "AllInSolutions.useEffect": ()=>{
             // Only run scroll handler after component is mounted to prevent hydration mismatch
@@ -3412,54 +3563,54 @@ function AllInSolutions() {
         hasAnimatedDescription
     ]);
     // GSAP ScrollTrigger for sticky left column
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "AllInSolutions.useEffect": ()=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLayoutEffect"])({
+        "AllInSolutions.useLayoutEffect": ()=>{
             // Only run GSAP after component is mounted to prevent hydration mismatch
             if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
             // Clear any existing ScrollTriggers
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].getAll().forEach({
-                "AllInSolutions.useEffect": (trigger)=>{
+                "AllInSolutions.useLayoutEffect": (trigger)=>{
                     if (trigger.vars.id === "features-sticky") {
                         trigger.kill();
                     }
                 }
-            }["AllInSolutions.useEffect"]);
+            }["AllInSolutions.useLayoutEffect"]);
             // Create the pin effect
             const ctx = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].context({
-                "AllInSolutions.useEffect.ctx": ()=>{
+                "AllInSolutions.useLayoutEffect.ctx": ()=>{
                     __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].create({
                         id: "features-sticky",
                         trigger: featuresRef.current,
                         start: "top 80px",
                         end: {
-                            "AllInSolutions.useEffect.ctx": ()=>{
+                            "AllInSolutions.useLayoutEffect.ctx": ()=>{
                                 // Pin until the right column finishes scrolling
                                 const rightHeight = scrollingRightRef.current?.offsetHeight || 0;
                                 const leftHeight = stickyLeftRef.current?.offsetHeight || 0;
                                 return `+=${rightHeight - leftHeight - 150}`; // Unpin 150px before the end to prevent overlap
                             }
-                        }["AllInSolutions.useEffect.ctx"],
+                        }["AllInSolutions.useLayoutEffect.ctx"],
                         pin: stickyLeftRef.current,
                         pinSpacing: false,
                         markers: false,
                         scrub: false
                     });
                 }
-            }["AllInSolutions.useEffect.ctx"], featuresRef.current);
+            }["AllInSolutions.useLayoutEffect.ctx"], featuresRef.current);
             return ({
-                "AllInSolutions.useEffect": ()=>{
+                "AllInSolutions.useLayoutEffect": ()=>{
                     ctx.revert(); // Clean up GSAP context
                     __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].getAll().forEach({
-                        "AllInSolutions.useEffect": (trigger)=>{
+                        "AllInSolutions.useLayoutEffect": (trigger)=>{
                             if (trigger.vars.id === "features-sticky") {
                                 trigger.kill();
                             }
                         }
-                    }["AllInSolutions.useEffect"]);
+                    }["AllInSolutions.useLayoutEffect"]);
                 }
-            })["AllInSolutions.useEffect"];
+            })["AllInSolutions.useLayoutEffect"];
         }
-    }["AllInSolutions.useEffect"], [
+    }["AllInSolutions.useLayoutEffect"], [
         isMounted
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -3476,27 +3627,27 @@ function AllInSolutions() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 267,
+                                lineNumber: 308,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 268,
+                                lineNumber: 309,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 269,
+                                lineNumber: 310,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 266,
+                        lineNumber: 307,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3509,7 +3660,7 @@ function AllInSolutions() {
                                     children: "All in one solution"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 280,
+                                    lineNumber: 321,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3517,7 +3668,7 @@ function AllInSolutions() {
                                     children: "Our All-in-One CRM & Omnichannel Suite helps you manage voice, chat, email, and social from a single, powerful platform."
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 283,
+                                    lineNumber: 324,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3530,34 +3681,34 @@ function AllInSolutions() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 289,
+                                            lineNumber: 330,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 288,
+                                        lineNumber: 329,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 287,
+                                    lineNumber: 328,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 273,
+                            lineNumber: 314,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 272,
+                        lineNumber: 313,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 261,
+                lineNumber: 302,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3568,20 +3719,26 @@ function AllInSolutions() {
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                         src: "/images/allinsoluheroimg.png",
                         alt: "Bulk messaging platform with colorful message illustrations",
+                        onLoad: ()=>{
+                            // Refresh ScrollTrigger when hero image loads
+                            if ("TURBOPACK compile-time truthy", 1) {
+                                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].refresh();
+                            }
+                        },
                         className: "jsx-7f6e919a1a66d054" + " " + "w-full rounded-[32px] hover:scale-105 transition-transform duration-500"
                     }, void 0, false, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 310,
+                        lineNumber: 351,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                    lineNumber: 303,
+                    lineNumber: 344,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 302,
+                lineNumber: 343,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3596,20 +3753,20 @@ function AllInSolutions() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 326,
+                                lineNumber: 373,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 327,
+                                lineNumber: 374,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 325,
+                        lineNumber: 372,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3638,36 +3795,36 @@ function AllInSolutions() {
                                         style: {
                                             color: `rgb(${currentR}, ${currentG}, ${currentB})`
                                         },
-                                        className: "jsx-7f6e919a1a66d054" + " " + "inline-block transition-colors duration-300",
+                                        className: "jsx-7f6e919a1a66d054" + " " + "transition-colors duration-300",
                                         children: [
                                             word,
                                             index < descriptionWords.length - 1 ? " " : ""
                                         ]
                                     }, index, true, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 376,
+                                        lineNumber: 423,
                                         columnNumber: 19
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 338,
+                                lineNumber: 385,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 331,
+                            lineNumber: 378,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 330,
+                        lineNumber: 377,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 319,
+                lineNumber: 366,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3687,12 +3844,12 @@ function AllInSolutions() {
                                         children: "Features"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 402,
+                                        lineNumber: 448,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 401,
+                                    lineNumber: 447,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3703,14 +3860,14 @@ function AllInSolutions() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 407,
+                                            lineNumber: 453,
                                             columnNumber: 40
                                         }, this),
                                         " conversations."
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 406,
+                                    lineNumber: 452,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3718,7 +3875,7 @@ function AllInSolutions() {
                                     children: "Drive business results with our meaningful customer conversations."
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 409,
+                                    lineNumber: 455,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3731,23 +3888,23 @@ function AllInSolutions() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 414,
+                                            lineNumber: 460,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 413,
+                                        lineNumber: 459,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 412,
+                                    lineNumber: 458,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 397,
+                            lineNumber: 443,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3766,7 +3923,7 @@ function AllInSolutions() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 433,
+                                            lineNumber: 479,
                                             columnNumber: 25
                                         }, void 0),
                                         title: item.title,
@@ -3774,43 +3931,43 @@ function AllInSolutions() {
                                         img: item.image
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 432,
+                                        lineNumber: 478,
                                         columnNumber: 17
                                     }, this)
                                 }, item.name, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 424,
+                                    lineNumber: 470,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 422,
+                            lineNumber: 468,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                    lineNumber: 395,
+                    lineNumber: 441,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 394,
+                lineNumber: 440,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$transform$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 444,
+                lineNumber: 490,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$AllInCTA$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 445,
+                lineNumber: 491,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$sections$2f$Testimonials$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Testimonials$3e$__["Testimonials"], {}, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 446,
+                lineNumber: 492,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$BusinessCom$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3818,7 +3975,7 @@ function AllInSolutions() {
                 backgroundFrame: "/images/bgframe.svg"
             }, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 447,
+                lineNumber: 493,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3828,11 +3985,11 @@ function AllInSolutions() {
         ]
     }, void 0, true, {
         fileName: "[project]/pages/services/AllInSolutions.tsx",
-        lineNumber: 259,
+        lineNumber: 300,
         columnNumber: 5
     }, this);
 }
-_s(AllInSolutions, "Mdx1PuT3Ja3r99rHcZMNca1SuGM=");
+_s(AllInSolutions, "IeqRZnG5iHlvJNlgUOTUZz3bRSs=");
 _c = AllInSolutions;
 var _c;
 __turbopack_context__.k.register(_c, "AllInSolutions");

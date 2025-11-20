@@ -1580,6 +1580,7 @@ const TestimonialsSection = ()=>{
         }, ("TURBOPACK compile-time value", void 0));
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+        ref: sectionRef,
         className: "bg-gray-50 py-16 px-8 ",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "md:max-w-7xl mx-auto",
@@ -1627,6 +1628,10 @@ const TestimonialsSection = ()=>{
                         testimonials.slice(0, 2),
                         testimonials.slice(0, 2)
                     ].map((group, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            ref: (el)=>{
+                                if (i === 0) animationRefs.current.mobileRow1 = el;
+                                if (i === 1) animationRefs.current.mobileRow2 = el;
+                            },
                             className: `horizontal-scroll ${i % 2 === 1 ? "reverse" : ""} ${isPaused ? "paused" : ""} flex w-full space-x-4`,
                             children: [
                                 ...group,
@@ -1635,7 +1640,7 @@ const TestimonialsSection = ()=>{
                                     testimonial: t
                                 }, index, false, {
                                     fileName: "[project]/components/sections/Testimonials.tsx",
-                                    lineNumber: 299,
+                                    lineNumber: 303,
                                     columnNumber: 19
                                 }, ("TURBOPACK compile-time value", void 0)))
                         }, i, false, {
@@ -1662,6 +1667,11 @@ const TestimonialsSection = ()=>{
                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "overflow-hidden",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                ref: (el)=>{
+                                    if (col === 0) animationRefs.current.desktopCol1 = el;
+                                    if (col === 1) animationRefs.current.desktopCol2 = el;
+                                    if (col === 2) animationRefs.current.desktopCol3 = el;
+                                },
                                 className: `${reverse ? "scroller-reverse" : "scroller"} ${isPaused ? "paused" : ""} space-y-4`,
                                 children: [
                                     ...group,
@@ -1670,23 +1680,23 @@ const TestimonialsSection = ()=>{
                                         testimonial: t
                                     }, index, false, {
                                         fileName: "[project]/components/sections/Testimonials.tsx",
-                                        lineNumber: 323,
+                                        lineNumber: 332,
                                         columnNumber: 21
                                     }, ("TURBOPACK compile-time value", void 0)))
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/Testimonials.tsx",
-                                lineNumber: 317,
+                                lineNumber: 321,
                                 columnNumber: 17
                             }, ("TURBOPACK compile-time value", void 0))
                         }, col, false, {
                             fileName: "[project]/components/sections/Testimonials.tsx",
-                            lineNumber: 316,
+                            lineNumber: 320,
                             columnNumber: 15
                         }, ("TURBOPACK compile-time value", void 0));
                     })
                 }, void 0, false, {
                     fileName: "[project]/components/sections/Testimonials.tsx",
-                    lineNumber: 307,
+                    lineNumber: 311,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]

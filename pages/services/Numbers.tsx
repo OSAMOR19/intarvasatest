@@ -254,12 +254,12 @@ export default function Numbers() {
                   return (
                     <span
                       key={index}
-                      className="inline-block transition-colors duration-300"
+                      className="transition-colors duration-300"
                       style={{
                         color: `rgb(${currentR}, ${currentG}, ${currentB})`,
                       }}
                     >
-                      {word}&nbsp;
+                      {word}{" "}
                     </span>
                   );
                 });

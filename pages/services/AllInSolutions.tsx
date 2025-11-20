@@ -7,7 +7,7 @@ import Transform from "@/components/common/transform";
 import BusinessCom from "@/components/common/BusinessCom";
 import { Testimonials as TestimonialsSection } from "@/components/sections";
 import AllInOneCTA from "@/components/common/AllInCTA";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -77,6 +77,47 @@ export default function AllInSolutions() {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Global ScrollTrigger refresh after all content loads
+  useEffect(() => {
+    if (!isMounted) return;
+
+    // Wait for all content to load, then refresh
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh(true);
+    }, 500);
+
+    // Also refresh on window load
+    const handleLoad = () => {
+      ScrollTrigger.refresh(true);
+    };
+
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+    }
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('load', handleLoad);
+    };
+  }, [isMounted]);
+
+  // Window resize handler for ScrollTrigger
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMounted]);
 
   useEffect(() => {
     // Only run scroll handler after component is mounted to prevent hydration mismatch
@@ -215,7 +256,7 @@ export default function AllInSolutions() {
   }, [hasAnimatedDescription]);
 
   // GSAP ScrollTrigger for sticky left column
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Only run GSAP after component is mounted to prevent hydration mismatch
     if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
 
@@ -311,6 +352,12 @@ export default function AllInSolutions() {
             src={"/images/allinsoluheroimg.png"}
             alt="Bulk messaging platform with colorful message illustrations"
             className="w-full rounded-[32px] hover:scale-105 transition-transform duration-500"
+            onLoad={() => {
+              // Refresh ScrollTrigger when hero image loads
+              if (typeof window !== 'undefined') {
+                ScrollTrigger.refresh();
+              }
+            }}
           />
         </div>
       </section>
@@ -375,13 +422,12 @@ export default function AllInSolutions() {
                 return (
                   <span
                     key={index}
-                    className="inline-block transition-colors duration-300"
+                    className="transition-colors duration-300"
                     style={{
                       color: `rgb(${currentR}, ${currentG}, ${currentB})`,
                     }}
                   >
-                    {word}
-                    {index < descriptionWords.length - 1 ? " " : ""}
+                    {word}{index < descriptionWords.length - 1 ? " " : ""}
                   </span>
                 );
               })}

@@ -263,7 +263,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-16 px-8 ">
+    <section ref={sectionRef} className="bg-gray-50 py-16 px-8 ">
       <div className="md:max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -291,6 +291,10 @@ const TestimonialsSection = () => {
             (group, i) => (
               <div
                 key={i}
+                ref={(el) => {
+                  if (i === 0) animationRefs.current.mobileRow1 = el;
+                  if (i === 1) animationRefs.current.mobileRow2 = el;
+                }}
                 className={`horizontal-scroll ${i % 2 === 1 ? "reverse" : ""} ${
                   isPaused ? "paused" : ""
                 } flex w-full space-x-4`}
@@ -315,6 +319,11 @@ const TestimonialsSection = () => {
             return (
               <div key={col} className="overflow-hidden">
                 <div
+                  ref={(el) => {
+                    if (col === 0) animationRefs.current.desktopCol1 = el;
+                    if (col === 1) animationRefs.current.desktopCol2 = el;
+                    if (col === 2) animationRefs.current.desktopCol3 = el;
+                  }}
                   className={`${reverse ? "scroller-reverse" : "scroller"} ${
                     isPaused ? "paused" : ""
                   } space-y-4`}
