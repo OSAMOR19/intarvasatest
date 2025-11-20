@@ -19,6 +19,8 @@ export default function Numbers() {
   // Prevent hydration mismatch by only enabling client-side features after mount
   useEffect(() => {
     setIsMounted(true);
+    // Scroll to top on page load
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

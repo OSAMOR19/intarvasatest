@@ -3133,6 +3133,8 @@ function AllInSolutions() {
     // Prevent hydration mismatch by only enabling client-side features after mount
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         setIsMounted(true);
+        // Scroll to top on page load
+        window.scrollTo(0, 0);
     }, []);
     // Global ScrollTrigger refresh after all content loads
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
@@ -3333,27 +3335,27 @@ function AllInSolutions() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 308,
+                                lineNumber: 310,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 309,
+                                lineNumber: 311,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 310,
+                                lineNumber: 312,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 307,
+                        lineNumber: 309,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3366,7 +3368,7 @@ function AllInSolutions() {
                                     children: "All in one solution"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 321,
+                                    lineNumber: 323,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3374,7 +3376,7 @@ function AllInSolutions() {
                                     children: "Our All-in-One CRM & Omnichannel Suite helps you manage voice, chat, email, and social from a single, powerful platform."
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 324,
+                                    lineNumber: 326,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3387,34 +3389,34 @@ function AllInSolutions() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 330,
+                                            lineNumber: 332,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 329,
+                                        lineNumber: 331,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 328,
+                                    lineNumber: 330,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 314,
+                            lineNumber: 316,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 313,
+                        lineNumber: 315,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 302,
+                lineNumber: 304,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3433,17 +3435,17 @@ function AllInSolutions() {
                         className: "jsx-7f6e919a1a66d054" + " " + "w-full rounded-[32px] hover:scale-105 transition-transform duration-500"
                     }, void 0, false, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 351,
+                        lineNumber: 353,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                    lineNumber: 344,
+                    lineNumber: 346,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 343,
+                lineNumber: 345,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3458,20 +3460,20 @@ function AllInSolutions() {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 373,
+                                lineNumber: 375,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "jsx-7f6e919a1a66d054" + " " + "absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 374,
+                                lineNumber: 376,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 372,
+                        lineNumber: 374,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3507,29 +3509,29 @@ function AllInSolutions() {
                                         ]
                                     }, index, true, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 423,
+                                        lineNumber: 425,
                                         columnNumber: 19
                                     }, this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                lineNumber: 385,
+                                lineNumber: 387,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 378,
+                            lineNumber: 380,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                        lineNumber: 377,
+                        lineNumber: 379,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 366,
+                lineNumber: 368,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3549,12 +3551,12 @@ function AllInSolutions() {
                                         children: "Features"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 448,
+                                        lineNumber: 450,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 447,
+                                    lineNumber: 449,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3565,14 +3567,14 @@ function AllInSolutions() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 453,
+                                            lineNumber: 455,
                                             columnNumber: 40
                                         }, this),
                                         " conversations."
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 452,
+                                    lineNumber: 454,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3580,7 +3582,7 @@ function AllInSolutions() {
                                     children: "Drive business results with our meaningful customer conversations."
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 455,
+                                    lineNumber: 457,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3593,23 +3595,23 @@ function AllInSolutions() {
                                             children: "Contact Us"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 460,
+                                            lineNumber: 462,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 459,
+                                        lineNumber: 461,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 458,
+                                    lineNumber: 460,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 443,
+                            lineNumber: 445,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3628,7 +3630,7 @@ function AllInSolutions() {
                                             className: "jsx-7f6e919a1a66d054"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                            lineNumber: 479,
+                                            lineNumber: 481,
                                             columnNumber: 25
                                         }, void 0),
                                         title: item.title,
@@ -3636,43 +3638,43 @@ function AllInSolutions() {
                                         img: item.image
                                     }, void 0, false, {
                                         fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                        lineNumber: 478,
+                                        lineNumber: 480,
                                         columnNumber: 17
                                     }, this)
                                 }, item.name, false, {
                                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                                    lineNumber: 470,
+                                    lineNumber: 472,
                                     columnNumber: 15
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/pages/services/AllInSolutions.tsx",
-                            lineNumber: 468,
+                            lineNumber: 470,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/services/AllInSolutions.tsx",
-                    lineNumber: 441,
+                    lineNumber: 443,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 440,
+                lineNumber: 442,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$transform$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 490,
+                lineNumber: 492,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$AllInCTA$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 491,
+                lineNumber: 493,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$sections$2f$Testimonials$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Testimonials$3e$__["Testimonials"], {}, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 492,
+                lineNumber: 494,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$common$2f$BusinessCom$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -3680,7 +3682,7 @@ function AllInSolutions() {
                 backgroundFrame: "/images/bgframe.svg"
             }, void 0, false, {
                 fileName: "[project]/pages/services/AllInSolutions.tsx",
-                lineNumber: 493,
+                lineNumber: 495,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -3690,7 +3692,7 @@ function AllInSolutions() {
         ]
     }, void 0, true, {
         fileName: "[project]/pages/services/AllInSolutions.tsx",
-        lineNumber: 300,
+        lineNumber: 302,
         columnNumber: 5
     }, this);
 }
