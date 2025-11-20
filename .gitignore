@@ -23,3 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+.next
+/.next
+/.next/
+.next/dev/
+.next/dev/server/app/page_client-reference-manifest.js
+.next/dev/server/chunks/ssr/_d921d42d._.js.map
+.next/dev/server/chunks/ssr/\[root-of-the-server]__a12cad3f._.js.map
+.next/dev/static/chunks/_fd6cfe4e._.js.map
+.next/dev/static/chunks/app_page_tsx_8107ca8f._.js

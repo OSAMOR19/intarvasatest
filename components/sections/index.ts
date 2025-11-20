@@ -5,3 +5,4 @@ export { default as PricingPlan } from './PricingPlan';
 export { default as Testimonials } from './Testimonials';
 export { default as VisionStatement } from './VisionStatement';
 export { default as WeThriveComponent } from './WeThriveComponent';
+export { default as Hero } from './Hero';

@@ -26,7 +26,7 @@ const ClientLogosSection = ({
     { src: "/images/bazeuniversityhospitallogo.svg", alt: "Baze University Hospital", large: false },
     { src: "/images/globacomlogo.svg", alt: "Globacom", large: false },
     { src: "/images/TelkoMS.svg", alt: "TelkoMS", large: true },
-    { src: "/images/WGC.svg", alt: "WGC", large: true },
+    { src: "/images/WGC.svg", alt: "Winner Golden Chance", large: true },
     { src: "/images/capital metriq.svg", alt: "Capital Metriq", large: false },
     {
       src: "/images/christian association of nigeria.svg",
