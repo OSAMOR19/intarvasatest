@@ -39,7 +39,6 @@ const HeroSection = ({
   const buttonsRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const hero2Ref = useRef<HTMLDivElement>(null);
-  const hero4Ref = useRef<HTMLImageElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const hasPlayed = useRef(false);
   const canStartAnimation = useRef(!isFirstPageLoad);
@@ -52,115 +51,216 @@ const HeroSection = ({
   }, []);
 
   useEffect(() => {
-    if (!isMounted) return;
-    
-    // Trigger animation after mount
-    const timer = setTimeout(() => {
-      setupAnimation();
-    }, 100);
+    if (isFirstPageLoad) {
+      const handleLoadingComplete = () => {
+        canStartAnimation.current = true;
+        isFirstPageLoad = false;
+        setupAnimation();
+      };
 
-    return () => clearTimeout(timer);
+      window.addEventListener("logo-animation-complete", handleLoadingComplete);
+
+      return () => {
+        window.removeEventListener(
+          "logo-animation-complete",
+          handleLoadingComplete
+        );
+      };
+    } else {
+      setupAnimation();
+    }
   }, [isMounted]);
 
   const setupAnimation = () => {
     // Only run GSAP after component is mounted to prevent hydration mismatch
-    if (!isMounted) return;
+    if (!isMounted || !canStartAnimation.current) return;
 
     const ctx = gsap.context(() => {
-      // Check if refs are available
-      if (!titleRef.current || !subtitleRef.current || !buttonsRef.current || !hero4Ref.current) {
-        console.log("HeroSection: Refs not ready");
-        return;
-      }
+      gsap.set(
+        [
+          titleRef.current,
+          subtitleRef.current,
+          buttonsRef.current,
+          imageRef.current,
+        ],
+        { opacity: 0, visibility: "hidden" }
+      );
 
-      console.log("HeroSection: Starting animations");
+      gsap.set(titleRef.current, { y: 30 });
+      gsap.set(subtitleRef.current, { y: 20 });
+      gsap.set(buttonsRef.current, { y: 20, scale: 0.8 });
+      gsap.set(imageRef.current, { y: 50 });
 
-      // ========== INITIAL LOAD ANIMATION ==========
-      // Set initial positions for slide-up animations
-      gsap.set(titleRef.current, { y: 80, opacity: 0 });
-      gsap.set(subtitleRef.current, { y: 60, opacity: 0 });
-      gsap.set(buttonsRef.current, { y: 60, opacity: 0 });
-      gsap.set(hero4Ref.current, { y: 100, opacity: 0 });
-
-      // Initial load timeline - plays automatically
-      const loadTl = gsap.timeline({ 
-        delay: 0.3,
-        onStart: () => console.log("HeroSection: Load animation started"),
-        onComplete: () => console.log("HeroSection: Load animation complete")
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play reverse play reverse",
+          onEnter: () => {
+            if (!hasPlayed.current) {
+              hasPlayed.current = true;
+            }
+            tl.play();
+          },
+          onEnterBack: () => tl.play(),
+          onLeave: () => tl.reverse(),
+          onLeaveBack: () => tl.reverse(),
+        },
       });
-      
-      loadTl
-        .to(titleRef.current, {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-        })
+
+      tl.to(titleRef.current, {
+        opacity: 1,
+        visibility: "visible",
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+      })
+        .to(
+          imageRef.current,
+          {
+            opacity: 1,
+            visibility: "visible",
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+          },
+          "-=0.6"
+        )
         .to(
           subtitleRef.current,
           {
-            y: 0,
             opacity: 1,
-            duration: 0.9,
+            visibility: "visible",
+            y: 0,
+            duration: 0.8,
             ease: "power3.out",
           },
-          "-=0.7"
+          "-=0.5"
         )
         .to(
           buttonsRef.current,
           {
-            y: 0,
             opacity: 1,
-            duration: 0.9,
-            ease: "power3.out",
-          },
-          "-=0.7"
-        )
-        .to(
-          hero4Ref.current,
-          {
+            visibility: "visible",
+            scale: 1,
             y: 0,
-            opacity: 1,
-            duration: 1.2,
-            ease: "power3.out",
+            duration: 0.8,
+            ease: "back.out(1.7)",
           },
-          "-=0.8"
+          "-=0.4"
         );
 
-      // ========== SCROLL ANIMATION ==========
-      // Dashboard zoom animation on scroll
-      if (hero2Ref.current && hero4Ref.current && sectionRef.current) {
-        console.log("HeroSection: Creating scroll animation");
-        
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=100%",
-          pin: true,
-          pinSpacing: true,
-          scrub: 1,
-          markers: true, // Add markers for debugging
-          onUpdate: (self) => {
-            const progress = self.progress;
-            console.log("Scroll progress:", progress);
-            
-            // Hero-4 (phone) slides way off to the left
-            gsap.to(hero4Ref.current, {
-              x: `-${progress * 120}%`,
-              ease: "none",
-            });
+      // SCROLL SCALING ANIMATION - COMMENTED OUT
+      // if (hero2Ref.current && sectionRef.current) {
+      //   let scrollStep = 0;
+      //   const maxSteps = 2;
+      //   let isAnimating = false;
+      //   let lastScrollTime = 0;
+      //   const scrollDelay = 600;
 
-            // Hero-2 (dashboard) scales up massively and centers to fill screen
-            gsap.to(hero2Ref.current, {
-              scale: 1 + progress * 4.5, // Much larger scale
-              x: `${progress * 50}%`, // Move right to center
-              y: `-${progress * 10}%`, // Move up slightly
-              ease: "none",
-            });
-          },
-        });
-      }
+      //   const handleWheel = (e: WheelEvent) => {
+      //     if (!sectionRef.current || !hero2Ref.current) return;
 
+      //     const rect = sectionRef.current.getBoundingClientRect();
+      //     const isInSection =
+      //       rect.top <= 0 && rect.bottom >= window.innerHeight;
+      //     const now = Date.now();
+
+      //     if (isInSection && e.deltaY > 0) {
+      //       if (scrollStep < maxSteps) {
+      //         e.preventDefault();
+
+      //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+      //           isAnimating = true;
+      //           lastScrollTime = now;
+      //           scrollStep++;
+
+      //           const scaleValues = [1, 1.8, 2.5];
+      //           const xValues = ["0%", "5%", "10%"];
+      //           const yValues = ["0%", "-3%", "-5%"];
+      //           const opacityValues = [1, 1, 1];
+
+      //           gsap.to(hero2Ref.current, {
+      //             scale: scaleValues[scrollStep],
+      //             x: xValues[scrollStep],
+      //             y: yValues[scrollStep],
+      //             opacity: opacityValues[scrollStep],
+      //             duration: 0.6,
+      //             ease: "power2.out",
+      //             onComplete: () => {
+      //               isAnimating = false;
+      //               if (scrollStep >= maxSteps) {
+      //                 setAllowScroll(true);
+      //               }
+      //             },
+      //           });
+      //         }
+      //       }
+      //     }
+
+      //     if (isInSection && e.deltaY < 0 && scrollStep > 0) {
+      //       if (scrollStep <= maxSteps) {
+      //         e.preventDefault();
+
+      //         if (!isAnimating && now - lastScrollTime > scrollDelay) {
+      //           isAnimating = true;
+      //           lastScrollTime = now;
+      //           scrollStep--;
+      //           setAllowScroll(false);
+
+      //           const scaleValues = [1, 1.8, 2.5];
+      //           const xValues = ["0%", "5%", "10%"];
+      //           const yValues = ["0%", "-3%", "-5%"];
+      //           const opacityValues = [1, 1, 1];
+
+      //           gsap.to(hero2Ref.current, {
+      //             scale: scaleValues[scrollStep],
+      //             x: xValues[scrollStep],
+      //             y: yValues[scrollStep],
+      //             opacity: opacityValues[scrollStep],
+      //             duration: 0.6,
+      //             ease: "power2.out",
+      //             onComplete: () => {
+      //               isAnimating = false;
+      //             },
+      //           });
+      //         }
+      //       }
+      //     }
+      //   };
+
+      //   window.addEventListener("wheel", handleWheel, { passive: false });
+
+      //   return () => {
+      //     window.removeEventListener("wheel", handleWheel);
+      //   };
+      // }
+
+      const checkIfInView = () => {
+        if (!sectionRef.current || hasPlayed.current) return;
+
+        const rect = sectionRef.current.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight * 0.8;
+
+        if (isInView) {
+          hasPlayed.current = true;
+          ScrollTrigger.refresh();
+          setTimeout(() => tl.play(), 100);
+        }
+      };
+
+      const timer = setTimeout(checkIfInView, 100);
+      window.addEventListener("load", checkIfInView);
+
+      const scrollHandler = () => checkIfInView();
+      window.addEventListener("scroll", scrollHandler);
+
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener("load", checkIfInView);
+        window.removeEventListener("scroll", scrollHandler);
+      };
     }, sectionRef);
 
     return () => ctx.revert();
@@ -178,7 +278,7 @@ const HeroSection = ({
     >
       <div className="flex justify-between flex-col lg:flex-row gap-6 lg:gap-0 min-h-screen pt-12 md:py-0 xl:pt-16">
         {/* Content */}
-        <div className="flex flex-col pt-24 md:pt-24 lg:pt-36 2xl:pt-56 pb-58 md:pb-56 lg:pb-64 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]">
+        <div className="flex flex-col lg:pt-10 pt-24 md:pt-24 lg:pt-36 2xl:pt-56 pb-58 md:pb-56 lg:pb-64 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]">
           <h1
             ref={titleRef}
             className="2xl:max-w-2xl lg:max-w-[38rem] md:max-w-lg text-[32px] sm:text-[40px] md:text-[44px] lg:text-[64px]  font-inter text-white font-[800] tracking-tight leading-[1.2]"
@@ -274,7 +374,6 @@ const HeroSection = ({
             />
           </div>
           <img
-            ref={hero4Ref}
             src="/images/hero-4.png"
             alt="logo"
             className="2xl:w-[60vw] object-contain z-20 lg:absolute bottom-32"
