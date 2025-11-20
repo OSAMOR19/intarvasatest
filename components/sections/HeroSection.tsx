@@ -69,6 +69,7 @@ const HeroSection = ({
     } else {
       setupAnimation();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted]);
 
   const setupAnimation = () => {

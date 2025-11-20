@@ -674,6 +674,10 @@ body {
   grid-column: span 7 / span 7;
 }
 
+.m-0 {
+  margin: 0;
+}
+
 .-mx-1 {
   margin-left: -.25rem;
   margin-right: -.25rem;
@@ -969,6 +973,10 @@ body {
   height: 24rem;
 }
 
+.h-\[100px\] {
+  height: 100px;
+}
+
 .h-\[1px\] {
   height: 1px;
 }
@@ -987,6 +995,10 @@ body {
 
 .h-\[500px\] {
   height: 500px;
+}
+
+.h-\[50px\] {
+  height: 50px;
 }
 
 .h-\[52px\] {
@@ -1051,6 +1063,10 @@ body {
 
 .max-h-\[300px\] {
   max-height: 300px;
+}
+
+.max-h-\[400px\] {
+  max-height: 400px;
 }
 
 .max-h-\[500px\] {
@@ -2144,6 +2160,11 @@ body {
   background-color: rgb(12 12 12 / var(--tw-bg-opacity, 1));
 }
 
+.bg-\[\#111\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 17 17 / var(--tw-bg-opacity, 1));
+}
+
 .bg-\[\#14161B\] {
   --tw-bg-opacity: 1;
   background-color: rgb(20 22 27 / var(--tw-bg-opacity, 1));
@@ -2157,6 +2178,11 @@ body {
 .bg-\[\#1F2228\] {
   --tw-bg-opacity: 1;
   background-color: rgb(31 34 40 / var(--tw-bg-opacity, 1));
+}
+
+.bg-\[\#222\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 34 34 / var(--tw-bg-opacity, 1));
 }
 
 .bg-\[\#DEEEFF\] {
@@ -2375,6 +2401,12 @@ body {
 .from-\[\#007DFE\] {
   --tw-gradient-from: #007dfe var(--tw-gradient-from-position);
   --tw-gradient-to: #007dfe00 var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-\[\#060010\] {
+  --tw-gradient-from: #060010 var(--tw-gradient-from-position);
+  --tw-gradient-to: #06001000 var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -5514,6 +5546,24 @@ body {
   .\32 xl\:pt-56 {
     padding-top: 14rem;
   }
+}
+
+.\[\&\:\:-webkit-scrollbar-thumb\]\:rounded-\[4px\]::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
+
+.\[\&\:\:-webkit-scrollbar-thumb\]\:bg-\[\#222\]::-webkit-scrollbar-thumb {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 34 34 / var(--tw-bg-opacity, 1));
+}
+
+.\[\&\:\:-webkit-scrollbar-track\]\:bg-\[\#060010\]::-webkit-scrollbar-track {
+  --tw-bg-opacity: 1;
+  background-color: rgb(6 0 16 / var(--tw-bg-opacity, 1));
+}
+
+.\[\&\:\:-webkit-scrollbar\]\:w-\[8px\]::-webkit-scrollbar {
+  width: 8px;
 }
 
 .\[\&\:has\(\[aria-selected\]\)\]\:bg-accent:has([aria-selected]) {
