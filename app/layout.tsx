@@ -7,7 +7,9 @@ import LoadingScreen from "@/components/common/LoadingScreen";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import SupportWidget from "@/components/common/SupportWidget";
+import Navbar from "@/components/layout/Navbar";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const metadata: Metadata = {
   title: "IntarVAS - Smart Telecom Solutions",
   description: "Transform your business communication with IntarVAS",
@@ -37,6 +39,7 @@ export default function RootLayout({
           <Sonner />
           <SupportWidget />
           <SiteHeader />
+          {/* <Navbar /> */}
           {children}
           <SiteFooter />
         </ClientProviders>

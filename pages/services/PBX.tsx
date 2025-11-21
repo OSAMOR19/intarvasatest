@@ -439,7 +439,7 @@ export default function PBX() {
                 }
                 title="Extensions"
                 description="Give every team member a professional business line with unique extensions, whether they're in the office or working remotely."
-                img={"/images/extimage.svg"}
+                img={"/images/extensions.png"}
               />
             </div>
 
@@ -654,7 +654,7 @@ export default function PBX() {
         </div>
       </section>
 
-      <PricingPlans />
+      {/* <PricingPlans /> */}
       <TestimonialsSection />
       <PbxFooter />
 
