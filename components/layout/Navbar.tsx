@@ -19,7 +19,7 @@ interface NavbarProps {
 
 const SERVICES: MenuItem[] = [
     { name: "IntarvAS PBX", path: "/services/pbx" },
-    { name: "All In one Solutions", path: "/services/all-in-solutions" },
+    { name: "All In one Solution", path: "/services/all-in-solution" },
     { name: "Bulk Messaging", path: "/services/bulk-messaging" },
     { name: "Vanity & toll free numbers", path: "/services/numbers" },
 ];

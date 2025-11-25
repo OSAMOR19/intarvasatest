@@ -14,7 +14,7 @@ interface MenuItem {
 
 const SERVICES: MenuItem[] = [
     { name: "IntarvAS PBX", path: "/services/pbx" },
-    { name: "All In one Solutions", path: "/services/all-in-solutions" },
+    { name: "All In one Solution", path: "/services/all-in-solution" },
     { name: "Bulk Messaging", path: "/services/bulk-messaging" },
     { name: "Vanity & toll free numbers", path: "/services/numbers" },
 ];
@@ -23,7 +23,9 @@ export default function SiteHeader() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false);
-    const pathname = usePathname();
+    // const pathname = usePathname();
+    const baseUrl = usePathname();
+    const pathname = `/${baseUrl.split('/')[1]}`;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,23 +49,25 @@ export default function SiteHeader() {
 
     const getLinkClass = useCallback(
         (path: string) => {
-        const active = isActive(path);
-            return `relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 transition-colors
-                ${ active ? "text-[#007DFE] font-semibold" : "text-gray-400 hover:text-[#007DFE]"}
-                ${ active ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left"}`;
-            },
-        [isActive]
+            const active = isActive(path);
+            return `flex items-center gap-1 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 transition-colors
+                ${active ? "text-[#007DFE] font-semibold" : (isScrolled ? "text-black" : "text-[#A3A9B6]")} 
+                ${active ? "" : "hover:text-[#007DFE]"}
+                ${active ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left"}`;
+        },
+        [isActive, isScrolled]
     );
-
+    // ${active ? "text-[#007DFE]" : `${isScrolled ? "text-black" : "text-gray-400"} hover:text-[#007DFE]`} 
     const getMobileLinkClass = useCallback(
         (path: string) => {
         const active = isActive(path);
         return `text-2xl font-semibold transition-colors relative inline-block 
-            ${active ? "text-[#007DFE]" : "text-gray-900 hover:text-[#007DFE]"} 
+            ${active ? "text-[#007DFE] font-semibold" : (isScrolled ? "text-black" : "text-[#A3A9B6]")} 
+            ${active ? "" : "hover:text-[#007DFE]"}
             after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 
             ${active ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left"}`;
         },
-        [isActive]
+        [isActive, isScrolled]
     );
 
     const getMobileSubLinkClass = useCallback(
@@ -76,13 +80,13 @@ export default function SiteHeader() {
     );
 
     return (
-        <header className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-                isScrolled
-                ? "bg-white/5 backdrop-blur-sm border-b border-white/20"
+        <header className={`fixed top-0 z-50 w-full transition-all duration-300
+            ${ isScrolled
+                ? "bg-white/40 backdrop-blur-sm border-b border-white/20"
                 : "bg-transparent"
             }`}
         >
-            <div className="2xl:container 2xl:mx-auto flex items-center justify-between lg:px-4 lg:py-3">
+            <div className="flex items-center justify-between lg:px-4 lg:py-3">
 
                 <div className="flex items-center gap-8 py-3">
                     {/* Logo */}
@@ -94,7 +98,9 @@ export default function SiteHeader() {
                     <nav className="hidden lg:flex gap-6">
                         <Link href="/" className={getLinkClass("/")}> Home </Link>
                         <div className="relative group">
-                            <button className="flex items-center gap-1 text-gray-400 hover:text-[#007DFE] cursor-pointer transition-colors">
+                            <button className={getLinkClass("/services")}
+                            // className={`flex items-center gap-1 ${isScrolled ? "text-black" : "text-[#A3A9B6]"} hover:text-[#007DFE] cursor-pointer transition-colors`}
+                            >
                                 <span>Services</span>
                                 <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
                             </button>

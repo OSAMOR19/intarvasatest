@@ -76,9 +76,9 @@ const VisionMissionSection = () => {
               <div className="absolute -inset-4 bg-gradient-to-br from-blue-200 to-blue-100 rounded-3xl opacity-50"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-xl">
                 <img
-                  src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=700&fit=crop"
+                  src="/vision-intarvas.png"
                   alt="Vision - Professional woman"
-                  className="w-full h-[500px] object-cover"
+                  className="w-full h-[500px] object-contain"
                 />
               </div>
             </div>
@@ -97,9 +97,9 @@ const VisionMissionSection = () => {
               <div className="absolute -inset-4 bg-gradient-to-br from-blue-200 to-blue-100 rounded-3xl opacity-50"></div>
               <div className="relative rounded-3xl overflow-hidden shadow-xl">
                 <img
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=500&fit=crop"
+                  src="mission-intarvas.png"
                   alt="Mission - Team meeting"
-                  className="w-full h-[500px] object-cover"
+                  className="w-full h-[500px] object-contain"
                 />
               </div>
             </div>

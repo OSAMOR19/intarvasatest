@@ -19,7 +19,7 @@ Your Vite + React project has been successfully migrated to Next.js 15 App Route
   - `/services/pbx`
   - `/services/bulk-messaging`
   - `/services/numbers`
-  - `/services/all-in-solutions`
+  - `/services/all-in-solution`
 
 ### 3. ✅ Components Migration
 - Moved `/src/components` → `/components` (root level)
@@ -104,7 +104,7 @@ The contact form now sends emails through Next.js API Routes:
       page.tsx          # Bulk messaging page
     /numbers
       page.tsx          # Numbers page
-    /all-in-solutions
+    /all-in-solution
       page.tsx          # All-in-one solutions
   layout.tsx            # Root layout (Header, Footer, Providers)
   page.tsx              # Home page

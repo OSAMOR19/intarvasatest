@@ -91,10 +91,10 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
-// Validate ../../../app/services/all-in-solutions/page.tsx
+// Validate ../../../app/services/all-in-solution/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/services/all-in-solutions">> = Specific
-  const handler = {} as typeof import("../../../app/services/all-in-solutions/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/services/all-in-solution">> = Specific
+  const handler = {} as typeof import("../../../app/services/all-in-solution/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

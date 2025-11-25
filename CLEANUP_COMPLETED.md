@@ -84,7 +84,7 @@ Visit: **http://localhost:3000**
 - ✅ PBX service (/services/pbx)
 - ✅ Bulk Messaging (/services/bulk-messaging)
 - ✅ Numbers (/services/numbers)
-- ✅ All-in-One Solutions (/services/all-in-solutions)
+- ✅ All-in-One Solutions (/services/all-in-solution)
 
 ### 3. Verify Everything Works
 - ✅ Navigation between pages

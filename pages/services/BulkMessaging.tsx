@@ -6,6 +6,7 @@ import MessagingPlatformSection from "@/components/common/messaging";
 import FAQAccordion from "@/components/common/FAQ";
 import CustomQuoteBanner from "@/components/common/tailoredPricing";
 import { useEffect, useRef, useState } from "react";
+import AnimatedText from "@/components/AnimatedText";
 
 export default function BulkMessaging() {
   const [isHeroVisible, setIsHeroVisible] = useState(false);
@@ -16,6 +17,8 @@ export default function BulkMessaging() {
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
+  const descriptionText ="    As a licensed VAS Aggregator, IntarVAS provides an A2P bulk messaging platform that's reliable, compliant, and far-reaching. We serve enterprises, fintech, government, NGOs, and retail, handling everything from transactional alerts and promotional campaigns to OTP verification.";
+                
 
   const heroRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -233,13 +236,14 @@ export default function BulkMessaging() {
           />
         </div>
       </section>
+      <AnimatedText descriptionText={descriptionText} />
+
       {/* Description Section */}
-      <section
+      {/* <section
         ref={descriptionRef}
         id="number-description-section"
         className="bg-muted/30 py-20 md:py-36 relative overflow-hidden"
       >
-        {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
@@ -260,8 +264,6 @@ export default function BulkMessaging() {
                 const descriptionWords = descriptionText.split(" ");
 
                 return descriptionWords.map((word, index) => {
-                  // Only apply scroll-based color transition after mount to prevent hydration mismatch
-                  // Default to grey color on server-side render
                   const greyR = 133,
                     greyG = 141,
                     greyB = 157;
@@ -274,8 +276,6 @@ export default function BulkMessaging() {
                   let currentB = greyB;
 
                   if (isMounted) {
-                    // Calculate color progress for each word based on scroll position
-                    // Use a multiplier to ensure we reach the end of the text
                     const wordProgress = Math.max(
                       0,
                       Math.min(
@@ -311,7 +311,7 @@ export default function BulkMessaging() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
       <MessagingPlatformSection />
       <CustomQuoteBanner />
       <FAQAccordion />

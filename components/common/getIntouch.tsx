@@ -306,7 +306,7 @@ const ContactUsSection = () => {
                     </div>
                     <div className="text-gray-700 text-sm leading-relaxed">
                       <p>Churchgate Tower 2,</p>
-                      <p>30 Churchgate Street (formerly Afribank</p>
+                      <p>PC 30 Churchgate Street (formerly Afribank </p>
                       <p>Street) Victoria Island Lagos, Nigeria.</p>
                     </div>
                   </div>

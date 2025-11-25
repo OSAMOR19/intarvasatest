@@ -7,12 +7,15 @@ import CustomQuoteBanner from "@/components/common/tailoredPricing";
 import DeskphonesPricing from "@/components/common/GetOurDesktop";
 import { useEffect, useRef, useState } from "react";
 import MessagingPlatformSectionNumber from "@/components/common/messagingBulk";
+import AnimatedText from "@/components/AnimatedText";
 
 export default function Numbers() {
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
+  const descriptionText = "Get a memorable 0700 vanity number to make your brand unforgettable. Then, add an 0800 toll-free number to let customers call you for free. Together, these numbers increase engagement and drive business growth.";
+                
 
   const descriptionRef = useRef<HTMLDivElement>(null);
 
@@ -192,13 +195,12 @@ export default function Numbers() {
         </div>
       </section> */}
 
-      <section
+      {/* <section
         ref={descriptionRef}
         id="number-description-section"
         className="bg-muted/30 py-20 md:py-36 relative overflow-hidden"
       >
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
         </div>
@@ -214,12 +216,10 @@ export default function Numbers() {
             <p className="mx-auto font-inter md:text-[38px] max-w-md md:max-w-4xl font-[600] text-center text-lg leading-[1.2] text-muted-foreground">
               {(() => {
                 const descriptionText =
-                  "   Get a memorable 0700 vanity number to make your brand unforgettable. Then, add an 0800 toll-free number to let customers call you for free. Together, these numbers increase engagement and drive business growth.";
+                  "Get a memorable 0700 vanity number to make your brand unforgettable. Then, add an 0800 toll-free number to let customers call you for free. Together, these numbers increase engagement and drive business growth.";
                 const descriptionWords = descriptionText.split(" ");
 
                 return descriptionWords.map((word, index) => {
-                  // Only apply scroll-based color transition after mount to prevent hydration mismatch
-                  // Default to grey color on server-side render
                   const greyR = 133,
                     greyG = 141,
                     greyB = 157;
@@ -269,7 +269,8 @@ export default function Numbers() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
+      <AnimatedText descriptionText={descriptionText} textSize="text-[38px]" />
 
       <MessagingPlatformSectionNumber />
       <DeskphonesPricing />

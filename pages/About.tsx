@@ -1,5 +1,6 @@
 "use client";
 
+import AnimatedText from "@/components/AnimatedText";
 import { Testimonials as TestimonialsSection, VisionStatement as VisionMissionSection, WeThriveComponent as ServicesShowcase } from "@/components/sections";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,6 +15,7 @@ export default function About() {
   const [hasAnimatedStats, setHasAnimatedStats] = useState(false);
   const [hasAnimatedDescription, setHasAnimatedDescription] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const descriptionText = "Based in Lagos, IntarvAS was built on a vision to simplify how Nigerian businesses communicate with their customers. Over the years, we've become trusted by enterprises, government agencies, and SMEs alike helping them build stronger connections with clients through reliable, scalable, and locally-tailored telecom solutions.";
   const [statsCounts, setStatsCounts] = useState({
     uptime: 0,
     messages: 0,
@@ -219,9 +221,9 @@ export default function About() {
           </div>
         </div>
       </section>
+      <AnimatedText descriptionText={descriptionText} textSize="text-[40px]"/>
 
-      <section ref={descriptionRef} id="about-description-section" className="bg-muted/30 py-20 md:py-36 relative overflow-hidden">
-        {/* Animated background elements */}
+      {/* <section ref={descriptionRef} id="about-description-section" className="bg-muted/30 py-20 md:py-36 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
@@ -237,8 +239,7 @@ export default function About() {
                 const descriptionWords = descriptionText.split(" ");
                 
                 return descriptionWords.map((word, index) => {
-                  // Only apply scroll-based color transition after mount to prevent hydration mismatch
-                  // Default to grey color on server-side render
+                  
                   const greyR = 133, greyG = 141, greyB = 157;
                   const darkR = 0, darkG = 25, darkB = 51;
                   
@@ -247,8 +248,7 @@ export default function About() {
                   let currentB = greyB;
                   
                   if (isMounted) {
-                    // Calculate color progress for each word based on scroll position
-                    // Use a multiplier to ensure we reach the end of the text
+                    
                     const wordProgress = Math.max(0, Math.min(1, (scrollProgress * descriptionWords.length * 1.2) - index));
                     
                     currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
@@ -271,8 +271,9 @@ export default function About() {
               })()}
             </p>
           </div>
-        </div>
-      </section>
+        </div> 
+        
+      </section>*/}
 
       <section ref={statsRef} className="container flex flex-col md:flex-row gap-16 py-9 relative overflow-hidden">
         {/* Animated background elements */}

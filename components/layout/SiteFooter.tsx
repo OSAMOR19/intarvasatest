@@ -81,7 +81,7 @@ const Footer = () => {
             </Link>
             <div className="text-gray-400 text-sm leading-relaxed space-y-2">
               <p>Churchgate Tower 2,</p>
-              <p>30 Churchgate Street (formerly Afribank</p>
+              <p>PC 30 Churchgate Street (formerly Afribank </p>
               <p>Street) Victoria Island Lagos, Nigeria.</p>
             </div>
 
@@ -165,7 +165,7 @@ const Footer = () => {
             </h3>
             <ul className="space-y-4">
               <li>
-                <Link href="/services/all-in-solutions"
+                <Link href="/services/all-in-solution"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   All in one solution

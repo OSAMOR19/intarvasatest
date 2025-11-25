@@ -9,6 +9,8 @@ import { Testimonials as TestimonialsSection } from "@/components/sections";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnimatedText from "@/components/AnimatedText";
+
 
 // Register ScrollTrigger plugin
 if (typeof window !== "undefined") {
@@ -20,8 +22,7 @@ export default function PBX() {
   const trustRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const stickyLeftRef = useRef<HTMLDivElement>(null);
-  const scrollingRightRef = useRef<HTMLDivElement>(null);
-  
+  const scrollingRightRef = useRef<HTMLDivElement>(null);  
   const [titleText, setTitleText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -291,59 +292,7 @@ export default function PBX() {
         </div>
       </section>
 
-      {/* Description Section */}
-      <section
-        id="description-section"
-        className="bg-muted/30 py-36 relative overflow-hidden"
-      >
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-10 left-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-bounce"></div>
-          <div className="absolute bottom-10 right-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-bounce delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-cyan-500/3 rounded-full blur-2xl animate-bounce delay-2000"></div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div
-            className="transition-all duration-1000 opacity-100 transform translate-y-0"
-          >
-            <p className="mx-auto font-inter text-[35px] font-[600] max-w-4xl text-center text-1.1xl leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default">
-              {descriptionWords.map((word, index) => {
-                // Only apply scroll-based color transition after mount to prevent hydration mismatch
-                // Default to grey color on server-side render
-                const greyR = 133, greyG = 141, greyB = 157;
-                const darkR = 0, darkG = 25, darkB = 51;
-                
-                let currentR = greyR;
-                let currentG = greyG;
-                let currentB = greyB;
-                
-                if (isMounted) {
-                  // Calculate color progress for each word based on scroll position
-                  // Use a multiplier to ensure we reach the end of the text
-                  const wordProgress = Math.max(0, Math.min(1, (scrollProgress * descriptionWords.length * 1.2) - index));
-                  
-                  currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
-                  currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
-                  currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
-                }
-                
-                return (
-                  <span
-                    key={index}
-                    className="transition-colors duration-300"
-                    style={{
-                      color: `rgb(${currentR}, ${currentG}, ${currentB})`
-                    }}
-                  >
-                    {word}{" "}
-                  </span>
-                );
-              })}
-            </p>
-          </div>
-        </div>
-      </section>
+      <AnimatedText />
 
       <section ref={featuresRef} id="cards-section" className="bg-[#F6F6F6] pt-20 pb-32">
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 px-4">
@@ -654,7 +603,7 @@ export default function PBX() {
         </div>
       </section>
 
-      {/* <PricingPlans /> */}
+      <PricingPlans />
       <TestimonialsSection />
       <PbxFooter />
 
@@ -674,3 +623,58 @@ export default function PBX() {
     </main>
   );
 }
+
+//       {/* Description Section */}
+//       <section 
+//         id="description-section"
+//         className="bg-muted/30 py-36 relative overflow-hidden"
+//       >
+//         {/* Animated background elements */}
+//         <div className="absolute inset-0 overflow-hidden">
+//           <div className="absolute top-10 left-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-bounce"></div>
+//           <div className="absolute bottom-10 right-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-bounce delay-1000"></div>
+//           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-cyan-500/3 rounded-full blur-2xl animate-bounce delay-2000"></div>
+//         </div>
+
+//         <div className="container mx-auto px-4 relative z-10">
+//           <div
+//             className="transition-all duration-1000 opacity-100 transform translate-y-0"
+//           >
+//             <p className="mx-auto font-inter text-[35px] font-[600] max-w-4xl text-center text-1.1xl leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default">
+//               {descriptionWords.map((word, index) => {
+//                 // Only apply scroll-based color transition after mount to prevent hydration mismatch
+//                 // Default to grey color on server-side render
+//                 const greyR = 133, greyG = 141, greyB = 157;
+//                 const darkR = 0, darkG = 25, darkB = 51;
+                
+//                 let currentR = greyR;
+//                 let currentG = greyG;
+//                 let currentB = greyB;
+                
+//                 if (isMounted) {
+//                   // Calculate color progress for each word based on scroll position
+//                   // Use a multiplier to ensure we reach the end of the text
+//                   const wordProgress = Math.max(0, Math.min(1, (scrollProgress * descriptionWords.length * 1.2) - index));
+                  
+//                   currentR = Math.round(greyR + (darkR - greyR) * wordProgress);
+//                   currentG = Math.round(greyG + (darkG - greyG) * wordProgress);
+//                   currentB = Math.round(greyB + (darkB - greyB) * wordProgress);
+//                 }
+                
+//                 return (
+//                   <span
+//                     key={index}
+//                     className="transition-colors duration-300"
+//                     style={{
+//                       color: `rgb(${currentR}, ${currentG}, ${currentB})`
+//                     }}
+//                   >
+//                     {word}{" "}
+//                   </span>
+//                 );
+//               })}
+//             </p>
+
+//           </div>
+//         </div>
+//       </section>

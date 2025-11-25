@@ -102,9 +102,11 @@ const ProvenResultsSection = () => {
   }, [isVisible]);
 
   return (
-    <div ref={sectionRef} className="min-h-screen bg-[#F6F6F6] flex items-center justify-center p-8 relative overflow-hidden" >
-      <div className="w-full max-w-7xl bg-[#00000040] rounded-3xl shadow-2xl p-1" style={{ position: 'relative', overflow: 'hidden'}}>
-        <div className="w-full max-w-7xl bg-[#1E1E1E] rounded-3xl shadow-2xl p-12 lg:p-16 z-10 ">
+    <div ref={sectionRef} className="min-h-screen bg-[#F6F6F6] flex items-center justify-center p-8" >
+
+      <div className="w-full h-full max-w-[1275px] max-h-[617px] bg-[#00000040] rounded-3xl shadow-2xl p-1" style={{ position: 'relative', overflow: 'hidden'}}>
+        <Noise patternSize={250} patternScaleX={1} patternScaleY={1} patternRefreshInterval={1} patternAlpha={15} />
+        <div className="w-full h-full max-w-[1275px] max-h-[617px] bg-[#1E1E1E] rounded-3xl shadow-2xl p-12 lg:p-16 z-10 ">
           {/* Content */}
           <div className="">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
@@ -216,7 +218,7 @@ const ProvenResultsSection = () => {
 
             </div>
           </div>
-          <Noise patternSize={250} patternScaleX={1} patternScaleY={1} patternRefreshInterval={1} patternAlpha={15} />
+          {/* <Noise patternSize={250} patternScaleX={1} patternScaleY={1} patternRefreshInterval={1} patternAlpha={15} /> */}
         </div>
       </div>
     </div>

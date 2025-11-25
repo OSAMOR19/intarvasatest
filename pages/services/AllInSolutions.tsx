@@ -10,6 +10,7 @@ import AllInOneCTA from "@/components/common/AllInCTA";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnimatedText from "@/components/AnimatedText";
 
 // Register ScrollTrigger plugin
 if (typeof window !== "undefined") {
@@ -363,21 +364,22 @@ export default function AllInSolutions() {
           />
         </div>
       </section>
+      <AnimatedText descriptionText={descriptionText} textSize="text-[41px]"/>
+
 
       {/* Description Section */}
-      <section
+      {/* <section
         ref={descriptionRef}
         id="description-section"
         className="bg-muted/30 py-36 relative overflow-hidden"
       >
-        {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div
+       {/* <div className="container mx-auto px-4 relative z-10">
+           <div
             className={`transition-all duration-1000 ${
               isDescriptionVisible
                 ? "opacity-100 transform translate-y-0"
@@ -386,8 +388,6 @@ export default function AllInSolutions() {
           >
             <p className="mx-auto font-inter text-[38px] font-[600] max-w-4xl text-center leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default">
               {descriptionWords.map((word, index) => {
-                // Only apply scroll-based color transition after mount to prevent hydration mismatch
-                // Default to grey color on server-side render
                 const greyR = 133,
                   greyG = 141,
                   greyB = 157;
@@ -400,8 +400,7 @@ export default function AllInSolutions() {
                 let currentB = greyB;
 
                 if (isMounted) {
-                  // Calculate color progress for each word based on scroll position
-                  // Use a multiplier to ensure we reach the end of the text
+                 
                   const wordProgress = Math.max(
                     0,
                     Math.min(
@@ -435,8 +434,9 @@ export default function AllInSolutions() {
               })}
             </p>
           </div>
+          <AnimatedText descriptionText={descriptionText}/>
         </div>
-      </section>
+     </section> */}
 
       {/* Feature Section */}
       <section ref={featuresRef} className="bg-[#F6F6F6] pt-20 pb-32 relative">

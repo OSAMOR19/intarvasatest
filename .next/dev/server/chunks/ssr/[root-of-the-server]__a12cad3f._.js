@@ -359,8 +359,8 @@ const SERVICES = [
         path: "/services/pbx"
     },
     {
-        name: "All In one Solutions",
-        path: "/services/all-in-solutions"
+        name: "All In one Solution",
+        path: "/services/all-in-solution"
     },
     {
         name: "Bulk Messaging",
@@ -375,7 +375,9 @@ function SiteHeader() {
     const [isScrolled, setIsScrolled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isServicesOpen, setIsServicesOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["usePathname"])();
+    // const pathname = usePathname();
+    const baseUrl = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["usePathname"])();
+    const pathname = `/${baseUrl.split('/')[1]}`;
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const handleScroll = ()=>{
             setIsScrolled(window.scrollY > 100);
@@ -394,20 +396,25 @@ function SiteHeader() {
     ]);
     const getLinkClass = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((path)=>{
         const active = isActive(path);
-        return `relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 transition-colors
-                ${active ? "text-[#007DFE] font-semibold" : "text-gray-400 hover:text-[#007DFE]"}
+        return `flex items-center gap-1 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 transition-colors
+                ${active ? "text-[#007DFE] font-semibold" : isScrolled ? "text-black" : "text-[#A3A9B6]"} 
+                ${active ? "" : "hover:text-[#007DFE]"}
                 ${active ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left"}`;
     }, [
-        isActive
+        isActive,
+        isScrolled
     ]);
+    // ${active ? "text-[#007DFE]" : `${isScrolled ? "text-black" : "text-gray-400"} hover:text-[#007DFE]`} 
     const getMobileLinkClass = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((path)=>{
         const active = isActive(path);
         return `text-2xl font-semibold transition-colors relative inline-block 
-            ${active ? "text-[#007DFE]" : "text-gray-900 hover:text-[#007DFE]"} 
+            ${active ? "text-[#007DFE] font-semibold" : isScrolled ? "text-black" : "text-[#A3A9B6]"} 
+            ${active ? "" : "hover:text-[#007DFE]"}
             after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-[#007DFE] after:origin-bottom-right after:transition-transform after:duration-300 
             ${active ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left"}`;
     }, [
-        isActive
+        isActive,
+        isScrolled
     ]);
     const getMobileSubLinkClass = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((path)=>{
         const active = isActive(path);
@@ -417,9 +424,10 @@ function SiteHeader() {
         isActive
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
-        className: `fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? "bg-white/5 backdrop-blur-sm border-b border-white/20" : "bg-transparent"}`,
+        className: `fixed top-0 z-50 w-full transition-all duration-300
+            ${isScrolled ? "bg-white/40 backdrop-blur-sm border-b border-white/20" : "bg-transparent"}`,
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "2xl:container 2xl:mx-auto flex items-center justify-between lg:px-4 lg:py-3",
+            className: "flex items-center justify-between lg:px-4 lg:py-3",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "flex items-center gap-8 py-3",
@@ -433,12 +441,12 @@ function SiteHeader() {
                                 className: "h-8 w-[200px]"
                             }, void 0, false, {
                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                lineNumber: 90,
+                                lineNumber: 94,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                            lineNumber: 89,
+                            lineNumber: 93,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -450,33 +458,33 @@ function SiteHeader() {
                                     children: " Home "
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 99,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "relative group",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                            className: "flex items-center gap-1 text-gray-400 hover:text-[#007DFE] cursor-pointer transition-colors",
+                                            className: getLinkClass("/services"),
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: "Services"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                    lineNumber: 98,
+                                                    lineNumber: 104,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                                     className: "h-4 w-4 transition-transform duration-300 group-hover:rotate-180"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                    lineNumber: 99,
+                                                    lineNumber: 105,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                                            lineNumber: 97,
+                                            lineNumber: 101,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -489,23 +497,23 @@ function SiteHeader() {
                                                         children: service.name
                                                     }, service.path, false, {
                                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                        lineNumber: 104,
+                                                        lineNumber: 110,
                                                         columnNumber: 37
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                lineNumber: 102,
+                                                lineNumber: 108,
                                                 columnNumber: 33
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                                            lineNumber: 101,
+                                            lineNumber: 107,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                                    lineNumber: 96,
+                                    lineNumber: 100,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -514,7 +522,7 @@ function SiteHeader() {
                                     children: " About Us "
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                                    lineNumber: 111,
+                                    lineNumber: 117,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -523,19 +531,19 @@ function SiteHeader() {
                                     children: " Contact Us "
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                                    lineNumber: 112,
+                                    lineNumber: 118,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                            lineNumber: 94,
+                            lineNumber: 98,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                    lineNumber: 87,
+                    lineNumber: 91,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -549,12 +557,12 @@ function SiteHeader() {
                                 children: "Explore Services"
                             }, void 0, false, {
                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                lineNumber: 119,
+                                lineNumber: 125,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                            lineNumber: 118,
+                            lineNumber: 124,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -565,18 +573,18 @@ function SiteHeader() {
                                 children: "Request Demo"
                             }, void 0, false, {
                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                lineNumber: 124,
+                                lineNumber: 130,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                            lineNumber: 123,
+                            lineNumber: 129,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                    lineNumber: 117,
+                    lineNumber: 123,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -595,17 +603,17 @@ function SiteHeader() {
                                         className: "h-6 w-6"
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                        lineNumber: 133,
+                                        lineNumber: 139,
                                         columnNumber: 33
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                                    lineNumber: 132,
+                                    lineNumber: 138,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                lineNumber: 131,
+                                lineNumber: 137,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SheetContent"], {
@@ -618,12 +626,12 @@ function SiteHeader() {
                                             children: "Header"
                                         }, void 0, false, {
                                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                                            lineNumber: 138,
+                                            lineNumber: 144,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                        lineNumber: 137,
+                                        lineNumber: 143,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -637,12 +645,12 @@ function SiteHeader() {
                                                     className: "h-8 w-[200px]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                    lineNumber: 143,
+                                                    lineNumber: 149,
                                                     columnNumber: 37
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                lineNumber: 142,
+                                                lineNumber: 148,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -656,12 +664,12 @@ function SiteHeader() {
                                                             children: " Home "
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                            lineNumber: 149,
+                                                            lineNumber: 155,
                                                             columnNumber: 41
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                        lineNumber: 148,
+                                                        lineNumber: 154,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -678,13 +686,13 @@ function SiteHeader() {
                                                                         className: `h-5 w-5 transition-transform duration-200 ${isServicesOpen ? "rotate-180" : "rotate-0"}`
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                                        lineNumber: 156,
+                                                                        lineNumber: 162,
                                                                         columnNumber: 45
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                                lineNumber: 154,
+                                                                lineNumber: 160,
                                                                 columnNumber: 41
                                                             }, this),
                                                             isServicesOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -698,23 +706,23 @@ function SiteHeader() {
                                                                             children: service.name
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                                            lineNumber: 163,
+                                                                            lineNumber: 169,
                                                                             columnNumber: 53
                                                                         }, this)
                                                                     }, service.path, false, {
                                                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                                        lineNumber: 162,
+                                                                        lineNumber: 168,
                                                                         columnNumber: 49
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                                lineNumber: 160,
+                                                                lineNumber: 166,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                        lineNumber: 153,
+                                                        lineNumber: 159,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -725,12 +733,12 @@ function SiteHeader() {
                                                             children: " About Us "
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                            lineNumber: 170,
+                                                            lineNumber: 176,
                                                             columnNumber: 41
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                        lineNumber: 169,
+                                                        lineNumber: 175,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -741,18 +749,18 @@ function SiteHeader() {
                                                             children: " Contact Us "
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                            lineNumber: 173,
+                                                            lineNumber: 179,
                                                             columnNumber: 41
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                        lineNumber: 172,
+                                                        lineNumber: 178,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                lineNumber: 147,
+                                                lineNumber: 153,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -767,12 +775,12 @@ function SiteHeader() {
                                                             children: "Explore Services"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                            lineNumber: 180,
+                                                            lineNumber: 186,
                                                             columnNumber: 41
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                        lineNumber: 179,
+                                                        lineNumber: 185,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -785,52 +793,52 @@ function SiteHeader() {
                                                             children: "Request Demo"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                            lineNumber: 185,
+                                                            lineNumber: 191,
                                                             columnNumber: 41
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                        lineNumber: 184,
+                                                        lineNumber: 190,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                                lineNumber: 178,
+                                                lineNumber: 184,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                                        lineNumber: 140,
+                                        lineNumber: 146,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/layout/SiteHeader.tsx",
-                                lineNumber: 136,
+                                lineNumber: 142,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/layout/SiteHeader.tsx",
-                        lineNumber: 130,
+                        lineNumber: 136,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/layout/SiteHeader.tsx",
-                    lineNumber: 129,
+                    lineNumber: 135,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/layout/SiteHeader.tsx",
-            lineNumber: 85,
+            lineNumber: 89,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/layout/SiteHeader.tsx",
-        lineNumber: 79,
+        lineNumber: 83,
         columnNumber: 9
     }, this);
 }
@@ -946,7 +954,7 @@ const Footer = ()=>{
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            children: "30 Churchgate Street (formerly Afribank"
+                                            children: "PC 30 Churchgate Street (formerly Afribank "
                                         }, void 0, false, {
                                             fileName: "[project]/components/layout/SiteFooter.tsx",
                                             lineNumber: 84,
@@ -1160,7 +1168,7 @@ const Footer = ()=>{
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                href: "/services/all-in-solutions",
+                                                href: "/services/all-in-solution",
                                                 className: "text-gray-300 hover:text-white transition-colors",
                                                 children: "All in one solution"
                                             }, void 0, false, {

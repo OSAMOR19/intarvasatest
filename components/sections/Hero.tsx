@@ -50,7 +50,7 @@ const Hero = () => {
                 </div>
                 <div className="flex">
                     <img
-                        src={"/hero/illustration.svg"}
+                        src={"/hero/hero-illustration-1.png"}
                         alt={"test"}
                         className="object-contain"
                         loading="eager"

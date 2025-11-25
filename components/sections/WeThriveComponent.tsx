@@ -25,7 +25,7 @@ const SERVICES: Service[] = [
     title: "All in one solution",
     description: "A unified platform combining calling, messaging, and CRM tools for both customer service and outbound sales.",
     img: "/about-thrive/about-2.svg",
-    href: "/services/all-in-solutions",
+    href: "/services/all-in-solution",
   },
   {
     icon: "/vanityiconn.svg",
@@ -38,7 +38,7 @@ const SERVICES: Service[] = [
     icon: "/bulkmessaging.svg",
     title: "Bulk Messaging",
     description: "Our messaging solution encompasses a comprehensive suite of messaging services, catering to both person-to-person (P2P) and Application-to-Person (A2P) communication needs.",
-    img: "/about-thrive/about-4.svg",
+    img: "/about-thrive/about-5.png",
     href: "/services/bulk-messaging",
   },
 ];

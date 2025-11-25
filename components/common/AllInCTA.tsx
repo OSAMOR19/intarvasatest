@@ -189,12 +189,12 @@ const AllInOneCTA = () => {
             >
               {/* Pricing */}
               <div className="text-center lg:text-right mb-8">
-                <div className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-2">
+                {/* <div className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-2">
                   ₦ 35,000
                   <span className="text-lg sm:text-xl lg:text-2xl font-normal">
                     /user/month
                   </span>
-                </div>
+                </div> */}
                 <p className="text-blue-200 text-base sm:text-lg italic hover:text-blue-100 transition-colors duration-300">
                   Flat pricing. Unlimited features.
                 </p>

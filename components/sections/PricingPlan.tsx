@@ -170,16 +170,16 @@ const PricingPlans = () => {
                 {/* Price */}
                 <div className="mb-4">
                   <div className="flex items-baseline gap-1 flex-wrap">
-                    <span className={`font-bold ${
+                    {/* <span className={`font-bold ${
                       plan.price === "Custom Pricing" 
                         ? "text-lg sm:text-2xl md:text-2xl break-words" 
                         : "text-4xl whitespace-nowrap"
                     }`}>
                       {plan.price === "Custom Pricing" ? plan.price : `₦ ${plan.price}`}
-                    </span>
-                    {plan.price !== "Custom Pricing" && (
+                    </span> */}
+                    {/* {plan.price !== "Custom Pricing" && (
                       <span className="text-gray-500 whitespace-nowrap">{plan.period}</span>
-                    )}
+                    )} */}
                   </div>
                   <p className="text-sm text-gray-600 mt-2">
                     {plan.description}{" "}
@@ -188,6 +188,7 @@ const PricingPlans = () => {
                 </div>
 
                 {/* CTA Button */}
+                <a href="/contact">
                 <button
                   className={`w-full py-3 rounded-lg font-medium transition-all duration-300 mb-8 hover:scale-105 ${
                     plan.popular
@@ -197,6 +198,7 @@ const PricingPlans = () => {
                 >
                   Get Started
                 </button>
+                </a>
 
                 {/* Features List */}
                 <div className="space-y-4">
