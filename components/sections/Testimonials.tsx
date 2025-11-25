@@ -523,19 +523,19 @@ const TestimonialsSection = () => {
       text: "My experience with your platform has been great so far. The interface is user-friendly, responses are fast, and the customer support team is helpful and professional. I appreciate the efficiency and look forward to seeing more improvements and new features",
       name: "Adesoji Emmanuel",
       company: "XRNET Technologies LTD",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Chika1",
+      avatar: "/images/xrnet-logo.svg",
     },
     {
       text: "I'll give them 5 stars, their service has been really good.",
       name: "Olakunle Opajobi",
       company: "Winners Golden Chance Group",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Adebayo1",
+      avatar: "/images/WGC.svg",
     },
     {
       text: "My experience using the IntarvAS PBX has been smooth so far.",
       name: "Kpejoh Tamara",
       company: "XRNET Technologies LTD",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Fatima1",
+      avatar: "/images/xrnet-logo.svg",
     },
   ];
 
@@ -549,7 +549,7 @@ const TestimonialsSection = () => {
           <img
             src={testimonial.avatar}
             alt={testimonial.name}
-            className="w-8 h-8 sm:w-10 h-10 lg:w-12 h-12 rounded-full bg-gray-200"
+            className="w-8 h-8 sm:w-10 h-10 lg:w-12 h-12 rounded-full"
           />
           <div className="min-w-0">
             <h4 className="font-semibold text-xs sm:text-sm lg:text-base text-gray-900 truncate">
