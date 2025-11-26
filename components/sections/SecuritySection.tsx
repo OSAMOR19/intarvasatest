@@ -52,7 +52,7 @@ const SecuritySection = ({
       <div className={`transition-all duration-1000 ${
         isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-12'
       }`}>
-        <h3 className="font-inter text-[35px] md:text-[48px] text-center font-[800] max-w-md md:max-w-4xl mx-auto leading-[1.2] mb-[30px] transition-all duration-700 hover:scale-105">
+        <h3 className="font-inter text-[35px] md:text-[48px] text-center font-[800] max-w-md md:max-w-4xl mx-auto leading-[1.3] mb-[30px] transition-all duration-700 hover:scale-105" style={{lineHeight: "64px"}}>
           {title}
         </h3>
       </div>

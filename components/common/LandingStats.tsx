@@ -21,7 +21,7 @@ const ProvenResultsSection = () => {
     {
       value: "1M+",
       title: "Messages delivered daily",
-      description: "Large-scale communications with fast, secure, and reliable messaging solutions",
+      description: "Our system allows us tot be able to handle up to 1M+ messages daily, Handling large-scale communications with fast, secure and reliable messaging solutions",
     },
     {
       value: "3+",
@@ -102,11 +102,11 @@ const ProvenResultsSection = () => {
   }, [isVisible]);
 
   return (
-    <div ref={sectionRef} className="min-h-screen bg-[#F6F6F6] flex items-center justify-center p-8" >
-
+    <div ref={sectionRef} className="max-h-screen bg-[#F6F6F6] flex items-center justify-center p-8 py-20" >
       <div className="w-full h-full max-w-[1275px] max-h-[617px] bg-[#00000040] rounded-3xl shadow-2xl p-1" style={{ position: 'relative', overflow: 'hidden'}}>
-        <Noise patternSize={250} patternScaleX={1} patternScaleY={1} patternRefreshInterval={1} patternAlpha={15} />
         <div className="w-full h-full max-w-[1275px] max-h-[617px] bg-[#1E1E1E] rounded-3xl shadow-2xl p-12 lg:p-16 z-10 ">
+          <Noise patternSize={250} patternScaleX={1} patternScaleY={1} patternRefreshInterval={1} patternAlpha={15} />
+
           {/* Content */}
           <div className="">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">

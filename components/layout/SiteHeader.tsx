@@ -86,7 +86,7 @@ export default function SiteHeader() {
                 : "bg-transparent"
             }`}
         >
-            <div className="flex items-center justify-between lg:px-4 lg:py-3">
+            <div className="2xl:container 2xl:mx-auto flex items-center justify-between lg:px-4 lg:py-3">
 
                 <div className="flex items-center gap-8 py-3">
                     {/* Logo */}

@@ -39,7 +39,8 @@ export default function PbxFooter() {
   }, [handleIntersection]);
 
   return (
-    <section ref={sectionRef} className="min-h-screen md:h-[80vh] p-6 md:p-20 lg:p-36 relative overflow-hidden flex items-center" >
+    <section ref={sectionRef} className="max-h-screen py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:p-20 lg:p-36 relative overflow-hidden flex items-center" >
+    {/* md:h-[80vh] */}
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 md:top-20 left-10 md:left-20 w-40 md:w-64 h-40 md:h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>

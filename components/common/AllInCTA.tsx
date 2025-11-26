@@ -195,9 +195,9 @@ const AllInOneCTA = () => {
                     /user/month
                   </span>
                 </div> */}
-                <p className="text-blue-200 text-base sm:text-lg italic hover:text-blue-100 transition-colors duration-300">
+                {/* <p className="text-blue-200 text-base sm:text-lg italic hover:text-blue-100 transition-colors duration-300">
                   Flat pricing. Unlimited features.
-                </p>
+                </p> */}
               </div>
 
               {/* CTA Buttons */}

@@ -17,7 +17,7 @@ const DeskphonesPricing = () => {
     {
       badge: "Value",
       icon: <Star size={20} />,
-      price: "89,999",
+      price: "99,999",
       features: [
         { text: "One Yearly or Toll-free number", included: true },
         { text: "Eligible for one IVR", included: true },
@@ -33,7 +33,7 @@ const DeskphonesPricing = () => {
     {
       badge: "Premium",
       icon: <Trophy size={20} />,
-      price: "119,999",
+      price: "149,999",
       features: [
         { text: "One Yearly or Toll-free number", included: true },
         { text: "Eligible for one IVR", included: true },

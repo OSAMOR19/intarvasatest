@@ -34,30 +34,26 @@ const VisionMissionSection = () => {
     };
   }, []);
   return (
-    <section id="vision-mission-section" className="bg-gray-50 py-20 px-8">
-      <div className="max-w-7xl mx-auto space-y-24">
+    <section id="vision-mission-section" className="bg-[#F9F9FA] px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto space-y-16 sm:space-y-20 lg:space-y-24">
         {/* Vision Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Left - Text Content */}
           <div className={`order-2 lg:order-1 transition-all duration-1000 ${
             isVisionVisible 
               ? "opacity-100 transform translate-x-0" 
-              : "opacity-0 transform -translate-x-20"
+              : "opacity-0 transform -translate-x-8 lg:-translate-x-20"
           }`}>
-            <div className="mb-4">
-              <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+            <div className="mb-4 sm:mb-6">
+              <span className="px-3 sm:px-4 py-1.5 sm:py-2 border border-[#C6E2FF] bg-[#E5F2FF] text-[#007DFE] rounded-full text-xs sm:text-sm font-medium">
                 Our Vision
               </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-              <span className="text-blue-400">Our vision</span> is to make
-              business
-              <br />
-              communication seamless, scalable,
-              <br />
-              and reliable across Nigeria
+            <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-bold mb-4 sm:mb-6 leading-tight sm:leading-snug lg:leading-tight">
+              <span className="text-[#858D9D]">Our vision</span> is to make
+              business communication seamless, scalable, and reliable across Nigeria
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-[#667085] text-sm sm:text-base lg:text-[18px] leading-relaxed font-[300]">
               Intarvas envisions a future of innovative communication, striving
               for distinction and personalized connections. Rooted in wisdom,
               our commitment transforms challenges into opportunities, aiming to
@@ -70,15 +66,15 @@ const VisionMissionSection = () => {
           <div className={`order-1 lg:order-2 transition-all duration-1000 ${
             isVisionVisible 
               ? "opacity-100 transform translate-x-0" 
-              : "opacity-0 transform translate-x-20"
+              : "opacity-0 transform translate-x-8 lg:translate-x-20"
           }`}>
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-blue-200 to-blue-100 rounded-3xl opacity-50"></div>
-              <div className="relative rounded-3xl overflow-hidden shadow-xl">
+              <div className="absolute -inset-2 sm:-inset-3 lg:-inset-4 bg-gradient-to-br from-blue-200 to-[#E5F2FF] rounded-xl sm:rounded-2xl lg:rounded-3xl opacity-50"></div>
+              <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl">
                 <img
                   src="/vision-intarvas.png"
                   alt="Vision - Professional woman"
-                  className="w-full h-[500px] object-contain"
+                  className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-contain"
                 />
               </div>
             </div>
@@ -86,20 +82,20 @@ const VisionMissionSection = () => {
         </div>
 
         {/* Mission Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Left - Image */}
           <div className={`transition-all duration-1000 ${
             isMissionVisible 
               ? "opacity-100 transform translate-x-0" 
-              : "opacity-0 transform -translate-x-20"
+              : "opacity-0 transform -translate-x-8 lg:-translate-x-20"
           }`}>
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-blue-200 to-blue-100 rounded-3xl opacity-50"></div>
-              <div className="relative rounded-3xl overflow-hidden shadow-xl">
+              <div className="absolute -inset-2 sm:-inset-3 lg:-inset-4 bg-gradient-to-br from-blue-200 to-[#E5F2FF] rounded-xl sm:rounded-2xl lg:rounded-3xl opacity-50"></div>
+              <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl">
                 <img
-                  src="mission-intarvas.png"
+                  src="/mission-intarvas.png"
                   alt="Mission - Team meeting"
-                  className="w-full h-[500px] object-contain"
+                  className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-contain"
                 />
               </div>
             </div>
@@ -109,21 +105,17 @@ const VisionMissionSection = () => {
           <div className={`transition-all duration-1000 ${
             isMissionVisible 
               ? "opacity-100 transform translate-x-0" 
-              : "opacity-0 transform translate-x-20"
+              : "opacity-0 transform translate-x-8 lg:translate-x-20"
           }`}>
-            <div className="mb-4">
-              <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+            <div className="mb-4 sm:mb-6">
+              <span className="px-3 sm:px-4 py-1.5 sm:py-2 border border-[#C6E2FF] bg-[#E5F2FF] text-[#007DFE] rounded-full text-xs sm:text-sm font-medium">
                 Our Mission
               </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-              <span className="text-gray-400">Our mission</span> is to connect
-              <br />
-              businesses and customers with
-              <br />
-              reliable, scalable telecom solutions.
+            <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-bold mb-4 sm:mb-6 leading-tight sm:leading-snug lg:leading-tight">
+              <span className="text-[#858D9D]">Our mission</span> is to connect businesses and customers with reliable, scalable telecom solutions.
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-[#667085] text-sm sm:text-base lg:text-[18px] leading-relaxed font-[300]">
               As a premier provider of telecom and digital solutions, IntarVAS
               has spent years empowering businesses with exceptional
               telecommunications expertise. We're dedicated to delivering

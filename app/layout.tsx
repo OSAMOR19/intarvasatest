@@ -37,7 +37,7 @@ export default function RootLayout({
           <LoadingScreen />
           <Toaster />
           <Sonner />
-          <SupportWidget />
+          {/* <SupportWidget /> */}
           <SiteHeader />
           {/* <Navbar /> */}
           {children}

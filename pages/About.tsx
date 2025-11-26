@@ -159,12 +159,42 @@ export default function About() {
       descriptionObserver.disconnect();
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMounted]);
+  }, [isMounted, hasAnimatedHero, hasAnimatedStats, hasAnimatedDescription]);
 
+  const statsItems = [
+    {
+      id: 1,
+      value: `${statsCounts.uptime}%`,
+      title: "Uninterrupted connectivity",
+      description: "Our cloud-powered infrastructure ensures your communications run smoothly without interruptions.",
+      delay: "0"
+    },
+    {
+      id: 2,
+      value: statsCounts.messages >= 1000000 ? '1M+' : `${Math.floor(statsCounts.messages / 1000)}K+`,
+      title: "Messages delivered daily",
+      description: "Large-scale communications with fast, secure, and reliable messaging solutions",
+      // "Our system allows us tot be able to handle up to 1M+ messages daily, Handling large-scale communications with fast, secure and reliable messaging solutions",
+      delay: "200"
+    },
+    {
+      id: 3,
+      value: `${statsCounts.years}+`,
+      title: "Years Experience",
+      description: "Proven success in delivering scalable and innovative communication services across Nigeria.",
+      delay: "400"
+    },
+    {
+      id: 4,
+      value: `${statsCounts.businesses}+`,
+      title: "Businesses served",
+      description: "We empower hundreds of Nigerian businesses and government agencies with reliable telecom solutions.",
+      delay: "600"
+    }
+  ];
   return (
     <main>
       <section ref={heroRef} className="relative bg-[#001933] pt-[50px] overflow-hidden">
-        {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -193,9 +223,9 @@ export default function About() {
             showImages.includes(0) ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform -translate-x-8'
           }`}>
             <img
-              src={"/images/left photo.png"}
+              src={"/building.png"}
               alt="Illustration showing a person working on a laptop with various telecom icons around them"
-              className="w-auto object-contain"
+              className="w-auto rounded-[32px] object-contain"
             />
           </div>
 
@@ -221,6 +251,7 @@ export default function About() {
           </div>
         </div>
       </section>
+      
       <AnimatedText descriptionText={descriptionText} textSize="text-[40px]"/>
 
       {/* <section ref={descriptionRef} id="about-description-section" className="bg-muted/30 py-20 md:py-36 relative overflow-hidden">
@@ -275,8 +306,7 @@ export default function About() {
         
       </section>*/}
 
-      <section ref={statsRef} className="container flex flex-col md:flex-row gap-16 py-9 relative overflow-hidden">
-        {/* Animated background elements */}
+      {/* <section ref={statsRef} className="container flex flex-col md:flex-row gap-16 py-9 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-xl animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500/5 rounded-full blur-xl animate-pulse delay-1000"></div>
@@ -338,6 +368,33 @@ export default function About() {
             with reliable telecom solutions.
           </p>
         </div>
+      </section> */}
+
+      <section ref={statsRef} className="container w-full px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 py-8 md:py-9 relative overflow-hidden justify-center">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-4 sm:left-10 w-20 h-20 sm:w-32 sm:h-32 bg-blue-500/5 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-4 sm:right-10 w-24 h-24 sm:w-40 sm:h-40 bg-purple-500/5 rounded-full blur-xl animate-pulse delay-1000"></div>
+        </div>
+        
+        {statsItems.map((item, index) => (
+          <div 
+            key={item.id}
+            className={`transition-all duration-1000 text-center md:text-left ${
+              isStatsVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
+            } ${index === 0 ? 'flex flex-col justify-evenly' : ''}`}
+            style={{ transitionDelay: `${item.delay}ms` }}
+          >
+            <p className="text-3xl sm:text-4xl lg:text-[40px] inline-block bg-gradient-to-br to-[#0B59A9] from-[#53A2F2] bg-clip-text text-transparent font-inter font-[900]">
+              {item.value}
+            </p>
+            <h5 className="font-inter font-[700] text-lg sm:text-xl lg:text-[20px] mt-2 sm:mt-3">
+              {item.title}
+            </h5>
+            <p className="text-sm sm:text-base text-gray-600 mt-2 max-w-xs mx-auto md:mx-0">
+              {item.description}
+            </p>
+          </div>
+        ))}
       </section>
 
       <VisionMissionSection />

@@ -1,25 +1,21 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import {
-  Phone,
-  Mic,
-  BarChart3,
-  Mail,
-  PhoneForwarded,
-  TrendingUp,
-} from "lucide-react";
-
-
-import { Button } from "@/components/ui/button";
-import { Carousel } from "../ui/carousel";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CarouselPlugin } from "./carousel";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const FeaturesSection = () => {
-  const [activeFeature, setActiveFeature] = useState(2);
   const [activeTab, setActiveTab] = useState("pbx");
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  // const tabSequenceRef = useRef<string[]>(["pbx", "allinone", "messaging", "numbers"]);
+  const tabSequenceRef = useRef<string[]>(['', "pbx", "allinone", "messaging", "numbers", '']);
+  
+  const isAnimatingRef = useRef(false);
 
   const pbxFeatures = [
     {
@@ -342,7 +338,40 @@ const FeaturesSection = () => {
     }
   };
 
-  // Scroll animation effect
+  // Handle manual tab clicks
+  const handleTabClick = (tab: string) => {
+    // if (isAnimatingRef.current) return;
+    
+    setActiveTab(tab);
+    
+    if (sectionRef.current) {
+      const tabIndex = tabSequenceRef.current.indexOf(tab);
+      const sectionHeight = sectionRef.current.offsetHeight;
+      
+      // Calculate scroll position based on tab index
+      const scrollProgress = tabIndex / (tabSequenceRef.current.length - 1);
+      const scrollDistance = sectionHeight * tabSequenceRef.current.length;
+      const scrollPosition = sectionRef.current.offsetTop + (scrollProgress * scrollDistance);
+      
+      isAnimatingRef.current = true;
+      
+      gsap.to(window, {
+        duration: 0.8,
+        scrollTo: {
+          y: scrollPosition,
+          autoKill: false
+        },
+        ease: "power2.inOut",
+        onComplete: () => {
+          setTimeout(() => {
+            isAnimatingRef.current = false;
+          }, 300);
+        }
+      });
+    }
+  };
+
+  // Scroll animation effect with intersection observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -366,44 +395,87 @@ const FeaturesSection = () => {
     };
   }, []);
 
-  const mockChartData = [
-    {
-      day: "Mon",
-      height: 60,
-      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
-    },
-    {
-      day: "Tue",
-      height: 70,
-      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
-    },
-    {
-      day: "Wed",
-      height: 85,
-      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
-    },
-    {
-      day: "Thu",
-      height: 75,
-      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
-    },
-    {
-      day: "Fri",
-      height: 95,
-      colors: ["bg-blue-400", "bg-green-400", "bg-pink-400"],
-    },
-    { day: "Sat", height: 80, colors: ["bg-pink-400", "bg-green-400"] },
-    { day: "Sun", height: 65, colors: ["bg-green-400", "bg-pink-400"] },
-  ];
+  // GSAP Scroll-triggered tab animation
+  useEffect(() => {
+      if (!sectionRef.current || !isVisible) return;
+
+  const tabs = tabSequenceRef.current;
+  const sectionHeight = sectionRef.current.offsetHeight;
+  
+  // Kill any existing ScrollTriggers to avoid conflicts
+  ScrollTrigger.getAll().forEach(trigger => {
+    if (trigger.trigger === sectionRef.current) {
+      trigger.kill();
+    }
+  });
+
+  // Create a timeline for smooth tab transitions
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: sectionRef.current,
+      start: "top top",
+      end: `+=${sectionHeight * tabs.length}`,
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1,
+      markers: false,
+      onEnter: () => {
+        isAnimatingRef.current = true;
+      },
+      onLeave: () => {
+        isAnimatingRef.current = false;
+      },
+      onEnterBack: () => {
+        isAnimatingRef.current = true;
+      },
+      onLeaveBack: () => {
+        isAnimatingRef.current = false;
+      }
+    }
+  });
+
+    // Add tab transitions to the timeline with proper spacing
+    tabs.forEach((tab, index) => {
+      if (index > 0) {
+        // Each tab gets equal portion of the scroll distance
+        const progress = index / (tabs.length);
+        tl.add(() => {
+          setActiveTab(tab);
+        }, progress);
+      }
+    });
+
+    // Animate content entrance on scroll
+    gsap.fromTo(sectionRef.current.querySelector('[class*="grid"]'), 
+      {
+        opacity: 0,
+        y: 30
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        }
+      }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === sectionRef.current) {
+          trigger.kill();
+        }
+      });
+    };
+  }, [isVisible]);
 
   return (
-    <div
-      ref={sectionRef}
-      className="md:min-h-screen bg-black text-white px-3 py-8 md:py-20 relative overflow-hidden"
-    >
+    <div ref={sectionRef} className="bg-black text-white px-3 py-10 md:py-20 relative overflow-hidden">
       {/* Header Navigation */}
-      <div
-        className={`flex max-w-[300px] md:max-w-[44rem] mx-auto md:p-1 rounded-full md:flex-wrap bg-[#0C0C0C]  items-center justify-center md:gap-8 mb-10 md:mb-20 transition-all duration-1000 ${
+      <div className={`flex max-w-[300px] md:max-w-[44rem] mx-auto md:p-1 rounded-full md:flex-wrap bg-[#0C0C0C]  items-center justify-center md:gap-8 mb-10 md:mb-20 transition-all duration-1000 ${
           isVisible
             ? "opacity-100 transform translate-y-0"
             : "opacity-0 transform translate-y-8"
@@ -415,18 +487,17 @@ const FeaturesSection = () => {
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
           }`}
-          onClick={() => setActiveTab("pbx")}
+          onClick={() => handleTabClick("pbx")}
         >
           <span className="hidden sm:inline">IntarvAS PBX</span>
           <span className="sm:hidden">PBX</span>
         </button>
-        <button
-          className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 truncate ${
+        <button className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 truncate ${
             activeTab === "allinone"
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
           }`}
-          onClick={() => setActiveTab("allinone")}
+          onClick={() => handleTabClick("allinone")}
         >
           <span className="hidden sm:inline">All in one solution</span>
           <span className="sm:hidden">AIO...</span>
@@ -437,7 +508,7 @@ const FeaturesSection = () => {
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
           }`}
-          onClick={() => setActiveTab("messaging")}
+          onClick={() => handleTabClick("messaging")}
         >
           Bulk Messaging
         </button>
@@ -447,7 +518,7 @@ const FeaturesSection = () => {
               ? "bg-[#007DFE] text-white"
               : "text-gray-400 hover:text-white"
           }`}
-          onClick={() => setActiveTab("numbers")}
+          onClick={() => handleTabClick("numbers")}
         >
           <span className="hidden sm:inline">0700 & 0800</span>
           <span className="sm:hidden">Numbers</span>
@@ -456,6 +527,7 @@ const FeaturesSection = () => {
 
       {/* Main Content */}
       <div
+        ref={contentRef}
         className={`max-w-7xl mx-auto hidden md:grid grid-cols-1 lg:grid-cols-2 gap-16 items-center transition-all duration-1000 ${
           isVisible
             ? "opacity-100 transform translate-y-0"

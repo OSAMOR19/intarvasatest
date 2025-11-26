@@ -14,7 +14,7 @@ const ClientLogosSection = ({
     { src: "/images/airtel.svg", alt: "Airtel", large: false },
     { src: "/images/fcmb.svg", alt: "FCMB", large: false },
     { src: "/images/mafab.svg", alt: "Mafab", large: false },
-    { src: "/images/lotus.svg", alt: "Lotus", large: false },
+    { src: "/images/lotus.svg", alt: "Lotus Bank", large: false },
     { src: "/images/aero-logo.svg", alt: "Aero", large: false },
     { src: "/images/ICN.svg", alt: "ICN", large: true },
     { src: "/images/Klayed.svg", alt: "Klayed", large: false },

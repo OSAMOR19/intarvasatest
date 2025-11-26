@@ -465,27 +465,27 @@ const TestimonialsSection = () => {
 
     if (screenSize === "mobile") {
       cleanupFunctions.push(
-        animateElement(animationRefs.current.mobileRow1, "left", 0.08, "mobileRow1")
+        animateElement(animationRefs.current.mobileRow1, "left", 0.06, "mobileRow1")
       );
       cleanupFunctions.push(
-        animateElement(animationRefs.current.mobileRow2, "right", 0.08, "mobileRow2")
+        animateElement(animationRefs.current.mobileRow2, "right", 0.06, "mobileRow2")
       );
     } else if (screenSize === "tablet") {
       cleanupFunctions.push(
-        animateElement(animationRefs.current.tabletCol1, "up", 0.06, "tabletCol1")
+        animateElement(animationRefs.current.tabletCol1, "up", 0.04, "tabletCol1")
       );
       cleanupFunctions.push(
-        animateElement(animationRefs.current.tabletCol2, "down", 0.06, "tabletCol2")
+        animateElement(animationRefs.current.tabletCol2, "down", 0.04, "tabletCol2")
       );
     } else {
       cleanupFunctions.push(
-        animateElement(animationRefs.current.desktopCol1, "up", 0.05, "desktopCol1")
+        animateElement(animationRefs.current.desktopCol1, "up", 0.04, "desktopCol1")
       );
       cleanupFunctions.push(
-        animateElement(animationRefs.current.desktopCol2, "down", 0.05, "desktopCol2")
+        animateElement(animationRefs.current.desktopCol2, "down", 0.04, "desktopCol2")
       );
       cleanupFunctions.push(
-        animateElement(animationRefs.current.desktopCol3, "up", 0.05, "desktopCol3")
+        animateElement(animationRefs.current.desktopCol3, "up", 0.04, "desktopCol3")
       );
     }
 
@@ -569,7 +569,10 @@ const TestimonialsSection = () => {
       <div className="max-w-full sm:max-w-2xl lg:max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-100 text-blue-600 rounded-full text-xs sm:text-sm font-medium">
+          {/* <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-100 text-blue-600 rounded-full text-xs sm:text-sm font-medium">
+            Testimonials
+          </span> */}
+          <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 border border-[#C6E2FF] bg-[#E5F2FF] text-[#007DFE] rounded-full text-xs sm:text-sm font-medium">
             Testimonials
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 my-3 sm:my-4">

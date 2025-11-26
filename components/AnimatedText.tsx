@@ -61,7 +61,7 @@ export default function AnimatedText({
 
             <div className="container mx-auto px-1 relative z-10">
                 <div className="transition-all duration-1000 opacity-100 transform translate-y-0">
-                    <p className={`mx-auto font-inter ${textSize} font-[600] max-w-[865px] text-center hover:scale-105 transition-all duration-500 cursor-default`} style={{lineHeight: "48px", letterSpacing: "-5%"}}>
+                    <p className={`mx-auto font-inter sm:${textSize} text-3xl md:px-0 px-6 font-[600] max-w-[865px] text-center hover:scale-105 transition-all duration-500 cursor-default`} style={{lineHeight: "48px", letterSpacing: "-5%"}}>
                         {descriptionWords.map((word, index) => {
                             const greyR = 133, greyG = 141, greyB = 157;
                             const darkR = 0, darkG = 25, darkB = 51;
