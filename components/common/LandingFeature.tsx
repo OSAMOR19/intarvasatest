@@ -317,9 +317,9 @@ const FeaturesSection = () => {
       case "allinone":
         return "/allinoneimage.svg";
       case "numbers":
-        return "/0700phone.svg";
+        return "/number.png";
       default:
-        return "images/phone.png";
+        return "/number.png";
     }
   };
 

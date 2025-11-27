@@ -105,20 +105,20 @@ const Footer = () => {
                 >
                   <Twitter className="w-5 h-5 text-black" />
                 </button>
-                <button
+                <a
                   className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-not-allowed opacity-60"
                   aria-label="LinkedIn"
-                  disabled
+                  href="https://www.linkedin.com/company/intarvas/"
                 >
                   <Linkedin className="w-5 h-5 text-black" />
-                </button>
-                <button
+                </a>
+                <a
                   className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors cursor-not-allowed opacity-60"
                   aria-label="Instagram"
-                  disabled
+                  href="https://www.instagram.com/intarvas/"
                 >
                   <Instagram className="w-5 h-5 text-black" />
-                </button>
+                </a>
               </div>
             </div>
           </div>
