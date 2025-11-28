@@ -40,50 +40,7 @@ export default function PBX() {
   // Prevent hydration mismatch by only enabling client-side features after mount
   useEffect(() => {
     setIsMounted(true);
-    // Scroll to top on page load
-    window.scrollTo(0, 0);
   }, []);
-
-  // Global ScrollTrigger refresh after all content loads
-  useEffect(() => {
-    if (!isMounted) return;
-
-    // Wait for all content to load, then refresh
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh(true);
-    }, 500);
-
-    // Also refresh on window load
-    const handleLoad = () => {
-      ScrollTrigger.refresh(true);
-    };
-
-    if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      window.addEventListener('load', handleLoad);
-    }
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('load', handleLoad);
-    };
-  }, [isMounted]);
-
-  // Window resize handler for ScrollTrigger
-  useEffect(() => {
-    if (!isMounted) return;
-
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [isMounted]);
 
   useEffect(() => {
     // Typewriter effect for title
@@ -280,13 +237,7 @@ export default function PBX() {
           <img
             src={"/images/pbxHeroImg.png"}
             alt="IntarVAS PBX analytics dashboard showing call history and statistics"
-              className="w-full rounded-[32px] relative z-10 transform transition-all duration-700 hover:scale-105 hover:rotate-1 shadow-2xl hover:shadow-lg"
-              onLoad={() => {
-                // Refresh ScrollTrigger when hero image loads
-                if (typeof window !== 'undefined') {
-                  ScrollTrigger.refresh();
-                }
-              }}
+            className="w-full rounded-[32px] relative z-10 transform transition-all duration-700 hover:scale-105 hover:rotate-1 shadow-2xl hover:shadow-lg"
           />
           </div>
         </div>

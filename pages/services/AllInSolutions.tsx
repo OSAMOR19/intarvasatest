@@ -77,50 +77,7 @@ export default function AllInSolutions() {
   // Prevent hydration mismatch by only enabling client-side features after mount
   useEffect(() => {
     setIsMounted(true);
-    // Scroll to top on page load
-    window.scrollTo(0, 0);
   }, []);
-
-  // Global ScrollTrigger refresh after all content loads
-  useEffect(() => {
-    if (!isMounted) return;
-
-    // Wait for all content to load, then refresh
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh(true);
-    }, 500);
-
-    // Also refresh on window load
-    const handleLoad = () => {
-      ScrollTrigger.refresh(true);
-    };
-
-    if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      window.addEventListener('load', handleLoad);
-    }
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('load', handleLoad);
-    };
-  }, [isMounted]);
-
-  // Window resize handler for ScrollTrigger
-  useEffect(() => {
-    if (!isMounted) return;
-
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [isMounted]);
 
   useEffect(() => {
     // Only run scroll handler after component is mounted to prevent hydration mismatch
@@ -355,12 +312,6 @@ export default function AllInSolutions() {
             src={"/images/allinsoluheroimg.png"}
             alt="Bulk messaging platform with colorful message illustrations"
             className="w-full rounded-[32px] hover:scale-105 transition-transform duration-500"
-            onLoad={() => {
-              // Refresh ScrollTrigger when hero image loads
-              if (typeof window !== 'undefined') {
-                ScrollTrigger.refresh();
-              }
-            }}
           />
         </div>
       </section>

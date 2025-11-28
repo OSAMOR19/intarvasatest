@@ -7,6 +7,7 @@ import LoadingScreen from "@/components/common/LoadingScreen";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import SupportWidget from "@/components/common/SupportWidget";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ClientProviders>
+          <ScrollToTop />
           {/* <LoadingScreen /> */}
           <Toaster />
           <Sonner />
