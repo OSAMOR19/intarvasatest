@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ClientProviders>
-          <LoadingScreen />
+          {/* <LoadingScreen /> */}
           <Toaster />
           <Sonner />
           {/* <SupportWidget /> */}

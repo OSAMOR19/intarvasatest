@@ -113,12 +113,12 @@ const ContactUsSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-16">
-          <h1 className="text-5xl lg:text-6xl font-bold mb-6">
+          <h1 className="animate-fade-in-up text-5xl lg:text-6xl font-bold mb-6">
             Get In
             <br />
             Touch With Us
           </h1>
-          <p className="text-gray-600 text-lg leading-relaxed max-w-2xl">
+          <p className="text-gray-600 text-lg leading-relaxed max-w-2xl animate-fade-in-up delay-300 ">
             Explore our commitment to exceptional customer support. Our team is
             ready to assist you around the clock, ensuring a smooth and reliable
             experience with IntarVAS services.
@@ -128,7 +128,7 @@ const ContactUsSection = () => {
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Side - Contact Form */}
-          <div className="bg-white rounded-3xl p-8 shadow-lg">
+          <div className="bg-white rounded-3xl p-8 shadow-lg animate-fade-in-left delay-300">
             <h2 className="text-2xl font-bold mb-6">How can we help you?</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -237,7 +237,7 @@ const ContactUsSection = () => {
           </div>
 
           {/* Right Side - Contact Info & Map */}
-          <div className="space-y-6">
+          <div className="space-y-6 animate-fade-in-right delay-500">
             {/* Contact Info Card */}
             <div className=" rounded-3xl p-8 ">
               <h2 className="text-2xl font-bold mb-6">

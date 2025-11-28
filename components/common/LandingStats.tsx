@@ -104,9 +104,9 @@ const ProvenResultsSection = () => {
   return (
     <div ref={sectionRef} className="bg-[#F6F6F6] flex items-center justify-center p-4 sm:p-6 md:p-8 py-12 md:py-16 lg:py-20 overflow-visible">
       <div className="w-full max-w-[1275px] bg-[#00000040] rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl p-1 overflow-visible" style={{ position: 'relative' }}>
-          <div className="relative z-20 w-svw h-svw">
+          {/* <div className="relative z-20 w-svw h-svw">
             <Noise patternSize={250} patternScaleX={1} patternScaleY={1} patternRefreshInterval={1} patternAlpha={15} />
-          </div>
+          </div> */}
         <div className="w-full bg-[#1E1E1E] rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 z-10 relative overflow-visible">
           {/* Content */}
           <div className="">
