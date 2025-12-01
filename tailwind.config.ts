@@ -18,6 +18,14 @@ export default {
       },
     },
     extend: {
+      // animation: {
+      //   'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+      //   'fade-in-up-delay-1': 'fadeInUp 0.8s ease-out 0.3s forwards',
+      //   'fade-in-up-delay-2': 'fadeInUp 0.8s ease-out 0.6s forwards',
+      //   'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+      //   'slide-in-left-delay-1': 'slideInLeft 0.8s ease-out 0.3s forwards',
+      //   'slide-in-left-delay-2': 'slideInLeft 0.8s ease-out 0.6s forwards',
+      // },
       fontFamily: {
         sans: [
           "Plus Jakarta Sans",
