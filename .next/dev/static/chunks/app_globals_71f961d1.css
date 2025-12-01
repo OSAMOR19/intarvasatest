@@ -1461,6 +1461,10 @@ body {
   max-width: 20rem;
 }
 
+.max-w-\[100vw\] {
+  max-width: 100vw;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -3030,6 +3034,11 @@ body {
   line-height: 1rem;
 }
 
+.text-base\/8 {
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
 .font-\[300\] {
   font-weight: 300;
 }
@@ -3119,6 +3128,22 @@ body {
   line-height: 1.25;
 }
 
+.leading-7 {
+  line-height: 1.75rem;
+}
+
+.leading-\[1\.5\] {
+  line-height: 1.5;
+}
+
+.leading-\[2\] {
+  line-height: 2;
+}
+
+.leading-10 {
+  line-height: 2.5rem;
+}
+
 .tracking-\[0\.2px\] {
   letter-spacing: .2px;
 }
@@ -3137,6 +3162,18 @@ body {
 
 .tracking-widest {
   letter-spacing: .1em;
+}
+
+.tracking-\[0\.5px\] {
+  letter-spacing: .5px;
+}
+
+.tracking-\[0\.9px\] {
+  letter-spacing: .9px;
+}
+
+.tracking-wide {
+  letter-spacing: .025em;
 }
 
 .text-\[\#001933\] {
@@ -5188,6 +5225,18 @@ html, body {
     width: auto;
   }
 
+  .sm\:w-4\/5 {
+    width: 80%;
+  }
+
+  .sm\:w-5\/6 {
+    width: 83.3333%;
+  }
+
+  .sm\:w-11\/12 {
+    width: 91.6667%;
+  }
+
   .sm\:max-w-2xl {
     max-width: 42rem;
   }
@@ -5198,6 +5247,10 @@ html, body {
 
   .sm\:max-w-sm {
     max-width: 24rem;
+  }
+
+  .sm\:max-w-3xl {
+    max-width: 48rem;
   }
 
   .sm\:grid-cols-2 {
@@ -5403,6 +5456,14 @@ html, body {
 
   .sm\:leading-tight {
     line-height: 1.25;
+  }
+
+  .sm\:leading-8 {
+    line-height: 2rem;
+  }
+
+  .sm\:leading-5 {
+    line-height: 1.25rem;
   }
 
   .sm\:shadow-2xl {
@@ -5851,6 +5912,14 @@ html, body {
     line-height: 1.25;
   }
 
+  .md\:leading-9 {
+    line-height: 2.25rem;
+  }
+
+  .md\:leading-8 {
+    line-height: 2rem;
+  }
+
   .md\:opacity-0 {
     opacity: 0;
   }
@@ -5982,6 +6051,10 @@ html, body {
 
   .lg\:max-w-xl {
     max-width: 36rem;
+  }
+
+  .lg\:max-w-full {
+    max-width: 100%;
   }
 
   .lg\:-translate-x-20 {
@@ -6203,6 +6276,11 @@ html, body {
     line-height: 1.25rem;
   }
 
+  .lg\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
   .lg\:leading-tight {
     line-height: 1.25;
   }
@@ -6211,6 +6289,10 @@ html, body {
 @media (min-width: 1280px) {
   .xl\:max-w-\[628px\] {
     max-width: 628px;
+  }
+
+  .xl\:max-w-full {
+    max-width: 100%;
   }
 
   .xl\:p-16 {
@@ -6233,6 +6315,15 @@ html, body {
 
   .xl\:text-\[52px\] {
     font-size: 52px;
+  }
+
+  .xl\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .xl\:text-\[64px\] {
+    font-size: 64px;
   }
 }
 

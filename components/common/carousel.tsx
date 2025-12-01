@@ -12,15 +12,23 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function CarouselPlugin({ list }: { list?: any }) {
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 2000, stopOnInteraction: false })
   );
+
+  // Duplicate the list to create infinite loop effect
+  const duplicatedList = list ? [...list, ...list, ...list] : [];
 
   return (
     <Carousel
       plugins={[plugin.current]}
       className="w-full max-w-[300px]"
+      opts={{
+        loop: true,
+        align: "start",
+      }}
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
@@ -29,7 +37,7 @@ export function CarouselPlugin({ list }: { list?: any }) {
           backgroundColor: "transparent",
         }}
       >
-        {list?.map((item, index) => (
+        {duplicatedList?.map((item, index) => (
           <CarouselItem key={index}>
             <Card className="min-h-[200px] bg-[#0C0C0C] flex flex-col items-center justify-around space-y-4 p-2">
               <CardContent>

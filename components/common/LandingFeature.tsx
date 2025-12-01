@@ -500,7 +500,7 @@ const FeaturesSection = () => {
           onClick={() => handleTabClick("allinone")}
         >
           <span className="hidden sm:inline">All in one solution</span>
-          <span className="sm:hidden">AIO...</span>
+          <span className="sm:hidden">AIO</span>
         </button>
         <button
           className={`md:px-6 md:py-2 py-1 px-3 rounded-full text-[12px] md:text-sm transition-all duration-300 ${
@@ -612,7 +612,8 @@ const FeaturesSection = () => {
               className={`w-[300px] h-[300px] object-contain transition-all duration-500 ease-in-out animate-fade-in-right hover:scale-105`}
             />
 
-            <CarouselPlugin list={getCurrentFeatures()} />
+            <CarouselPlugin list={getCurrentFeatures()} />            
+            
           </div>
         </div>
       </div>

@@ -418,18 +418,25 @@ const TestimonialsSection = () => {
         const delta = timestamp - lastTimestamp;
         lastTimestamp = timestamp;
 
+        const itemWidth = 320; // w-80 = 320px
+        const gap = 16; // gap-4 = 16px
+        const totalItemWidth = itemWidth + gap;
+        const totalWidth = testimonials.length * totalItemWidth;
+
         if (direction === "left") {
           animationStates.current[stateKey].translateX -= (delta * speed);
-          const maxTranslate = element.scrollWidth / 2;
-          if (Math.abs(animationStates.current[stateKey].translateX) >= maxTranslate) {
-            animationStates.current[stateKey].translateX += maxTranslate;
+          
+          // Reset position when we've scrolled the full width
+          if (Math.abs(animationStates.current[stateKey].translateX) >= totalWidth) {
+            animationStates.current[stateKey].translateX += totalWidth;
           }
           element.style.transform = `translateX(${animationStates.current[stateKey].translateX}px)`;
         } else if (direction === "right") {
           animationStates.current[stateKey].translateX += (delta * speed);
-          const maxTranslate = element.scrollWidth / 2;
-          if (animationStates.current[stateKey].translateX >= maxTranslate) {
-            animationStates.current[stateKey].translateX -= maxTranslate;
+          
+          // Reset position when we've scrolled the full width in the negative direction
+          if (animationStates.current[stateKey].translateX >= -totalWidth) {
+            animationStates.current[stateKey].translateX -= totalWidth;
           }
           element.style.transform = `translateX(${animationStates.current[stateKey].translateX}px)`;
         } else if (direction === "up") {
@@ -464,6 +471,10 @@ const TestimonialsSection = () => {
     const cleanupFunctions = [];
 
     if (screenSize === "mobile") {
+      // Reset positions when switching to mobile
+      animationStates.current.mobileRow1.translateX = 0;
+      animationStates.current.mobileRow2.translateX = 0;
+      
       cleanupFunctions.push(
         animateElement(animationRefs.current.mobileRow1, "left", 0.06, "mobileRow1")
       );
@@ -541,7 +552,7 @@ const TestimonialsSection = () => {
 
   const Card = ({ testimonial }) => {
     return (
-      <div className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl w-full sm:w-80 lg:w-full p-4 sm:p-6 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0">
+      <div className="bg-white rounded-lg sm:rounded-xl lg:rounded-2xl w-80 sm:w-80 lg:w-full p-4 sm:p-6 lg:p-8 shadow-sm hover:shadow-md transition-all duration-300 flex-shrink-0">
         <p className="text-sm sm:text-base lg:text-base text-gray-700 leading-relaxed mb-4 sm:mb-6 lg:mb-8 line-clamp-3 sm:line-clamp-none">
           {testimonial.text}
         </p>
@@ -569,9 +580,6 @@ const TestimonialsSection = () => {
       <div className="max-w-full sm:max-w-2xl lg:max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          {/* <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-100 text-blue-600 rounded-full text-xs sm:text-sm font-medium">
-            Testimonials
-          </span> */}
           <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 border border-[#C6E2FF] bg-[#E5F2FF] text-[#007DFE] rounded-full text-xs sm:text-sm font-medium">
             Testimonials
           </span>
@@ -599,9 +607,9 @@ const TestimonialsSection = () => {
                   if (i === 0) animationRefs.current.mobileRow1 = el;
                   if (i === 1) animationRefs.current.mobileRow2 = el;
                 }}
-                className="flex gap-3 overflow-hidden"
+                className="flex gap-4"
               >
-                {[...testimonials, ...testimonials].map((t, idx) => (
+                {[...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials].map((t, idx) => (
                   <Card testimonial={t} key={idx} />
                 ))}
               </div>
@@ -659,6 +667,7 @@ const TestimonialsSection = () => {
             ))}
           </div>
         )}
+        
       </div>
     </section>
   );

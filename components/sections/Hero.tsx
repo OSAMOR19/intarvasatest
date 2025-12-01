@@ -155,14 +155,14 @@ const Hero = () => {
                 {/* Content */}
                 {/* <div className="flex flex-col lg:pt-10 pt-24 md:pt-24 lg:pt-36 2xl:pt-56 pb-58 md:pb-56 lg:pb-64 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px] pb-8"> */}
                 <div className="flex flex-col pt-10 md:pt-24 lg:pt-36 2xl:pt-56 justify-start space-y-4 px-4 md:px-0 md:pl-[40px] 2xl:pl-[170px]">
-                    <h1 className="animate-fade-in-up font-inter font-extrabold text-[64px] text-white leading-[1.3] tracking-[0.3px] align-middle max-w-[90vw] sm:max-w-[600px] md:max-w-[600px] lg:max-w-[600px] xl:max-w-[628px]">
+                    <h1 className="animate-fade-in-up font-inter font-extrabold text-white leading-10 tracking-wide align-middle text-4xl md:text-5xl lg:text-6xl align-middle max-w-[100vw] sm:max-w-[600px] md:max-w-[600px] lg:max-w-[600px] xl:max-w-[628px]">
                         {title}
                     </h1>
-                    <h1 className="animate-fade-in-up delay-300 font-inter text-[#C2C6CE] font-[400] text-[18px] md:leading-2 leading-8 tracking-[0.2px] align-left sm:w-3/4 w-full">
+                    <h1 className="animate-fade-in-up delay-300 font-inter text-[#C2C6CE] font-[400] text-sm sm:text-base md:text-lg lg:text-xl leading-8 sm:leading-5 md:leading-2 tracking-[0.2px] align-left sm:w-11/12 w-full">
                         {subtitle}
                     </h1>
                     <div className="animate-fade-in-up delay-500 flex sm:flex-row gap-3 pt-3 sm:pt-6">
-                        <Link href="/about#services-showcase-section">
+                        <Link href="https://wiki.ccaas.intarvas.com" target="_blank" rel="noopener noreferrer">
                             <Button variant="outline" size="default" className="bg-white text-[#001933] border-[#001933] hover:bg-gray-50 w-full sm:w-auto sm:px-6">
                                 {secondaryButtonText}
                             </Button>
