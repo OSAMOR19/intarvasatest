@@ -401,7 +401,7 @@ const FeaturesSection = () => {
 
   const tabs = tabSequenceRef.current;
   const sectionHeight = sectionRef.current.offsetHeight;
-  
+
   // Kill any existing ScrollTriggers to avoid conflicts
   ScrollTrigger.getAll().forEach(trigger => {
     if (trigger.trigger === sectionRef.current) {
@@ -409,30 +409,35 @@ const FeaturesSection = () => {
     }
   });
 
-  // Create a timeline for smooth tab transitions
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: sectionRef.current,
-      start: "top top",
-      end: `+=${sectionHeight * tabs.length}`,
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1,
-      markers: false,
-      onEnter: () => {
-        isAnimatingRef.current = true;
-      },
-      onLeave: () => {
-        isAnimatingRef.current = false;
-      },
-      onEnterBack: () => {
-        isAnimatingRef.current = true;
-      },
-      onLeaveBack: () => {
-        isAnimatingRef.current = false;
+  // Delay ScrollTrigger initialization to prevent interfering with initial scroll position
+  const initTimeout = setTimeout(() => {
+    // Create a timeline for smooth tab transitions
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: `+=${sectionHeight * tabs.length}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        markers: false,
+        invalidateOnRefresh: true,
+        fastScrollEnd: true,
+        preventOverlaps: true,
+        onEnter: () => {
+          isAnimatingRef.current = true;
+        },
+        onLeave: () => {
+          isAnimatingRef.current = false;
+        },
+        onEnterBack: () => {
+          isAnimatingRef.current = true;
+        },
+        onLeaveBack: () => {
+          isAnimatingRef.current = false;
+        }
       }
-    }
-  });
+    });
 
     // Add tab transitions to the timeline with proper spacing
     tabs.forEach((tab, index) => {
@@ -446,7 +451,7 @@ const FeaturesSection = () => {
     });
 
     // Animate content entrance on scroll
-    gsap.fromTo(sectionRef.current.querySelector('[class*="grid"]'), 
+    gsap.fromTo(sectionRef.current.querySelector('[class*="grid"]'),
       {
         opacity: 0,
         y: 30
@@ -462,8 +467,10 @@ const FeaturesSection = () => {
         }
       }
     );
+  }, 300); // 300ms delay to allow initial scroll to complete
 
     return () => {
+      clearTimeout(initTimeout);
       ScrollTrigger.getAll().forEach((trigger) => {
         if (trigger.trigger === sectionRef.current) {
           trigger.kill();
