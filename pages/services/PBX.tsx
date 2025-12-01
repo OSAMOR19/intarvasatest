@@ -97,10 +97,10 @@ export default function PBX() {
     };
   }, [isMounted]);
 
-  // GSAP ScrollTrigger for sticky left column in features section
+  // GSAP ScrollTrigger for sticky left column in features section - DESKTOP ONLY
   useLayoutEffect(() => {
-    // Only run GSAP after component is mounted to prevent hydration mismatch
-    if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
+    // Only run GSAP after component is mounted and on desktop
+    if (!isMounted || (typeof window !== "undefined" && window.innerWidth < 1024) || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
 
     // Clear any existing ScrollTriggers
     ScrollTrigger.getAll().forEach(trigger => {
@@ -109,7 +109,7 @@ export default function PBX() {
       }
     });
 
-    // Create the pin effect
+    // Create the pin effect for desktop only
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         id: "pbx-features-sticky",
@@ -128,8 +128,23 @@ export default function PBX() {
       });
     }, featuresRef.current);
 
+    // Cleanup on resize
+    const handleResize = () => {
+      if (typeof window !== "undefined" && window.innerWidth < 1024) {
+        // Kill ScrollTrigger on mobile/tablet
+        ScrollTrigger.getAll().forEach(trigger => {
+          if (trigger.vars.id === "pbx-features-sticky") {
+            trigger.kill();
+          }
+        });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
       ctx.revert(); // Clean up GSAP context
+      window.removeEventListener('resize', handleResize);
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.vars.id === "pbx-features-sticky") {
           trigger.kill();
@@ -247,8 +262,8 @@ export default function PBX() {
 
       <section ref={featuresRef} id="cards-section" className="bg-[#F6F6F6] pt-20 pb-32">
         <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 px-4">
-          {/* Left Column - Description (Sticky) */}
-          <div ref={stickyLeftRef} className="max-w-lg h-fit">
+          {/* Left Column - Sticky on desktop, normal on mobile */}
+          <div ref={stickyLeftRef} className="max-w-lg h-fit order-first lg:order-none lg:sticky lg:top-32">
             <div className="inline-block mb-4">
               <span
                 className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium"
@@ -257,10 +272,10 @@ export default function PBX() {
                 Features
               </span>
             </div>
-            <h3 className="font-inter text-[38px] font-[600] leading-[1.2]">
+            <h3 className="font-inter text-[28px] md:text-[38px] font-[600] leading-[1.2]">
               A phone number with all the business features you need.
             </h3>
-            <p className="text-[#858D9D] mb-3 mt-4">
+            <p className="text-[#858D9D] mb-3 mt-4 text-sm md:text-base">
               These critical features are essential for any business, regardless of size.
             </p>
             <div className="mt-6">
@@ -272,8 +287,8 @@ export default function PBX() {
             </div>
           </div>
 
-          {/* Right Column - Scrolling Cards */}
-          <div ref={scrollingRightRef} className="flex flex-col gap-10">
+          {/* Right Column - Scrolling content */}
+          <div ref={scrollingRightRef} className="flex flex-col gap-10 order-last lg:order-none">
             <div 
               className="flex items-center justify-center"
               style={{

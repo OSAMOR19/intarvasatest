@@ -51,9 +51,9 @@ export default function PbxFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
 
           {/* Image Section */}
-          <div className={`hidden md:flex justify-center transition-all duration-1000 ${showImage ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
+          <div className={`hidden md:flex my-64 justify-center transition-all duration-1000  ${showImage ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
             <div className="relative w-full max-w-[550px] justify-center">
-              <div className="bg-[#F6F6F6] max-w-[550px] 2xl:block hidden min-h-[430px] rounded-[30px] aspect-video shadow-lg hover:shadow-xl transition-shadow duration-300 mt-32"></div>
+              <div className="bg-[#F6F6F6] max-w-[550px] md:block hidden min-h-[430px] rounded-[30px] aspect-video shadow-lg hover:shadow-xl transition-shadow duration-300 mt-32"></div>
               {/* <div className="bg-[#F6F6F6] block 2xl:hidden min-h-[430px] rounded-[30px] aspect-video shadow-lg hover:shadow-xl transition-shadow duration-300 mt-32"></div> */}
               <div className="absolute inset-0 flex items-center justify-center -bottom-1 left-1/2 -translate-x-1/2">
                 <div className="hover:scale-105 transition-transform duration-500">

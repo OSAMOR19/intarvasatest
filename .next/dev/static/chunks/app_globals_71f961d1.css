@@ -682,6 +682,14 @@ body {
   order: 2;
 }
 
+.order-first {
+  order: -9999;
+}
+
+.order-last {
+  order: 9999;
+}
+
 .col-span-5 {
   grid-column: span 5 / span 5;
 }
@@ -692,6 +700,10 @@ body {
 
 .m-0 {
   margin: 0;
+}
+
+.m-64 {
+  margin: 16rem;
 }
 
 .-mx-1 {
@@ -747,6 +759,21 @@ body {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.my-12 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.my-16 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.my-64 {
+  margin-top: 16rem;
+  margin-bottom: 16rem;
 }
 
 .-mb-20 {
@@ -3037,6 +3064,10 @@ body {
 .text-base\/8 {
   font-size: 1rem;
   line-height: 2rem;
+}
+
+.text-\[28px\] {
+  font-size: 28px;
 }
 
 .font-\[300\] {
@@ -5488,6 +5519,10 @@ html, body {
     position: absolute;
   }
 
+  .md\:sticky {
+    position: sticky;
+  }
+
   .md\:-top-3 {
     top: -.75rem;
   }
@@ -5512,6 +5547,14 @@ html, body {
     top: 5rem;
   }
 
+  .md\:top-32 {
+    top: 8rem;
+  }
+
+  .md\:order-none {
+    order: 0;
+  }
+
   .md\:mx-0 {
     margin-left: 0;
     margin-right: 0;
@@ -5530,6 +5573,11 @@ html, body {
   .md\:my-8 {
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+
+  .md\:my-64 {
+    margin-top: 16rem;
+    margin-bottom: 16rem;
   }
 
   .md\:mb-16 {
@@ -5957,8 +6005,16 @@ html, body {
     position: absolute;
   }
 
+  .lg\:sticky {
+    position: sticky;
+  }
+
   .lg\:-inset-4 {
     inset: -1rem;
+  }
+
+  .lg\:top-32 {
+    top: 8rem;
   }
 
   .lg\:order-1 {
@@ -5967,6 +6023,10 @@ html, body {
 
   .lg\:order-2 {
     order: 2;
+  }
+
+  .lg\:order-none {
+    order: 0;
   }
 
   .lg\:mb-16 {
@@ -6287,6 +6347,10 @@ html, body {
 }
 
 @media (min-width: 1280px) {
+  .xl\:block {
+    display: block;
+  }
+
   .xl\:max-w-\[628px\] {
     max-width: 628px;
   }

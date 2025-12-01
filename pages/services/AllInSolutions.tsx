@@ -218,7 +218,9 @@ export default function AllInSolutions() {
   // GSAP ScrollTrigger for sticky left column
   useLayoutEffect(() => {
     // Only run GSAP after component is mounted to prevent hydration mismatch
-    if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
+    // if (!isMounted || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
+    // Only run GSAP after component is mounted and on desktop
+    if (!isMounted || (typeof window !== "undefined" && window.innerWidth < 1024) || !featuresRef.current || !stickyLeftRef.current || !scrollingRightRef.current) return;
 
     // Clear any existing ScrollTriggers
     ScrollTrigger.getAll().forEach(trigger => {
@@ -245,6 +247,20 @@ export default function AllInSolutions() {
         scrub: false,
       });
     }, featuresRef.current);
+
+    // Cleanup on resize
+    const handleResize = () => {
+      if (typeof window !== "undefined" && window.innerWidth < 1024) {
+        // Kill ScrollTrigger on mobile/tablet
+        ScrollTrigger.getAll().forEach(trigger => {
+          if (trigger.vars.id === "features-sticky") {
+            trigger.kill();
+          }
+        });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
       ctx.revert(); // Clean up GSAP context
@@ -317,95 +333,23 @@ export default function AllInSolutions() {
       </section>
       <AnimatedText descriptionText={descriptionText} textSize="text-[41px]"/>
 
-
-      {/* Description Section */}
-      {/* <section
-        ref={descriptionRef}
-        id="description-section"
-        className="bg-muted/30 py-36 relative overflow-hidden"
-      >
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-pulse"></div>
-          <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
-        </div>
-
-       {/* <div className="container mx-auto px-4 relative z-10">
-           <div
-            className={`transition-all duration-1000 ${
-              isDescriptionVisible
-                ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-8"
-            }`}
-          >
-            <p className="mx-auto font-inter text-[38px] font-[600] max-w-4xl text-center leading-[1.2] hover:scale-105 transition-all duration-500 cursor-default">
-              {descriptionWords.map((word, index) => {
-                const greyR = 133,
-                  greyG = 141,
-                  greyB = 157;
-                const darkR = 0,
-                  darkG = 25,
-                  darkB = 51;
-
-                let currentR = greyR;
-                let currentG = greyG;
-                let currentB = greyB;
-
-                if (isMounted) {
-                 
-                  const wordProgress = Math.max(
-                    0,
-                    Math.min(
-                      1,
-                      scrollProgress * descriptionWords.length * 1.2 - index
-                    )
-                  );
-
-                  currentR = Math.round(
-                    greyR + (darkR - greyR) * wordProgress
-                  );
-                  currentG = Math.round(
-                    greyG + (darkG - greyG) * wordProgress
-                  );
-                  currentB = Math.round(
-                    greyB + (darkB - greyB) * wordProgress
-                  );
-                }
-
-                return (
-                  <span
-                    key={index}
-                    className="transition-colors duration-300"
-                    style={{
-                      color: `rgb(${currentR}, ${currentG}, ${currentB})`,
-                    }}
-                  >
-                    {word}{index < descriptionWords.length - 1 ? " " : ""}
-                  </span>
-                );
-              })}
-            </p>
-          </div>
-          <AnimatedText descriptionText={descriptionText}/>
-        </div>
-     </section> */}
-
       {/* Feature Section */}
       <section ref={featuresRef} className="bg-[#F6F6F6] pt-20 pb-32 relative">
         <div className="container grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10 min-h-[600px] px-4">
-          {/* LEFT STICKY */}
+          {/* LEFT STICKY - Desktop sticky, mobile/tablet normal with order */}
           <div
             ref={stickyLeftRef}
-            className={`max-w-lg h-fit transition-opacity duration-700`}
+            className={`max-w-lg h-fit transition-opacity duration-700 order-first md:order-none md:sticky md:top-32`}
           >
             <div className="inline-block mb-4">
               <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
                 Features
               </span>
             </div>
-            <h3 className="font-inter text-[38px] font-[600] leading-[1.2]">
+            <h3 className="font-inter text-[28px] md:text-[38px] font-[600] leading-[1.2]">
               Simplifying personalized <br /> conversations.
             </h3>
-            <p className="text-[#858D9D] mb-3 mt-4">
+            <p className="text-[#858D9D] mb-3 mt-4 text-sm md:text-base">
               Drive business results with our meaningful customer conversations.
             </p>
             <div className="mt-6">
@@ -417,8 +361,8 @@ export default function AllInSolutions() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          <div ref={scrollingRightRef} className="flex flex-col gap-10">
+          {/* RIGHT COLUMN - Normal scroll on mobile, with order */}
+          <div ref={scrollingRightRef} className="flex flex-col gap-10 order-last md:order-none">
             {allInSolutionData.map((item, index) => (
               <div 
                 key={item.name} 
