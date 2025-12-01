@@ -41,32 +41,53 @@ export default function RootLayout({
                 history.scrollRestoration = 'manual';
               }
 
-              // Scroll to top immediately
+              // Scroll to top immediately and repeatedly
               window.scrollTo(0, 0);
 
               // Prevent any scroll restoration during initial load
               let scrollLocked = true;
+              let lockTimer = null;
+
               const unlockScroll = function() {
                 scrollLocked = false;
               };
 
-              // Lock scroll position at top during initial page load
-              window.addEventListener('scroll', function enforceTop() {
+              // Aggressively lock scroll position at top during initial page load
+              const enforceTop = function() {
                 if (scrollLocked) {
                   window.scrollTo(0, 0);
                 }
-              }, { passive: false });
+              };
 
-              // Also scroll on DOMContentLoaded and unlock after animations settle
+              window.addEventListener('scroll', enforceTop, { passive: false });
+
+              // Force scroll to top every 50ms for the first 1.5 seconds
+              const forceInterval = setInterval(function() {
+                if (scrollLocked) {
+                  window.scrollTo(0, 0);
+                }
+              }, 50);
+
+              // Unlock scroll after 1.5 seconds (giving ScrollTrigger time to fully initialize)
+              const unlockAfterDelay = function() {
+                setTimeout(function() {
+                  scrollLocked = false;
+                  clearInterval(forceInterval);
+                  window.scrollTo(0, 0); // One final scroll to top
+                }, 1500);
+              };
+
+              // Start unlock timer on DOMContentLoaded
               document.addEventListener('DOMContentLoaded', function() {
                 window.scrollTo(0, 0);
-                // Unlock scroll after 500ms to allow animations to initialize
-                setTimeout(unlockScroll, 500);
+                unlockAfterDelay();
               });
 
               // Fallback unlock on load event
               window.addEventListener('load', function() {
-                setTimeout(unlockScroll, 500);
+                if (scrollLocked) {
+                  unlockAfterDelay();
+                }
               });
             `,
           }}

@@ -411,33 +411,35 @@ const FeaturesSection = () => {
 
   // Delay ScrollTrigger initialization to prevent interfering with initial scroll position
   const initTimeout = setTimeout(() => {
-    // Create a timeline for smooth tab transitions
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: `+=${sectionHeight * tabs.length}`,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-        markers: false,
-        invalidateOnRefresh: true,
-        fastScrollEnd: true,
-        preventOverlaps: true,
-        onEnter: () => {
-          isAnimatingRef.current = true;
-        },
-        onLeave: () => {
-          isAnimatingRef.current = false;
-        },
-        onEnterBack: () => {
-          isAnimatingRef.current = true;
-        },
-        onLeaveBack: () => {
-          isAnimatingRef.current = false;
+    // Ensure we're at the top before initializing ScrollTrigger
+    if (window.scrollY === 0) {
+      // Create a timeline for smooth tab transitions
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${sectionHeight * tabs.length}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          markers: false,
+          invalidateOnRefresh: true,
+          fastScrollEnd: true,
+          preventOverlaps: true,
+          onEnter: () => {
+            isAnimatingRef.current = true;
+          },
+          onLeave: () => {
+            isAnimatingRef.current = false;
+          },
+          onEnterBack: () => {
+            isAnimatingRef.current = true;
+          },
+          onLeaveBack: () => {
+            isAnimatingRef.current = false;
+          }
         }
-      }
-    });
+      });
 
     // Add tab transitions to the timeline with proper spacing
     tabs.forEach((tab, index) => {
@@ -450,24 +452,25 @@ const FeaturesSection = () => {
       }
     });
 
-    // Animate content entrance on scroll
-    gsap.fromTo(sectionRef.current.querySelector('[class*="grid"]'),
-      {
-        opacity: 0,
-        y: 30
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
+      // Animate content entrance on scroll
+      gsap.fromTo(sectionRef.current.querySelector('[class*="grid"]'),
+        {
+          opacity: 0,
+          y: 30
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          }
         }
-      }
-    );
-  }, 300); // 300ms delay to allow initial scroll to complete
+      );
+    }
+  }, 1600); // 1600ms delay - wait for scroll lock to release
 
     return () => {
       clearTimeout(initTimeout);
