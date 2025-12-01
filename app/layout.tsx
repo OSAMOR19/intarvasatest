@@ -32,6 +32,46 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Force scroll to top immediately on page load
+              if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+              }
+
+              // Scroll to top immediately
+              window.scrollTo(0, 0);
+
+              // Prevent any scroll restoration during initial load
+              let scrollLocked = true;
+              const unlockScroll = function() {
+                scrollLocked = false;
+              };
+
+              // Lock scroll position at top during initial page load
+              window.addEventListener('scroll', function enforceTop() {
+                if (scrollLocked) {
+                  window.scrollTo(0, 0);
+                }
+              }, { passive: false });
+
+              // Also scroll on DOMContentLoaded and unlock after animations settle
+              document.addEventListener('DOMContentLoaded', function() {
+                window.scrollTo(0, 0);
+                // Unlock scroll after 500ms to allow animations to initialize
+                setTimeout(unlockScroll, 500);
+              });
+
+              // Fallback unlock on load event
+              window.addEventListener('load', function() {
+                setTimeout(unlockScroll, 500);
+              });
+            `,
+          }}
+        />
+      </head>
       <body>
         <ClientProviders>
           <ScrollToTop />
