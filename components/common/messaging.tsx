@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import { CheckCircle } from "lucide-react";
 
 const MessagingPlatformSection = () => {
-  const [activeFeature, setActiveFeature] = useState(3);
+  const [activeFeature, setActiveFeature] = useState(0);
 
   const features = [
     {
+      id: 1,
       title: "Bulk Campaigns",
       description:
         "Reach thousands (or millions) with marketing messages and promotions in a few clicks.",
@@ -17,6 +18,7 @@ const MessagingPlatformSection = () => {
       mobilePosition: { bottom: "20%", right: "8%", transform: "none" },
     },
     {
+      id: 2,
       title: "OTP Messaging",
       description:
         "Send one-time passwords, verification codes and alerts instantly with high deliverability.",
@@ -26,6 +28,7 @@ const MessagingPlatformSection = () => {
       mobilePosition: { bottom: "22%", right: "10%", transform: "none" },
     },
     {
+      id: 3,
       title: "Analytics & Reporting",
       description:
         "Track message delivery, failure diagnostics and campaign performance in real time.",
@@ -35,6 +38,7 @@ const MessagingPlatformSection = () => {
       mobilePosition: { bottom: "25%", right: "8%", transform: "none" },
     },
     {
+      id: 4,
       title: "Compliance & Regulatory",
       description:
         "Fully compliant with NCC rules, spam filters and opt-in/out policies.",
@@ -44,6 +48,7 @@ const MessagingPlatformSection = () => {
       mobilePosition: { bottom: "21%", right: "8%", transform: "none" },
     },
     {
+      id: 5,
       title: "API & Integration",
       description:
         "Easily integrate messaging into your apps for automation and scheduling.",
@@ -53,6 +58,7 @@ const MessagingPlatformSection = () => {
       mobilePosition: { bottom: "23%", right: "9%", transform: "none" },
     },
     {
+      id: 6,
       title: "Cost Efficiency",
       description:
         "Competitive pricing for large volumes, with scalable infrastructure to handle growth.",
