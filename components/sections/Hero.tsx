@@ -292,7 +292,7 @@ const Hero = () => {
       const phoneElement = phoneRef.current;
       const viewportWidth = window.innerWidth;
       const phoneWidth = phoneElement?.offsetWidth || 200;
-      const moveDistance = -(viewportWidth - phoneWidth - viewportWidth * 0.07);
+      const moveDistance = -(viewportWidth - phoneWidth - viewportWidth * 0.08);
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -371,8 +371,9 @@ const Hero = () => {
       tl.to(
         dashboardRef.current,
         {
+          scale: 1.0,
           bottom: "10%",
-          right: "5%",
+          right: "0%",
           duration: 1,
           ease: "none",
         },
@@ -382,7 +383,7 @@ const Hero = () => {
       tl.to(
         dashboardRef.current?.querySelector("img"),
         {
-          width: "70vw",
+          width: "77vw",
           duration: 1,
           ease: "none",
         },
@@ -395,8 +396,8 @@ const Hero = () => {
         {
           x: moveDistance,
           top: "56%",
-          yPercent: -50,
-          scale: 1.6,
+          yPercent: -55,
+          scale: 1.9,
           zIndex: 50,
           duration: 1,
           ease: "none",
@@ -431,8 +432,9 @@ const Hero = () => {
         ref={phoneRef}
         className="hidden md:inline-block absolute z-20 pointer-events-none"
         style={{
-          right: "0",
-          top: "40%",
+          scale: 1.6,
+          right: "3%",
+          top: "30%",
         }}
       >
         <img
@@ -447,8 +449,10 @@ const Hero = () => {
         ref={dashboardRef}
         className="hidden md:inline-block absolute z-[25] pointer-events-none"
         style={{
-          bottom: "-150px",
-          right: "-400px",
+          scale: 2.5,
+          bottom: "-280px",
+          right: "-700px",
+          // transform: "translateY(70%)",
         }}
       >
         <img
@@ -513,8 +517,9 @@ const Hero = () => {
             ref={layerRef}
             className="absolute w-[420px] h-[420px] z-0"
             style={{
-              right: "5%",
-              top: "30%",
+              scale: 2.0,
+              right: "2%",
+              top: "12%",
               transform: "translateY(10%) translateX(-5%)",
             }}
           >
@@ -530,8 +535,9 @@ const Hero = () => {
             ref={pbxRef}
             className="absolute z-10 flex flex-col space-y-4"
             style={{
-              right: "26%",
-              top: "44%",
+              scale: 1.1,
+              right: "34%",
+              top: "34%",
               transform: "translateY(30%)",
             }}
           >
@@ -547,8 +553,9 @@ const Hero = () => {
             ref={statsRef}
             className="absolute z-10"
             style={{
-              top: "700px",
-              left: "-6%",
+              scale: 1.3,
+              top: "780px",
+              left: "-30%",
               transform: "translateX(110%)",
             }}
           >

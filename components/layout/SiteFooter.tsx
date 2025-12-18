@@ -209,7 +209,7 @@ const Footer = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="example@gmail.com"
+                placeholder="example@intarvas.com"
                 required
                 className="w-full px-6 py-3 pr-28 rounded-full bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
               />
