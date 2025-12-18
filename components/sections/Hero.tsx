@@ -292,7 +292,7 @@ const Hero = () => {
       const phoneElement = phoneRef.current;
       const viewportWidth = window.innerWidth;
       const phoneWidth = phoneElement?.offsetWidth || 200;
-      const moveDistance = -(viewportWidth - phoneWidth - viewportWidth * 0.07);
+      const moveDistance = -(viewportWidth - phoneWidth - viewportWidth * 0.05);
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -372,7 +372,7 @@ const Hero = () => {
         dashboardRef.current,
         {
           bottom: "10%",
-          right: "5%",
+          right: "0%",
           duration: 1,
           ease: "none",
         },
@@ -382,7 +382,7 @@ const Hero = () => {
       tl.to(
         dashboardRef.current?.querySelector("img"),
         {
-          width: "70vw",
+          width: "79vw",
           duration: 1,
           ease: "none",
         },
@@ -394,9 +394,9 @@ const Hero = () => {
         phoneRef.current,
         {
           x: moveDistance,
-          top: "56%",
-          yPercent: -50,
-          scale: 1.6,
+          top: "52%",
+          yPercent: -49,
+          scale: 2.0,
           zIndex: 50,
           duration: 1,
           ease: "none",
@@ -415,7 +415,7 @@ const Hero = () => {
       style={{ backgroundColor: "#001932" }}
     >
       {/* Background Pattern */}
-      <div ref={bgRef} className="hidden md:inline-block absolute inset-0">
+      <div ref={bgRef} className="hidden lg:inline-block absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
@@ -429,7 +429,7 @@ const Hero = () => {
       {/* Mobile Phone - OUTSIDE the image container so it can animate across full screen */}
       <div
         ref={phoneRef}
-        className="hidden md:inline-block absolute z-20 pointer-events-none"
+        className="hidden lg:inline-block absolute z-20 pointer-events-none"
         style={{
           right: "0",
           top: "40%",
@@ -445,10 +445,10 @@ const Hero = () => {
       {/* Dashboard Screen - OUTSIDE the image container so it can animate to full screen */}
       <div
         ref={dashboardRef}
-        className="hidden md:inline-block absolute z-[25] pointer-events-none"
+        className="hidden lg:inline-block absolute z-[25] pointer-events-none"
         style={{
-          bottom: "-150px",
-          right: "-400px",
+          bottom: "-80px",
+          right: "-300px",
         }}
       >
         <img
@@ -498,14 +498,14 @@ const Hero = () => {
         </div>
 
         {/* Right-side visuals - only PBX, layer, and analytics stay here */}
-        <div className="md:hidden inline-block px-0 flex justify-end items-end " >
+        <div className="lg:hidden inline-block px-0 flex justify-end items-end " >
             <div className="animate-fade-in-up delay-700 flex">
                 <img src={"/hero-animate/all123.png"} alt={"placeholder"} className="object-cover w-full 2xl:w-[70vw] " loading="eager"/>
             </div>
         </div>
         <div
           ref={imageContainerRef}
-          className="hidden md:inline-block absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-1/2 h-full flex items-center justify-center pointer-events-none"
+          className="hidden lg:inline-block absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-1/2 h-full flex items-center justify-center pointer-events-none"
           style={{ transformStyle: "preserve-3d" }}
         >
           {/* Background Blue Layer */}
@@ -547,7 +547,7 @@ const Hero = () => {
             ref={statsRef}
             className="absolute z-10"
             style={{
-              top: "700px",
+              top: "750px",
               left: "-6%",
               transform: "translateX(110%)",
             }}
