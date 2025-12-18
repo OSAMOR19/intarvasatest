@@ -292,7 +292,7 @@ const Hero = () => {
       const phoneElement = phoneRef.current;
       const viewportWidth = window.innerWidth;
       const phoneWidth = phoneElement?.offsetWidth || 200;
-      const moveDistance = -(viewportWidth - phoneWidth - viewportWidth * 0.05);
+      const moveDistance = -(viewportWidth - phoneWidth - viewportWidth * 0.07);
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -394,7 +394,7 @@ const Hero = () => {
         phoneRef.current,
         {
           x: moveDistance,
-          top: "50%",
+          top: "56%",
           yPercent: -50,
           scale: 1.6,
           zIndex: 50,
